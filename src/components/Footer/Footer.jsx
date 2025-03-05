@@ -1,7 +1,11 @@
 import "./Footer.scss";
 
 function Footer() {
-  return;
+  return (
+    <footer className="footer">
+      © InStock Inc. All Rights Reserved.
+    </footer>
+  )
 }
 
 export default Footer;
