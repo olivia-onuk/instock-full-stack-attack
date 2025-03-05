@@ -1,5 +1,6 @@
 import "./WarehouseEdit.scss";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
@@ -14,6 +15,10 @@ function WarehouseEdit() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState({});
+
+  const { id } = useParams();
+
+  console.log("WarehouseEdit component is rendering with ID:", id);
 
   const handleWarehouseNameInput = (event) => {
     setWarehouseName(event.target.value);
@@ -139,7 +144,7 @@ function WarehouseEdit() {
                 name="warehouseName"
                 id="warehouseName"
                 value={warehouseName}
-                onChange={handleInputChange}
+                onChange={handleWarehouseNameInput}
                 className={error.warehouseName ? "input-error" : ""}
               />
 
@@ -149,7 +154,7 @@ function WarehouseEdit() {
                 name="streetAddress"
                 id="streetAddress"
                 value={streetAddress}
-                onChange={handleInputChange}
+                onChange={handleStreetAddressInput}
                 className={error.streetAddress ? "input-error" : ""}
               />
 
@@ -159,7 +164,7 @@ function WarehouseEdit() {
                 name="city"
                 id="city"
                 value={city}
-                onChange={handleInputChange}
+                onChange={handleCityInput}
                 className={error.city ? "input-error" : ""}
               />
 
@@ -169,7 +174,7 @@ function WarehouseEdit() {
                 name="country"
                 id="country"
                 value={country}
-                onChange={handleInputChange}
+                onChange={handleCountryInput}
                 className={error.country ? "input-error" : ""}
               />
             </div>
@@ -185,7 +190,7 @@ function WarehouseEdit() {
                 name="contactName"
                 id="contactName"
                 value={contactName}
-                onChange={handleInputChange}
+                onChange={handleContactNameInput}
                 className={error.contactName ? "input-error" : ""}
               />
 
@@ -195,7 +200,7 @@ function WarehouseEdit() {
                 name="position"
                 id="position"
                 value={position}
-                onChange={handleInputChange}
+                onChange={handlePositionInput}
                 className={error.position ? "input-error" : ""}
               />
 
@@ -205,7 +210,7 @@ function WarehouseEdit() {
                 name="phoneNumber"
                 id="phoneNumber"
                 value={phoneNumber}
-                onChange={handleInputChange}
+                onChange={handlePhoneNumberInput}
                 className={error.phoneNumber ? "input-error" : ""}
               />
 
@@ -215,7 +220,7 @@ function WarehouseEdit() {
                 name="email"
                 id="email"
                 value={email}
-                onChange={handleInputChange}
+                onChange={handleEmailInput}
                 className={error.email ? "input-error" : ""}
               />
             </div>
