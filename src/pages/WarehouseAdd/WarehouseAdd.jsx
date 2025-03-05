@@ -1,10 +1,53 @@
 import "./WarehouseAdd.scss";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
+import { useEffect, useState } from "react";
 
 function WarehouseAdd() {
-  console.log("WarehouseAdd component loaded!");
+  const [warehouseName, setWarehouseName] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [contactName, setContactName] = useState("");
+  const [position, setPosition] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState({});
+
+  const handleWarehouseNameInput = (event) => {
+    setWarehouseName(event.target.value);
+  };
+
+  const handleStreetAddressInput = (event) => {
+    setStreetAddress(event.target.value);
+  };
+
+  const handleCityInput = (event) => {
+    setCity(event.target.value);
+  };
+
+  const handleCountryInput = (event) => {
+    setCountry(event.target.value);
+  };
+
+  const handleContactNameInput = (event) => {
+    setContactName(event.target.value);
+  };
+
+  const handlePositionInput = (event) => {
+    setPosition(event.target.value);
+  };
+
+  const handlePhoneNumberInput = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+
+  const handleEmailInput = (event) => {
+    setEmail(event.target.value);
+  };
+
   return (
     <>
       <Header />
