@@ -8,6 +8,7 @@ import Inventory from "./pages/Inventory/Inventory";
 import InventoryDetails from "./pages/InventoryDetails/InventoryDetails";
 import InventoryAdd from "./pages/InventoryAdd/InventoryAdd";
 import InventoryEdit from "./pages/InventoryEdit/InventoryEdit";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/inventory/add" element={<InventoryAdd />} />
         <Route path="/inventory/edit" element={<InventoryEdit />} />
       </Routes>
+      <Footer/>
     </Router>
   );
 }
