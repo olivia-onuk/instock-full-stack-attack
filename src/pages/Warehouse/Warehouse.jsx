@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./Warehouse.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
