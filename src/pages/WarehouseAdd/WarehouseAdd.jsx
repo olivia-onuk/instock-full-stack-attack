@@ -142,7 +142,6 @@ function WarehouseAdd() {
                 value={warehouseName}
                 onChange={handleWarehouseNameInput}
                 className={error.warehouseName ? "input-error" : ""}
-                required
               />
 
               <label htmlFor="streetAddress">Street Address</label>
@@ -154,7 +153,6 @@ function WarehouseAdd() {
                 value={streetAddress}
                 onChange={handleStreetAddressInput}
                 className={error.streetAddress ? "input-error" : ""}
-                required
               />
 
               <label htmlFor="city">City</label>
@@ -166,7 +164,6 @@ function WarehouseAdd() {
                 value={city}
                 onChange={handleCityInput}
                 className={error.city ? "input-error" : ""}
-                required
               />
 
               <label htmlFor="country">Country</label>
@@ -178,7 +175,6 @@ function WarehouseAdd() {
                 value={country}
                 onChange={handleCountryInput}
                 className={error.country ? "input-error" : ""}
-                required
               />
             </div>
 
@@ -196,7 +192,6 @@ function WarehouseAdd() {
                 value={contactName}
                 onChange={handleContactNameInput}
                 className={error.contactName ? "input-error" : ""}
-                required
               />
 
               <label htmlFor="position">Position</label>
@@ -208,7 +203,6 @@ function WarehouseAdd() {
                 value={position}
                 onChange={handlePositionInput}
                 className={error.position ? "input-error" : ""}
-                required
               />
 
               <label htmlFor="phoneNumber">Phone Number</label>
@@ -220,7 +214,6 @@ function WarehouseAdd() {
                 value={phoneNumber}
                 onChange={handlePhoneNumberInput}
                 className={error.phoneNumber ? "input-error" : ""}
-                required
               />
 
               <label htmlFor="email">Email</label>
@@ -232,7 +225,6 @@ function WarehouseAdd() {
                 value={email}
                 onChange={handleEmailInput}
                 className={error.email ? "input-error" : ""}
-                required
               />
             </div>
           </div>
