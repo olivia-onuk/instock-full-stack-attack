@@ -4,7 +4,12 @@
 @use "../../styles/partials/typography" as *;
 
 .add-warehouse {
-  background-color: $primary-color-three;
+  width: calc(100% - 32px);
+  max-width: 343px;
+  min-height: 100vh;
+  margin: 136px auto 96px auto;
+  border-radius: 3px;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
 
   &__link {
     padding: 32px 26px 24px 24px;
@@ -30,9 +35,10 @@
       }
 
       label {
+        display: block;
         font-weight: 600;
         font-size: 13px;
-        padding-bottom: 4px;
+        padding: 16px 0px 4px 0px;
         color: $primary-color-one;
       }
 
@@ -66,9 +72,10 @@
       }
 
       label {
+        display: block;
         font-weight: 600;
         font-size: 13px;
-        padding-bottom: 4px;
+        padding: 16px 0px 4px 0px;
         color: $primary-color-one;
       }
 
@@ -99,6 +106,12 @@
       &-cancel {
         height: 36px;
         width: 50%;
+        min-width: 120px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
         background-color: $primary-color-three;
         color: $secondary-color-one;
         font-family: "Titillium Web";
@@ -106,17 +119,33 @@
         font-size: 13px;
         border: 1px solid $secondary-color-two;
         border-radius: 20px;
+
+        &:hover {
+          border: 1px solid $primary-color-two;
+          color: $primary-color-two;
+        }
       }
       &-addwarehouse {
+        height: 36px;
+        width: 50%;
+        min-width: 120px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
         background-color: $primary-color-two;
         color: $primary-color-three;
         border: none;
-        height: 36px;
-        width: 50%;
         font-family: "Titillium Web";
         font-weight: 600;
         font-size: 13px;
         border-radius: 20px;
+
+        &:hover {
+          background-color: $primary-color-one;
+          color: $primary-color-three;
+        }
       }
     }
   }
