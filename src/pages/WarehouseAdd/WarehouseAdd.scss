@@ -1,0 +1,246 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/font" as *;
+
+.add-warehouse {
+  width: calc(100% - 32px);
+  max-width: 343px;
+  min-height: 100vh;
+  margin: 136px auto 96px auto;
+  border-radius: 3px;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+
+  @include tablet {
+    width: calc(100% - 64px);
+    max-width: 704px;
+    min-height: auto;
+    height: auto;
+    margin: 92px auto 320px auto;
+  }
+
+  @include desktop {
+    width: calc(100% - 26px);
+    max-width: 1254px;
+    height: 612px;
+    margin: 92px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__link {
+    padding: 32px 26px 24px 24px;
+    border-bottom: 1px solid $secondary-color-two;
+    display: flex;
+    gap: 8px;
+    &-title {
+      font-weight: 600;
+      font-size: 24px;
+      color: $primary-color-one;
+      @include tablet {
+        font-size: 28px;
+      }
+    }
+  }
+
+  &__form {
+    @include desktop {
+      width: 100%;
+    }
+    &-section {
+      @include tablet {
+        display: flex;
+        justify-content: space-between;
+        padding: 24px 32px 32px 32px;
+      }
+      &-details {
+        padding: 16px 24px 24px 24px;
+        border-bottom: 1px solid $secondary-color-two;
+        @include tablet {
+          border-bottom: none;
+          width: 50%;
+          padding: 16px 31.5px 24px 0px;
+        }
+        &-title {
+          font-weight: 600;
+          font-size: 18px;
+          padding-bottom: 8px;
+          color: $primary-color-one;
+          @include tablet {
+            font-size: 24px;
+          }
+        }
+
+        label {
+          display: block;
+          font-weight: 600;
+          font-size: 13px;
+          padding: 16px 0px 4px 0px;
+          color: $primary-color-one;
+          @include tablet {
+            font-size: 14px;
+          }
+        }
+
+        input {
+          padding: 8px 16px;
+          height: 36px;
+          width: 100%;
+          border: 1px solid $secondary-color-two;
+          border-radius: 20px;
+
+          &::placeholder {
+            font-family: "Titillium Web";
+            font-weight: 400;
+            font-size: 13px;
+            color: $secondary-color-one;
+            @include tablet {
+              font-size: 14px;
+            }
+          }
+
+          &:hover {
+            border: 1px solid $primary-color-two;
+          }
+          &:focus,
+          &:active {
+            border: 2px solid $primary-color-two;
+            outline: none;
+          }
+          &.input-error {
+            border: 1px solid #c94515 !important;
+            outline: none;
+          }
+        }
+      }
+
+      &-contact {
+        padding: 16px 24px 24px 24px;
+        @include tablet {
+          width: 50%;
+          border-left: 1px solid $secondary-color-two;
+          padding: 16px 0px 24px 31.5px;
+        }
+        &-title {
+          font-weight: 600;
+          font-size: 18px;
+          padding-bottom: 8px;
+          color: $primary-color-one;
+          @include tablet {
+            font-size: 24px;
+          }
+        }
+
+        label {
+          display: block;
+          font-weight: 600;
+          font-size: 13px;
+          padding: 16px 0px 4px 0px;
+          color: $primary-color-one;
+          @include tablet {
+            font-size: 14px;
+          }
+        }
+
+        input {
+          padding: 8px 16px;
+          height: 36px;
+          width: 100%;
+          border: 1px solid $secondary-color-two;
+          border-radius: 20px;
+
+          &::placeholder {
+            font-family: "Titillium Web";
+            font-weight: 400;
+            font-size: 13px;
+            color: $secondary-color-one;
+            @include tablet {
+              font-size: 14px;
+            }
+          }
+
+          &:hover {
+            border: 1px solid $primary-color-two;
+          }
+          &:focus,
+          &:active {
+            border: 2px solid $primary-color-two;
+            outline: none;
+          }
+          &.input-error {
+            border: 1px solid #c94515 !important;
+            outline: none;
+          }
+        }
+      }
+    }
+    &-button {
+      background-color: $background-color-two;
+      padding: 16px 24px 16px 24px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      @include tablet {
+        justify-content: flex-end;
+        gap: 16px;
+        padding-top: 24px;
+      }
+      &-cancel {
+        height: 36px;
+        width: 50%;
+        min-width: 120px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        background-color: $primary-color-three;
+        color: $secondary-color-one;
+        font-family: "Titillium Web";
+        font-weight: 600;
+        font-size: 13px;
+        border: 1px solid $secondary-color-two;
+        border-radius: 20px;
+
+        &:hover {
+          border: 1px solid $primary-color-two;
+          color: $primary-color-two;
+        }
+
+        @include tablet {
+          height: 38px;
+          width: 72px;
+          padding: 8px 16px;
+        }
+      }
+      &-addwarehouse {
+        height: 36px;
+        width: 50%;
+        min-width: 120px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        background-color: $primary-color-two;
+        color: $primary-color-three;
+        border: none;
+        font-family: "Titillium Web";
+        font-weight: 600;
+        font-size: 13px;
+        border-radius: 20px;
+
+        &:hover {
+          background-color: $primary-color-one;
+          color: $primary-color-three;
+        }
+        @include tablet {
+          width: 138px;
+          height: 38px;
+          padding: 8px 16px;
+        }
+      }
+    }
+  }
+}

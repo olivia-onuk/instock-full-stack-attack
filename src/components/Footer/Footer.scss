@@ -1,0 +1,12 @@
+@use "../../styles/partials/index" as *;
+
+.footer {
+    text-align: center;
+    color: $secondary-color-one;
+    padding: 2.5rem 0; 
+    font-size: .6875rem;
+
+    @include tablet {
+        font-size: .75rem;
+    }
+}
