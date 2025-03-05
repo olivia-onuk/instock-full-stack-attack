@@ -15,88 +15,90 @@ function WarehouseAdd() {
         </div>
 
         <form className="add-warehouse__form">
-          <div className="add-warehouse__form-details">
-            <h2 className="add-warehouse__form-details-title">
-              Warehouse Details
-            </h2>
+          <div className="add-warehouse__form-section">
+            <div className="add-warehouse__form-section-details">
+              <h2 className="add-warehouse__form-section-details-title">
+                Warehouse Details
+              </h2>
 
-            <label htmlFor="warehouseName">Warehouse Name</label>
-            <input
-              type="text"
-              name="warehouseName"
-              id="warehouseName"
-              placeholder="Warehouse Name"
-              required
-            />
+              <label htmlFor="warehouseName">Warehouse Name</label>
+              <input
+                type="text"
+                name="warehouseName"
+                id="warehouseName"
+                placeholder="Warehouse Name"
+                required
+              />
 
-            <label htmlFor="streetAddress">Street Address</label>
-            <input
-              type="text"
-              name="streetAddress"
-              id="streetAddress"
-              placeholder="Street Address"
-              required
-            />
+              <label htmlFor="streetAddress">Street Address</label>
+              <input
+                type="text"
+                name="streetAddress"
+                id="streetAddress"
+                placeholder="Street Address"
+                required
+              />
 
-            <label htmlFor="city">City</label>
-            <input
-              type="text"
-              name="city"
-              id="city"
-              placeholder="City"
-              required
-            />
+              <label htmlFor="city">City</label>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                placeholder="City"
+                required
+              />
 
-            <label htmlFor="country">Country</label>
-            <input
-              type="text"
-              name="country"
-              id="country"
-              placeholder="Country"
-              required
-            />
-          </div>
+              <label htmlFor="country">Country</label>
+              <input
+                type="text"
+                name="country"
+                id="country"
+                placeholder="Country"
+                required
+              />
+            </div>
 
-          <div className="add-warehouse__form-contact">
-            <h2 className="add-warehouse__form-contact-title">
-              Contact Details
-            </h2>
+            <div className="add-warehouse__form-section-contact">
+              <h2 className="add-warehouse__form-section-contact-title">
+                Contact Details
+              </h2>
 
-            <label htmlFor="contactName">Contact Name</label>
-            <input
-              type="text"
-              name="contactName"
-              id="contactName"
-              placeholder="Contact Name"
-              required
-            />
+              <label htmlFor="contactName">Contact Name</label>
+              <input
+                type="text"
+                name="contactName"
+                id="contactName"
+                placeholder="Contact Name"
+                required
+              />
 
-            <label htmlFor="position">Position</label>
-            <input
-              type="text"
-              name="position"
-              id="position"
-              placeholder="Position"
-              required
-            />
+              <label htmlFor="position">Position</label>
+              <input
+                type="text"
+                name="position"
+                id="position"
+                placeholder="Position"
+                required
+              />
 
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input
-              type="tel"
-              name="phoneNumber"
-              id="phoneNumber"
-              placeholder="Phone Number"
-              required
-            />
+              <label htmlFor="phoneNumber">Phone Number</label>
+              <input
+                type="tel"
+                name="phoneNumber"
+                id="phoneNumber"
+                placeholder="Phone Number"
+                required
+              />
 
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              required
-            />
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                required
+              />
+            </div>
           </div>
 
           <div className="add-warehouse__form-button">
