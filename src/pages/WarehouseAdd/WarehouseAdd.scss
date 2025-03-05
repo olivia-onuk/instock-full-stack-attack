@@ -1,0 +1,123 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+
+.add-warehouse {
+  background-color: $primary-color-three;
+
+  &__link {
+    padding: 32px 26px 24px 24px;
+    border-bottom: 1px solid $secondary-color-two;
+    display: flex;
+    gap: 8px;
+    &-title {
+      font-weight: 600;
+      font-size: 24px;
+      color: $primary-color-one;
+    }
+  }
+
+  &__form {
+    &-details {
+      padding: 16px 24px 24px 24px;
+      border-bottom: 1px solid $secondary-color-two;
+      &-title {
+        font-weight: 600;
+        font-size: 18px;
+        padding-bottom: 8px;
+        color: $primary-color-one;
+      }
+
+      label {
+        font-weight: 600;
+        font-size: 13px;
+        padding-bottom: 4px;
+        color: $primary-color-one;
+      }
+
+      input {
+        padding: 8px 16px;
+        height: 36px;
+        width: 100%;
+        border: 1px solid $secondary-color-two;
+        border-radius: 20px;
+
+        &::placeholder {
+          font-family: "Titillium Web";
+          font-weight: 400;
+          font-size: 13px;
+          color: $secondary-color-one;
+        }
+
+        &:hover {
+          border: 1px solid $primary-color-two;
+        }
+      }
+    }
+
+    &-contact {
+      padding: 16px 24px 24px 24px;
+      &-title {
+        font-weight: 600;
+        font-size: 18px;
+        padding-bottom: 8px;
+        color: $primary-color-one;
+      }
+
+      label {
+        font-weight: 600;
+        font-size: 13px;
+        padding-bottom: 4px;
+        color: $primary-color-one;
+      }
+
+      input {
+        padding: 8px 16px;
+        height: 36px;
+        width: 100%;
+        border: 1px solid $secondary-color-two;
+        border-radius: 20px;
+
+        &::placeholder {
+          font-family: "Titillium Web";
+          font-weight: 400;
+          font-size: 13px;
+          color: $secondary-color-one;
+        }
+
+        &:hover {
+          border: 1px solid $primary-color-two;
+        }
+      }
+    }
+    &-button {
+      background-color: $backgound-color-two;
+      padding: 16px 24px 16px 24px;
+      display: flex;
+      gap: 16px;
+      &-cancel {
+        height: 36px;
+        width: 50%;
+        background-color: $primary-color-three;
+        color: $secondary-color-one;
+        font-family: "Titillium Web";
+        font-weight: 600;
+        font-size: 13px;
+        border: 1px solid $secondary-color-two;
+        border-radius: 20px;
+      }
+      &-addwarehouse {
+        background-color: $primary-color-two;
+        color: $primary-color-three;
+        border: none;
+        height: 36px;
+        width: 50%;
+        font-family: "Titillium Web";
+        font-weight: 600;
+        font-size: 13px;
+        border-radius: 20px;
+      }
+    }
+  }
+}
