@@ -1,0 +1,35 @@
+@use "../../styles/partials/index" as *;
+
+.header {
+    background-color: $background-color-one;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__logo {
+        padding: 1.5rem;
+    }
+
+    &__nav {
+        display: flex;
+        gap: 5rem; 
+        padding-bottom: 5rem;       
+    }
+    &__link {
+        color: $primary-color-three;
+        font-size: .8125rem;
+        padding: .5rem 1rem;
+        border-radius: 20px;
+        
+        &:hover {
+            text-decoration: underline;
+            text-decoration-color: $primary-color-two;
+            text-decoration-thickness: .125rem ;
+        }
+        
+        &:active {
+            background-color: $primary-color-one;
+        }
+    }
+}
