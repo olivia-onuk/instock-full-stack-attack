@@ -13,6 +13,12 @@
       height: 2.5rem;
       padding: 0 1.5rem;
       box-sizing: border-box;
+      @include tablet {
+        padding: 0 2rem;
+      }
+      @include desktop {
+        padding: 0 2.5rem;
+      }
     }
   }
   
@@ -65,13 +71,16 @@
     padding: 1rem 1.5rem;
   
     @include tablet {
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       position: relative; 
       box-sizing: border-box;
       align-items: center;
     }
-  
+    @include desktop {
+      padding: 1rem 2.5rem;
+    }
     &__label {
       color: $secondary-color-one;
       margin-bottom: 0.25rem;
