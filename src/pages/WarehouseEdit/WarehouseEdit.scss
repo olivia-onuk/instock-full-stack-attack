@@ -1,0 +1,16 @@
+.edit-warehouse {
+  @extend .add-warehouse; // If styles are the same, reuse styles
+
+  &__link-title {
+    color: $primary-color-one;
+  }
+
+  &__form-button-save {
+    background-color: $primary-color-two;
+    color: $primary-color-three;
+    border: none;
+    &:hover {
+      background-color: $primary-color-one;
+    }
+  }
+}
