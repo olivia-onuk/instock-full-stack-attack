@@ -1,0 +1,150 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.warehouse-tablet-labels {
+    display: none;
+    @include tablet {
+      background-color: $backgound-color-two;
+      display: flex;
+      width: 100%;
+      gap:0;
+      justify-content: flex-start;
+      align-items: center;
+      height: 2.5rem;
+      padding: 0 1.5rem;
+      box-sizing: border-box;
+    }
+  }
+  
+  .warehouse-tablet-label {
+    display: flex;
+    align-items: center;
+    color: $secondary-color-one;
+    white-space: nowrap;
+    flex-shrink: 0;
+  
+    &:nth-child(1) {
+      width: calc((100% - 5rem) * 0.26);
+      @include desktop {
+        width: calc((100% - 5rem) * 0.286);
+      }
+    }
+    &:nth-child(2) {
+      width: calc((100% - 5rem) * 0.24);
+      @include desktop {
+        width: calc((100% - 5rem) * 0.264);
+      }
+    }
+    &:nth-child(3) {
+      width: calc((100% - 5rem) * 0.24);
+      @include desktop {
+        width: calc((100% - 5rem) * 0.216);
+      }
+    }
+    &:nth-child(4) {
+      width: calc((100% - 5rem) * 0.26);
+      @include desktop {
+        width: calc((100% - 5rem) * 0.234);
+      }
+    }
+    
+    &:nth-child(5) {
+      flex: 0 0 5rem;
+      justify-content: flex-end;
+    }
+    
+  }
+  
+  .warehouse-tablet-icon {
+    height: 1rem;
+    margin-left: 0.25rem;
+  }
+  
+  .warehouse-item {
+    border-top: .0625rem solid $secondary-color-two;
+    padding: 1rem 1.5rem;
+  
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      position: relative; 
+      box-sizing: border-box;
+      align-items: center;
+    }
+  
+    &__label {
+      color: $secondary-color-one;
+      margin-bottom: 0.25rem;
+      
+      @include tablet {
+      display: none;
+      }
+    }
+  
+    &__content {
+      @include tablet {
+        width: calc(100% - 5rem);
+      }
+    }
+  
+    &__columns {
+      display: flex;
+      width: 100%;
+      gap: 1rem;
+  
+      @include tablet {
+        gap: 0;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  
+    &__column {
+      width: 50%;
+      @include tablet {
+        display: flex;
+        align-items: center;
+      }
+      @include desktop {
+        &:nth-child(1) { width: 55%; }
+        &:nth-child(2) { width: 45%; }
+      }
+    }
+  
+    &__attribute {
+      margin-bottom: 1rem;
+  
+      @include tablet {
+        flex-wrap: wrap;
+        margin-bottom: 0;
+      }
+    }
+    &__name {@include tablet {width:52%;}}
+    &__address {
+      @include tablet {
+        width:48%;
+        padding-right: 1rem;
+      }}
+    &__contact-name {@include tablet {width:48%;}}
+    &__contact-infor {@include tablet {width:52%;}}
+    &__link {
+          color: $primary-color-two;
+          display: flex;
+          align-items: center;
+    }
+  
+    &__actions {
+      display: flex;
+      justify-content: space-between;
+      
+      @include tablet {
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4rem;
+        justify-content: flex-end;
+        gap: 1rem;
+      }
+    }
+  }
