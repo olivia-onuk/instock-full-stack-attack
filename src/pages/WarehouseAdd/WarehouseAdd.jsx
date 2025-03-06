@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
+import Error from "../../assets/icons/error-24px.svg";
 
 function WarehouseAdd() {
   const [warehouseName, setWarehouseName] = useState("");
@@ -144,6 +145,13 @@ function WarehouseAdd() {
                 className={error.warehouseName ? "input-error" : ""}
               />
 
+              {error.warehouseName && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.warehouseName}</p>
+                </div>
+              )}
+
               <label htmlFor="streetAddress">Street Address</label>
               <input
                 type="text"
@@ -154,6 +162,12 @@ function WarehouseAdd() {
                 onChange={handleStreetAddressInput}
                 className={error.streetAddress ? "input-error" : ""}
               />
+              {error.streetAddress && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.streetAddress}</p>
+                </div>
+              )}
 
               <label htmlFor="city">City</label>
               <input
@@ -165,6 +179,12 @@ function WarehouseAdd() {
                 onChange={handleCityInput}
                 className={error.city ? "input-error" : ""}
               />
+              {error.city && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.city}</p>
+                </div>
+              )}
 
               <label htmlFor="country">Country</label>
               <input
@@ -176,6 +196,12 @@ function WarehouseAdd() {
                 onChange={handleCountryInput}
                 className={error.country ? "input-error" : ""}
               />
+              {error.country && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.country}</p>
+                </div>
+              )}
             </div>
 
             <div className="add-warehouse__form-section-contact">
@@ -193,6 +219,12 @@ function WarehouseAdd() {
                 onChange={handleContactNameInput}
                 className={error.contactName ? "input-error" : ""}
               />
+              {error.contactName && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.contactName}</p>
+                </div>
+              )}
 
               <label htmlFor="position">Position</label>
               <input
@@ -204,6 +236,12 @@ function WarehouseAdd() {
                 onChange={handlePositionInput}
                 className={error.position ? "input-error" : ""}
               />
+              {error.position && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.position}</p>
+                </div>
+              )}
 
               <label htmlFor="phoneNumber">Phone Number</label>
               <input
@@ -215,6 +253,12 @@ function WarehouseAdd() {
                 onChange={handlePhoneNumberInput}
                 className={error.phoneNumber ? "input-error" : ""}
               />
+              {error.phoneNumber && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.phoneNumber}</p>
+                </div>
+              )}
 
               <label htmlFor="email">Email</label>
               <input
@@ -226,6 +270,12 @@ function WarehouseAdd() {
                 onChange={handleEmailInput}
                 className={error.email ? "input-error" : ""}
               />
+              {error.email && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.email}</p>
+                </div>
+              )}
             </div>
           </div>
 
