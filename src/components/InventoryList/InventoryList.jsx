@@ -1,7 +1,12 @@
 import "./InventoryList.scss";
+import InventoryItem from "../InventoryItem/InventoryItem";
 
 function InventoryList() {
-  return;
+  return (
+    <>
+      <InventoryItem />
+    </>
+  );
 }
 
 export default InventoryList;
