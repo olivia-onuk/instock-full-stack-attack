@@ -7,6 +7,8 @@ function WarehouseDetails() {
   const { id } = useParams();
   const [warehouse, setWarehouse] = useState();
 
+  
+
   return(
     <div className="warehouse-detail-page">
       <div className="warehouse_hero">

@@ -11,3 +11,18 @@
     @content;
   }
 }
+
+@mixin responsive-horizontal-padding {
+  padding-left: $mobile-padding;
+  padding-right: $mobile-padding;
+
+  @include tablet {
+    padding-left: $tablet-padding;
+    padding-right: $tablet-padding;
+  }
+
+  @include desktop {
+    padding-left: $desktop-padding;
+    padding-right: $desktop-padding;
+  }
+}
