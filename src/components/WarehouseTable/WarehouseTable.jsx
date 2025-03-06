@@ -1,17 +1,21 @@
 import "./WarehouseTable.scss";
 import { useState, useEffect } from "react";
-import { P2 } from '../Typography/Typography';
+import { deleteWarehouse } from "../../api/ApiService";
+import { P1, P2 } from '../Typography/Typography';
 import { Link } from 'react-router-dom'
+import ReactModal from "react-modal";
 import { fetchWarehouses } from "../../api/ApiService";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
+import closeIcon from "../../assets/icons/close-24px.svg";
 
 function WarehouseTable() {
   const [warehouses, setWarehouses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWarehouseId, setSelectedWarehouseId] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleOpenModal = (warehouseId) => {
     setSelectedWarehouseId(warehouseId);
@@ -21,10 +25,20 @@ function WarehouseTable() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedWarehouseId(null);
+    setIsDeleting(false);
   };
 
-  const handleDeleteConfirmed = () => {
-    console.log('Deleting warehouse:', selectedWarehouseId);
+  const handleDeleteConfirmed = async() => {
+    if (!selectedWarehouseId || isDeleting) return;
+    setIsDeleting(true);
+    try {
+      await deleteWarehouse(selectedWarehouseId);
+      setWarehouses(prev => prev.filter(
+        warehouse => warehouse.id !== selectedWarehouseId
+      ));
+    } catch (error) {
+      console.error('Delete failed:', error);
+    }
     handleCloseModal();
   };
 
@@ -35,15 +49,6 @@ function WarehouseTable() {
     }
     getWarehouses();
   }, []);
-
-  const handleDelete = async () => {
-    const success = await deleteWarehouse(warehouse.id);
-    if(success) {
-      console.log("Warehouse deleted successfully");
-    } else {
-      console.log("Failed to delete warehouse");
-    }
-  }
 
   return(
     <div className="warehouse-list-section">
@@ -120,6 +125,45 @@ function WarehouseTable() {
 
 
     </div>
+
+    <ReactModal
+        isOpen={isModalOpen}
+        onRequestClose={handleCloseModal}
+        contentLabel="Delete Confirmation"
+        className="delete-modal"
+        overlayClassName="delete-modal__overlay"
+      >
+        <div className="delete-modal__content">
+          <div className="delete-modal__top">
+            <div 
+              className="delete-modal__close"
+              onClick={handleCloseModal}
+            >
+              <img src={closeIcon} alt="close" />
+            </div>
+            <div className="delete-modal__text">
+              <h1 className="delete-modal__title">Delete Washington warehouse?</h1>
+              <P1>Please confirm that you’d like to delete the Washington from the list of warehouses. You won’t be able to undo this action.</P1>
+            </div>
+          </div>
+          <div className="delete-modal__actions">
+            <button 
+              className="delete-modal__button cancel"
+              onClick={handleCloseModal}
+              disabled={isDeleting}
+            >
+              <h3>Cancel</h3>
+            </button>
+            <button 
+              className="delete-modal__button confirm"
+              onClick={handleDeleteConfirmed}
+              disabled={isDeleting}
+            >
+              <h3>Delete</h3>
+            </button>
+          </div>
+        </div>
+      </ReactModal>
     </div>
   );
 }
