@@ -19,6 +19,7 @@
         padding: .5rem 8.125rem;
         padding-bottom: 7.875rem;
     }
+    
     &__logo {
         padding: 1.5rem;
 
@@ -43,6 +44,9 @@
         padding: .5rem 3rem;
         border-radius: 20px;
         
+        &:hover {
+            text-decoration: underline;
+        }
         &.active {
             background-color: $primary-color-one;
         }

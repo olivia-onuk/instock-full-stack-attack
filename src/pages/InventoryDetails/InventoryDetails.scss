@@ -1,0 +1,30 @@
+@use "../../styles/partials/index" as *;
+
+.inventory-details {
+    padding: 2rem 1.5rem;
+    
+    &__arrow {
+        width: 1.5rem;
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid $secondary-color-two;
+    }
+
+    &__container {
+        display: flex;
+        gap: .5rem;
+    }
+
+    &__button {
+        display: flex;
+    }
+    &__edit-icon {
+        background-color: $primary-color-two;
+        border-radius: 50%;
+        padding: .5rem;
+        width: 2.25rem;
+    }
+}
