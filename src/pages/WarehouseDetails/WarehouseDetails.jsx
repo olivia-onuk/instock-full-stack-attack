@@ -42,12 +42,13 @@ function WarehouseDetails() {
         className="warehouse-hero__edit"
         >
           <img src={editIconWhite} alt="edit" className="warehouse-hero__edit-icon" />
+          <h3 className="warehouse-hero__edit-text">Edit</h3>
         </Link>
       </div>
         <div className="warehouse-detail">
           <div className="warehouse-detail__address">
             <h4 className="warehouse-detail__label">WAREHOUSE ADDRESS:</h4>
-            <P2>{warehouse.address}, {warehouse.city}, {warehouse.country}</P2>
+            <P2 className="warehouse-detail__address-content"><span>{warehouse.address}, </span><span>{warehouse.city}, {warehouse.country}</span></P2>
           </div>
           <div className="warehouse-detail__contact">
             <div className="warehouse-detail__name">
