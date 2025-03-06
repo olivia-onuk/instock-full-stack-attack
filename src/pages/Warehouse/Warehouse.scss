@@ -2,26 +2,43 @@
 @use "../../styles/partials/variables" as *;
 @use "../../components/Typography/Typography.scss" as typography;
 
-.warehouses-section {
-  margin: 1rem;
-  box-shadow: 0px 2px 5px 0px #13182c1a;
-}
-
 .warehouses-hero {
-  padding: 1.5rem;
+  @include responsive-horizontal-padding; 
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  @include tablet {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 1.375rem;
+  }
+  &__right {
+    @include tablet {
+      display: flex;
+      gap: 1rem;
+    }
+  }
 }
 
 .warehouses-title {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
+  @include tablet {
+    margin: 0;
+  }
 }
+
 
 .warehouse-search {
   margin: 1rem 0;
   position: relative;
   width: 100%;
+  @include tablet {
+    margin: 0;
+  }
   &__input {
     width: 100%;
-    height: 2.25rem;
+    height: $input-height-mobile;
     padding: 0 1rem;
     border: 0.0625rem solid $secondary-color-two;
     border-radius: 1.25rem;
@@ -30,13 +47,17 @@
       @extend .p2;
     }
     @include tablet {
-      height: 2.375rem;
+      height: $input-height-tablet;
+      width: 11.5625rem;
+      @include desktop {
+        width: 17.125rem;
+      }
     }
   }
   &__icon {
     position: absolute;
     right: 10px;
-    top: 0.375rem;
+    top: calc(50% - 12px);
     height: 24px;
     cursor: pointer;
   }
@@ -50,103 +71,15 @@
   height: 2.25rem;
   padding: 0 1rem;
   border-radius: 1.25rem;
+  &:hover {
+    background-color: $background-color-one;
+  }
   @include tablet {
     height: 2.375rem;
+    width: $button-width-tablet;
+    flex-shrink: 0;
+    &__text {
+      white-space: nowrap; 
+    }
   }
-}
-
-.warehouse_tablet-labels {
-  display: none;
-  @include tablet {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 2.5rem;
-    padding: 0 1.5rem;
-  }
-}
-
-.warehouse_tablet_label {
-  display: flex;
-}
-
-
-
-.warehouse-item {
-    border-top: .0625rem solid $secondary-color-two;
-    padding: 1rem 1.5rem;
-    
-    @include tablet {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 1.5rem 2rem;
-    }
-  
-    &__content {
-      @include tablet {
-        flex: 1;
-        display: flex;
-        gap: 2rem;
-      }
-    }
-  
-    &__columns {
-      display: flex;
-      width: 100%;
-      gap: 1rem;
-  
-      @include tablet {
-        display: contents;
-      }
-    }
-  
-    &__column {
-      width: 50%;
-      @include tablet {
-        width: auto;
-        display: flex;
-        flex: 1;
-        gap: 2rem;
-      }
-    }
-  
-    &__attribute {
-        margin-bottom: 1rem;
-
-        @include tablet {
-        flex: 1;
-        margin-bottom: 0;
-        }
-    }
-    &__label {
-        color: $secondary-color-one;
-        margin-bottom: 0.25rem;
-        
-        @include tablet {
-        display: none;
-        }
-    }
-
-    &__link {
-        color: $primary-color-two;
-        display: flex;
-        align-items: center;
-        
-        @include tablet {
-        flex-direction: column;
-        align-items: flex-start;
-        }
-    }
-
-    &__actions {
-        display: flex;
-        justify-content: space-between;
-        
-        @include tablet {
-        display: flex;
-        gap: 1.5rem;
-        margin-left: 2rem;
-        }
-    }
 }
