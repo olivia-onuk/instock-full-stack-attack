@@ -26,6 +26,21 @@ export const fetchWarehouse = async (id) => {
     }
 }
 
+
+export const fetchWarehouseInventory = async (id) => {
+    try {
+        const resp = await axios.get(
+            `${BASE_URL}/api/warehouses/${id}/inventories`
+        );
+        
+        return resp.data;
+    } catch (error) {
+        console.log(error);
+        alert('Failed to fetch warehouse inventory. Please try again.');
+    }
+}
+
+
 export const deleteWarehouse = async(id) => {
     try {
         await axios.delete(`${BASE_URL}/api/warehouses/${id}`);
