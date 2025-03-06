@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
+import Error from "../../assets/icons/error-24px.svg";
 
 function WarehouseEdit() {
   const [warehouseName, setWarehouseName] = useState("");
@@ -80,15 +81,13 @@ function WarehouseEdit() {
     if (!position.trim()) {
       errorObject.position = "Position is required";
     }
-    if (phoneNumber.length !== 10 || isNaN(Number(phoneNumber))) {
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phoneNumber)) {
       errorObject.phoneNumber = "Phone number must be 10 digits.";
     }
 
-    if (
-      !email.includes("@") ||
-      !email.includes(".") ||
-      email.indexOf("@") > email.lastIndexOf(".")
-    ) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
       errorObject.email = "Invalid email format";
     }
     setError(errorObject);
@@ -143,40 +142,68 @@ function WarehouseEdit() {
                 type="text"
                 name="warehouseName"
                 id="warehouseName"
+                placeholder="Warehouse Name"
                 value={warehouseName}
                 onChange={handleWarehouseNameInput}
                 className={error.warehouseName ? "input-error" : ""}
               />
+              {error.warehouseName && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.warehouseName}</p>
+                </div>
+              )}
 
               <label htmlFor="streetAddress">Street Address</label>
               <input
                 type="text"
                 name="streetAddress"
                 id="streetAddress"
+                placeholder="Street Address"
                 value={streetAddress}
                 onChange={handleStreetAddressInput}
                 className={error.streetAddress ? "input-error" : ""}
               />
+              {error.streetAddress && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.streetAddress}</p>
+                </div>
+              )}
 
               <label htmlFor="city">City</label>
               <input
                 type="text"
                 name="city"
                 id="city"
+                placeholder="City"
                 value={city}
                 onChange={handleCityInput}
                 className={error.city ? "input-error" : ""}
               />
+              {error.city && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.city}</p>
+                </div>
+              )}
 
               <label htmlFor="country">Country</label>
               <input
                 type="text"
                 name="country"
                 id="country"
+                placeholder="Country"
                 value={country}
                 onChange={handleCountryInput}
                 className={error.country ? "input-error" : ""}
               />
+              {error.country && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.country}</p>
+                </div>
+              )}
             </div>
 
             <div className="edit-warehouse__form-section-contact">
@@ -189,40 +216,68 @@ function WarehouseEdit() {
                 type="text"
                 name="contactName"
                 id="contactName"
+                placeholder="Contact Name"
                 value={contactName}
                 onChange={handleContactNameInput}
                 className={error.contactName ? "input-error" : ""}
               />
+              {error.contactName && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.contactName}</p>
+                </div>
+              )}
 
               <label htmlFor="position">Position</label>
               <input
                 type="text"
                 name="position"
                 id="position"
+                placeholder="Position"
                 value={position}
                 onChange={handlePositionInput}
                 className={error.position ? "input-error" : ""}
               />
+              {error.position && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.position}</p>
+                </div>
+              )}
 
               <label htmlFor="phoneNumber">Phone Number</label>
               <input
                 type="text"
                 name="phoneNumber"
                 id="phoneNumber"
+                placeholder="Phone Number"
                 value={phoneNumber}
                 onChange={handlePhoneNumberInput}
                 className={error.phoneNumber ? "input-error" : ""}
               />
+              {error.phoneNumber && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.phoneNumber}</p>
+                </div>
+              )}
 
               <label htmlFor="email">Email</label>
               <input
                 type="email"
                 name="email"
                 id="email"
+                placeholder="Email"
                 value={email}
                 onChange={handleEmailInput}
                 className={error.email ? "input-error" : ""}
               />
+              {error.email && (
+                <div className="error-container">
+                  <img src={Error} alt="Error Icon" className="error-icon" />
+                  <p className="error-message">{error.email}</p>
+                </div>
+              )}
             </div>
           </div>
 
