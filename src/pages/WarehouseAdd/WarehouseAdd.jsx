@@ -120,7 +120,6 @@ function WarehouseAdd() {
 
   return (
     <>
-      <Header />
       <section className="add-warehouse">
         <div className="add-warehouse__link">
           <img className="add-warehouse__link-arrow" src={Arrow} />
@@ -292,7 +291,6 @@ function WarehouseAdd() {
           </div>
         </form>
       </section>
-      <Footer />
     </>
   );
 }

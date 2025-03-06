@@ -158,7 +158,6 @@ function WarehouseEdit() {
 
   return (
     <>
-      <Header />
       <section className="edit-warehouse">
         <div className="edit-warehouse__link">
           <Link to="/warehouse">
@@ -332,7 +331,6 @@ function WarehouseEdit() {
           </div>
         </form>
       </section>
-      <Footer />
     </>
   );
 }
