@@ -3,8 +3,8 @@
 
 .warehouse-hero {
     @include responsive-horizontal-padding;
-    padding-top: 2.5rem;
-    padding-bottom: 1.75rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
     border-bottom: .0625rem solid $secondary-color-two;
     display: flex;
     justify-content: space-between;

@@ -14,27 +14,27 @@ import closeIcon from "../../assets/icons/close-24px.svg";
 function WarehouseTable() {
   const [warehouses, setWarehouses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedWarehouseId, setSelectedWarehouseId] = useState(null);
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const handleOpenModal = (warehouseId) => {
-    setSelectedWarehouseId(warehouseId);
+  const handleOpenModal = (warehouse) => {
+    setSelectedWarehouse(warehouse);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedWarehouseId(null);
+    setSelectedWarehouse(null);
     setIsDeleting(false);
   };
 
   const handleDeleteConfirmed = async() => {
-    if (!selectedWarehouseId || isDeleting) return;
+    if (!selectedWarehouse || isDeleting) return;
     setIsDeleting(true);
     try {
-      await deleteWarehouse(selectedWarehouseId);
+      await deleteWarehouse(selectedWarehouse.id);
       setWarehouses(prev => prev.filter(
-        warehouse => warehouse.id !== selectedWarehouseId
+        warehouse => warehouse.id !== selectedWarehouse.id
       ));
     } catch (error) {
       console.error('Delete failed:', error);
@@ -113,7 +113,7 @@ function WarehouseTable() {
             <img 
               src={deleteIcon} 
               alt="delete"
-              onClick={() => handleOpenModal(warehouse.id)}
+              onClick={() => handleOpenModal(warehouse)}
               className="warehouse-item__delete-icon"
             />
             <Link to={`/warehouse/edit/${warehouse.id}`}>
@@ -142,8 +142,8 @@ function WarehouseTable() {
               <img src={closeIcon} alt="close" />
             </div>
             <div className="delete-modal__text">
-              <h1 className="delete-modal__title">Delete Washington warehouse?</h1>
-              <P1>Please confirm that you’d like to delete the Washington from the list of warehouses. You won’t be able to undo this action.</P1>
+              <h1 className="delete-modal__title">Delete {selectedWarehouse ? selectedWarehouse.warehouse_name : "Warehouse"}</h1>
+              <P1>Please confirm that you’d like to delete the {selectedWarehouse ? selectedWarehouse.warehouse_name : "Warehouse"} from the list of warehouses. You won’t be able to undo this action.</P1>
             </div>
           </div>
           <div className="delete-modal__actions">
