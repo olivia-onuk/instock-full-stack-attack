@@ -10,7 +10,7 @@ export const fetchWarehouses = async () => {
         return resp.data;
     } catch (error) {
         console.log(error);
-        alert('Failed to fetch Warehouses. Please try again.');
+        //alert('Failed to fetch Warehouses. Please try again.');
     }
 }
 
@@ -22,7 +22,7 @@ export const fetchWarehouse = async (id) => {
         return resp.data;
     } catch (error) {
         console.log(error);
-        alert('Failed to fetch Warehouse. Please try again.');
+        //alert('Failed to fetch Warehouse. Please try again.');
     }
 }
 

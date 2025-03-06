@@ -6,9 +6,11 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
+import { fetchWarehouse } from "../../api/ApiService";
 
 function InventoryItem({ inventory, isFullInventory }) {
   const [isInStock, setIsInStock] = useState({});
+  const [warehouseNames, setWarehouseNames] = useState({});
 
   useEffect(() => {
     const stockStatus = inventory.reduce((acc, item) => {
@@ -95,7 +97,9 @@ function InventoryItem({ inventory, isFullInventory }) {
 
                   <div
                     className={`inventory-item__attribute inventory-item__warehouse${
-                      isFullInventory ? "" : " inventory-item__warehouse--invisible"
+                      isFullInventory
+                        ? ""
+                        : " inventory-item__warehouse--invisible"
                     }`}
                   >
                     <h4 className="inventory-item__label">WAREHOUSE</h4>
