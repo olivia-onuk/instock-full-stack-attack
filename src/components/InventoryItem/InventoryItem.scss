@@ -137,22 +137,57 @@
       width: 52%;
     }
   }
-  &__address {
+  &__category {
     @include tablet {
       width: 48%;
       padding-right: 1rem;
     }
   }
-  &__contact-name {
+
+  &__status {
     @include tablet {
       width: 48%;
     }
   }
-  &__contact-infor {
+
+  &__stock {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    padding: 4px 8px;
+
+    height: 24px;
+    border-radius: 20px;
+    text-align: center;
+
+    &--in-stock {
+      width: 61px;
+      background-color: rgba($supporting-color-one, 0.07);
+      color: $supporting-color-one;
+    }
+
+    &--out-of-stock {
+      width: 86px;
+      background-color: rgba($supporting-color-two, 0.07);
+      color: $supporting-color-two;
+    }
+  }
+  &__qty {
     @include tablet {
       width: 52%;
     }
   }
+
+  &__warehouse {
+    @include tablet {
+      width: 52%;
+    }
+
+    &--invisible{
+        display: none;
+    }
+  }
+
   &__link {
     color: $primary-color-two;
     display: flex;
