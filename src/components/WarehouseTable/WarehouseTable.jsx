@@ -1,5 +1,6 @@
 import "./WarehouseTable.scss";
 import { useState, useEffect } from "react";
+import { deleteWarehouse } from "../../api/ApiService";
 import { P1, P2 } from '../Typography/Typography';
 import { Link } from 'react-router-dom'
 import ReactModal from "react-modal";
@@ -14,6 +15,7 @@ function WarehouseTable() {
   const [warehouses, setWarehouses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWarehouseId, setSelectedWarehouseId] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleOpenModal = (warehouseId) => {
     setSelectedWarehouseId(warehouseId);
@@ -23,10 +25,20 @@ function WarehouseTable() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedWarehouseId(null);
+    setIsDeleting(false);
   };
 
-  const handleDeleteConfirmed = () => {
-    console.log('Deleting warehouse:', selectedWarehouseId);
+  const handleDeleteConfirmed = async() => {
+    if (!selectedWarehouseId || isDeleting) return;
+    setIsDeleting(true);
+    try {
+      await deleteWarehouse(selectedWarehouseId);
+      setWarehouses(prev => prev.filter(
+        warehouse => warehouse.id !== selectedWarehouseId
+      ));
+    } catch (error) {
+      console.error('Delete failed:', error);
+    }
     handleCloseModal();
   };
 
@@ -37,15 +49,6 @@ function WarehouseTable() {
     }
     getWarehouses();
   }, []);
-
-  const handleDelete = async () => {
-    const success = await deleteWarehouse(warehouse.id);
-    if(success) {
-      console.log("Warehouse deleted successfully");
-    } else {
-      console.log("Failed to delete warehouse");
-    }
-  }
 
   return(
     <div className="warehouse-list-section">
@@ -147,12 +150,14 @@ function WarehouseTable() {
             <button 
               className="delete-modal__button cancel"
               onClick={handleCloseModal}
+              disabled={isDeleting}
             >
               <h3>Cancel</h3>
             </button>
             <button 
               className="delete-modal__button confirm"
               onClick={handleDeleteConfirmed}
+              disabled={isDeleting}
             >
               <h3>Delete</h3>
             </button>
