@@ -8,7 +8,7 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
-function InventoryItem() {
+function InventoryItem({inventory , isFullInventory}) {
   const [warehouses, setWarehouses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWarehouseId, setSelectedWarehouseId] = useState(null);

@@ -67,7 +67,7 @@ function WarehouseDetails() {
             </div>
           </div>
         </div>
-      <InventoryList />
+      <InventoryList isFullInventory={false}/>
     </div>
   );
 }
