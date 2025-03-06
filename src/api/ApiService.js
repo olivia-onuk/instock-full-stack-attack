@@ -31,6 +31,7 @@ export const fetchWarehouseInventory = async (id) => {
         const resp = await axios.get(
             `${BASE_URL}/api/warehouses/${id}/inventories`
         );
+        
         return resp.data;
     } catch (error) {
         console.log(error);
