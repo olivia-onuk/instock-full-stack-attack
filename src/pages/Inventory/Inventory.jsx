@@ -35,7 +35,7 @@ function Inventory() {
           </Link>
         </div>
       </div>
-      <InventoryList />
+      <InventoryList isFullInventory={true}/>
     </div>
 
   )

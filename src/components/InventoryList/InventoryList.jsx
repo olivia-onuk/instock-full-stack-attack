@@ -1,20 +1,26 @@
 import "./InventoryList.scss";
 import InventoryItem from "../InventoryItem/InventoryItem";
-import { fetchWarehouseInventory } from "../../api/ApiService";
+import { fetchWarehouseInventory, fetchInventories } from "../../api/ApiService";
 import { useState, useEffect } from "react";
 
 function InventoryList({ id, isFullInventory }) {
   const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
-    const getInventory = async () => {
+    const getWarehouseInventory = async () => {
       const resp = await fetchWarehouseInventory(id);
       console.log(resp);
       setInventory(resp);
     };
     if (!isFullInventory) {
-      getInventory();
+      getWarehouseInventory();
     } else {
+      const getInventories = async() => {
+        const resp = await fetchInventories();
+        console.log(resp);
+        setInventory(resp);
+      }
+      getInventories();
     }
   }, []);
 
