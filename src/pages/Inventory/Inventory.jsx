@@ -1,55 +1,49 @@
+import "./Inventory.scss";
+import InventoryList from "../../components/InventoryList/InventoryList";
 import { useState } from "react";
-import DeleteModal from "../../components/InventoryDeleteModal/InventoryDeleteModal.jsx";
+import { Link } from "react-router-dom";
+import searchIcon from "../../assets/icons/search-24px.svg";
 
-const Inventory = () => {
-  const [inventory, setInventory] = useState([
-    { id: 1, name: "Television" },
-    { id: 2, name: "Gym Bag" },
-    { id: 3, name: "Kitchen Utensils" },
-    { id: 4, name: "Cleaning Supplies" },
-    { id: 5, name: "Stationery" },
-  ]);
+function Inventory() {
+  const [query, setQuery] = useState("");
 
-  const [showModal, setShowModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-
-  const handleDeleteClick = (item) => {
-    setSelectedItem(item);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const handleConfirmDelete = () => {
-    setInventory((prevInventory) =>
-      prevInventory.filter((item) => item.id !== selectedItem.id)
-    );
-    setShowModal(false);
+  const handleSearch = async () => {
+    if (query.trim() !== "") {
+      searchWarehouse(query);
+    }
   };
 
   return (
-    <div>
-      <h1>Inventory</h1>
-      <ul>
-        {inventory.map((item) => (
-          <li key={item.id}>
-            {item.name}
-            <button onClick={() => handleDeleteClick(item)}>🗑️</button>
-          </li>
-        ))}
-      </ul>
-
-      {showModal && selectedItem && (
-        <DeleteModal
-          itemName={selectedItem.name}
-          onDelete={handleConfirmDelete}
-          onClose={handleCloseModal}
-        />
-      )}
+    <div className=" main">
+      <div className="inventory-hero">
+        <h1 className="inventory-title">Inventory</h1>
+        <div className="inventory-hero__right">
+          <div className="inventory-search">
+            <input
+              type="text"
+              className="inventory-search__input"
+              placeholder="Search..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            />
+            <img
+              src={searchIcon}
+              alt="Search"
+              className="inventory-search__icon"
+              onClick={handleSearch}
+            />
+          </div>
+          <Link to="/inventory/add">
+            <button className="add-inventory-button">
+              <h3 className="add-inventory-button__text">+ Add New Item</h3>
+            </button>
+          </Link>
+        </div>
+      </div>
+      <InventoryList isFullInventory={true} />
     </div>
   );
-};
+}
 
 export default Inventory;
