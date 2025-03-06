@@ -37,10 +37,10 @@ function InventoryItem({ inventory, isFullInventory }) {
           <h4>QUANTITY</h4>
           <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
         </span>
-        {/* <span className="inventory-tablet-label">
+        <span className="inventory-tablet-label">
           <h4>WAREHOUSE</h4>
           <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span> */}
+        </span>
         <span className="inventory-tablet-label">
           <h4>ACTIONS</h4>
         </span>

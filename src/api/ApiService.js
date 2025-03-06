@@ -66,3 +66,14 @@ export const deleteWarehouse = async(id) => {
     }
 }
 
+
+export const fetchInventories = async() => {
+    try {
+        const resp = await axios.get(
+            `${BASE_URL}/api/inventories`
+        )
+        return resp.data;
+    } catch (error) {
+        console.log("Failed to fetch inventories. Please try again:", error);
+    }
+}
