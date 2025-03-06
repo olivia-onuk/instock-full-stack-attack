@@ -244,3 +244,23 @@
     }
   }
 }
+
+.error-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.error-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.error-message {
+  font-size: 13px;
+  color: $supporting-color-two;
+  @include tablet {
+    font-size: 14px;
+  }
+}
