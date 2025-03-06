@@ -1,24 +1,18 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.warehouse-tablet-labels {
+.warehouse-tablet-header {
     display: none;
     @include tablet {
-      background-color: $backgound-color-two;
+      background-color: $background-color-two;
       display: flex;
       width: 100%;
       gap:0;
       justify-content: flex-start;
       align-items: center;
       height: 2.5rem;
-      padding: 0 1.5rem;
+      @include responsive-horizontal-padding; 
       box-sizing: border-box;
-      @include tablet {
-        padding: 0 2rem;
-      }
-      @include desktop {
-        padding: 0 2.5rem;
-      }
     }
   }
   
@@ -66,21 +60,28 @@
     margin-left: 0.25rem;
   }
   
+  .warehouse-list {
+    @include tablet {
+      .warehouse-item:first-child {
+        border-top: none;
+      }
+    }
+  }
+
   .warehouse-item {
     border-top: .0625rem solid $secondary-color-two;
-    padding: 1rem 1.5rem;
+    @include responsive-horizontal-padding; 
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   
     @include tablet {
-      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       position: relative; 
       box-sizing: border-box;
       align-items: center;
     }
-    @include desktop {
-      padding: 1rem 2.5rem;
-    }
+
     &__label {
       color: $secondary-color-one;
       margin-bottom: 0.25rem;

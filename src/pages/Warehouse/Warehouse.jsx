@@ -13,7 +13,7 @@ function Warehouse() {
   }
 
   return(
-    <div className="warehouses-section">
+    <div className=" main">
       <div className="warehouses-hero">
         <h1 className="warehouses-title">Warehouses</h1>
         <div className="warehouses-hero__right">
@@ -28,7 +28,7 @@ function Warehouse() {
             />
             <img src={searchIcon} alt="Search" className="warehouse-search__icon" onClick={handleSearch} />
           </div>
-          <button className="add-warehouse-button"><h3>+ Add New Warehouse</h3></button>
+          <button className="add-warehouse-button"><h3 className="add-warehouse-button__text">+ Add New Warehouse</h3></button>
         </div>
       </div>
       <WarehouseTable />

@@ -10,6 +10,23 @@ import sortIcon from "../../assets/icons/sort-24px.svg";
 
 function WarehouseTable() {
   const [warehouses, setWarehouses] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedWarehouseId, setSelectedWarehouseId] = useState(null);
+
+  const handleOpenModal = (warehouseId) => {
+    setSelectedWarehouseId(warehouseId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedWarehouseId(null);
+  };
+
+  const handleDeleteConfirmed = () => {
+    console.log('Deleting warehouse:', selectedWarehouseId);
+    handleCloseModal();
+  };
 
   useEffect(() => {
     const getWarehouses = async() => {
@@ -30,7 +47,7 @@ function WarehouseTable() {
 
   return(
     <div className="warehouse-list-section">
-    <div className="warehouse-tablet-labels">
+    <div className="warehouse-tablet-header">
       <span className="warehouse-tablet-label">
       <h4>WAREHOUSE</h4>
       <img src={sortIcon} alt="sort" className="warehouse-tablet-icon" />
@@ -91,7 +108,7 @@ function WarehouseTable() {
             <img 
               src={deleteIcon} 
               alt="delete"
-              onClick={handleDelete}
+              onClick={() => handleOpenModal(warehouse.id)}
               className="warehouse-item__delete-icon"
             />
             <Link to={`/warehouse/edit/${warehouse.id}`}>
