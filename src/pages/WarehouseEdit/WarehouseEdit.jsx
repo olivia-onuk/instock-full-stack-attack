@@ -2,8 +2,6 @@ import "./WarehouseEdit.scss";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { fetchWarehouse, updateWarehouse } from "../../api/ApiService.js";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
 import Error from "../../assets/icons/error-24px.svg";
 
