@@ -1,7 +1,54 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 
 
-.warehouse-detail-page {
-    margin: 1rem;
-    box-shadow: 0px 2px 5px 0px #13182c1a;
+
+.warehouse-hero {
+    @include responsive-horizontal-padding;
+    padding-top: 2.5rem;
+    padding-bottom: 1.75rem;
+    border-bottom: .0625rem solid $secondary-color-two;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__left {
+        display: flex;
+        gap: .25rem;
+        align-items: end;
+    }
+    &__arrow {
+        height: 1.5rem;
+    }
+    &__edit {
+        height: 2.25rem;
+        width: 2.25rem;
+        background-color: $primary-color-two;
+        border-radius: 1.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__edit-icon {
+        height: 1.25rem;
+    }
+}
+
+.warehouse-detail {
+    @include responsive-horizontal-padding;
+    border-bottom: .0625rem solid $secondary-color-two;
+    color: $primary-color-one;
+    &__address {
+        padding-top: 1rem;
+    }
+    &__label {
+        color: $secondary-color-one;
+    }
+    &__contact {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+    }
 }
