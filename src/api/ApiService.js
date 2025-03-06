@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:8080"
 export const fetchWarehouses = async () => {
     try {
         const resp = await axios.get(
-            `${BASE_URL}/`
+            `${BASE_URL}/api/warehouses`
         );
         return resp.data;
     } catch (error) {
@@ -17,7 +17,7 @@ export const fetchWarehouses = async () => {
 export const fetchWarehouse = async (id) => {
     try {
         const resp = await axios.get(
-            `${BASE_URL}/${id}`
+            `${BASE_URL}/api/warehouses/${id}`
         );
         return resp.data;
     } catch (error) {
@@ -28,7 +28,7 @@ export const fetchWarehouse = async (id) => {
 
 export const deleteWarehoue = async(id) => {
     try {
-        await axios.delete(`${BASE_URL}/${id}`);
+        await axios.delete(`${BASE_URL}/api/warehouses/${id}`);
     } catch (error) {
         console.log(error);
     }
