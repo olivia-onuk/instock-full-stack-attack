@@ -26,6 +26,7 @@ export const fetchWarehouse = async (id) => {
     }
 }
 
+
 export const fetchWarehouseInventory = async (id) => {
     try {
         const resp = await axios.get(
@@ -39,7 +40,8 @@ export const fetchWarehouseInventory = async (id) => {
     }
 }
 
-export const deleteWarehoue = async(id) => {
+
+export const deleteWarehouse = async(id) => {
     try {
         await axios.delete(`${BASE_URL}/api/warehouses/${id}`);
     } catch (error) {
