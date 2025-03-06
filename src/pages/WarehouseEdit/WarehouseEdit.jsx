@@ -123,7 +123,6 @@ function WarehouseEdit() {
 
   return (
     <>
-      <Header />
       <section className="edit-warehouse">
         <div className="edit-warehouse__link">
           <img className="edit-warehouse__link-arrow" src={Arrow} />
@@ -294,7 +293,6 @@ function WarehouseEdit() {
           </div>
         </form>
       </section>
-      <Footer />
     </>
   );
 }
