@@ -1,35 +1,44 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080"
+const BASE_URL = "http://localhost:8080";
 
 export const fetchWarehouses = async () => {
-    try {
-        const resp = await axios.get(
-            `${BASE_URL}/api/warehouses`
-        );
-        return resp.data;
-    } catch (error) {
-        console.log(error);
-        alert('Failed to fetch Warehouses. Please try again.');
-    }
-}
+  try {
+    const resp = await axios.get(`${BASE_URL}/api/warehouses`);
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+    alert("Failed to fetch Warehouses. Please try again.");
+  }
+};
 
 export const fetchWarehouse = async (id) => {
-    try {
-        const resp = await axios.get(
-            `${BASE_URL}/api/warehouses/${id}`
-        );
-        return resp.data;
-    } catch (error) {
-        console.log(error);
-        alert('Failed to fetch Warehouse. Please try again.');
-    }
-}
+  try {
+    const resp = await axios.get(`${BASE_URL}/api/warehouses/${id}`);
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+    alert("Failed to fetch Warehouse. Please try again.");
+  }
+};
 
-export const deleteWarehoue = async(id) => {
-    try {
-        await axios.delete(`${BASE_URL}/api/warehouses/${id}`);
-    } catch (error) {
-        console.log(error);
-    }
-}
+export const deleteWarehoue = async (id) => {
+  try {
+    await axios.delete(`${BASE_URL}/api/warehouses/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateWarehouse = async (id, warehouseData) => {
+  try {
+    const resp = await axios.put(
+      `${BASE_URL}/api/warehouses/${id}`,
+      warehouseData
+    );
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+    alert("Failed to update Warehouse. Please try again.");
+  }
+};
