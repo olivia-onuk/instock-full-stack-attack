@@ -6,11 +6,9 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
-import { fetchWarehouse } from "../../api/ApiService";
 
 function InventoryItem({ inventory, isFullInventory }) {
   const [isInStock, setIsInStock] = useState({});
-  const [warehouseNames, setWarehouseNames] = useState({});
 
   useEffect(() => {
     const stockStatus = inventory.reduce((acc, item) => {
@@ -39,7 +37,11 @@ function InventoryItem({ inventory, isFullInventory }) {
           <h4>QUANTITY</h4>
           <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
         </span>
-        <span className="inventory-tablet-label">
+        <span className= {`inventory-tablet-label ${
+                      isFullInventory
+                        ? ""
+                        : "inventory-tablet-label--invisible"
+                    }`}>
           <h4>WAREHOUSE</h4>
           <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
         </span>
@@ -52,7 +54,11 @@ function InventoryItem({ inventory, isFullInventory }) {
           <div key={item.id} className="inventory-item">
             <div className="inventory-item__content">
               <div className="inventory-item__columns">
-                <div className="inventory-item__column">
+                <div className={`inventory-item__column ${
+                      isFullInventory
+                        ? "inventory-item__column--extra-column"
+                        : "inventory-item__column--normal"
+                    }`}>
                   <div className="inventory-item__attribute inventory-item__name">
                     <h4 className="inventory-item__label">INVENTORY ITEM</h4>
                     <Link
@@ -74,7 +80,11 @@ function InventoryItem({ inventory, isFullInventory }) {
                   </div>
                 </div>
 
-                <div className="inventory-item__column">
+                <div className={` inventory-item__column${
+                      !isFullInventory
+                        ? " inventory-item__column--normal"
+                        : " inventory-item__column--warehouse"
+                    }`}>
                   <div className="inventory-item__attribute inventory-item__status">
                     <h4 className="inventory-item__label">STATUS</h4>
                     <p
@@ -88,7 +98,11 @@ function InventoryItem({ inventory, isFullInventory }) {
                     </p>
                   </div>
 
-                  <div className="inventory-item__attribute inventory-item__qty">
+                  <div className={`inventory-item__attribute inventory-item__qty ${
+                      isFullInventory
+                        ? "inventory-item__qty--extra-column"
+                        : ""
+                    }`}>
                     <h4 className="inventory-item__label">QTY</h4>
                     <P2>
                       <p>{item.quantity}</p>
