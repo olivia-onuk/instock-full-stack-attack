@@ -11,20 +11,20 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 0rem 2rem;
-        padding-bottom: 6.5rem;
+        padding: 1rem 2rem;
+        padding-bottom: 6.875rem;
     }
 
     @include desktop {
-        padding: .5rem 8.125rem;
-        padding-bottom: 7.875rem;
+        padding: 1rem 8.125rem;
+        padding-bottom: 7rem;
     }
     
     &__logo {
         padding: 1.5rem;
 
         @include tablet {
-            padding: 1.5rem 0;
+            padding: 1rem 0;
         }
     }
 
