@@ -9,6 +9,7 @@
     width: 100%;
     gap: 0;
     align-items: center;
+    justify-content: space-between;
     height: 2.5rem;
     @include responsive-horizontal-padding;
     box-sizing: border-box;
@@ -21,8 +22,12 @@
   align-items: center;
   color: $secondary-color-one;
 
+  @include tablet {
+    justify-content: space-between;
+  }
+
   @include desktop {
-    width: 150px;
+    justify-content: space-between;
   }
 
   &__warehouse {
