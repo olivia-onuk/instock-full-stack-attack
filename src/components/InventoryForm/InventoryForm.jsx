@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
 import "./InventoryForm.scss";
 
-function InventoryForm({ formtype }) {
+function InventoryForm({ formtype, item, buttonLabel }) {
   const handleSubmit = () => {};
 
   return (
-    <form id={formtype} className="form" onSubmit={handleSubmit}>
-      <div className="inventory-form-main">
+    <form id={formtype} className="inventory-form" onSubmit={handleSubmit}>
+      <div className="inventory-form__main">
         <div className="inventory-form__column">
           <h2 className="inventory-form__title">Item Details</h2>
           <div className="inventory-form__input-section">
@@ -41,19 +41,19 @@ function InventoryForm({ formtype }) {
           <h2 className="inventory-form__title">Item Availability</h2>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Status</label>
-            <div>
+            <div className="inventory-form__radio-button">
               <input
                 type="radio"
                 name="status"
                 value="instock"
-                className="stock__instock"
+                className="inventory-form__stock inventory-form__stock--instock"
               />
               <label className="inventory-form__radio-label">In stock</label>
               <input
                 type="radio"
                 name="status"
                 value="outofstock"
-                className="stock__outofstock"
+                className="inventory-form__stock inventory-form__stock--outofstock"
               />
               <label className="inventory-form__radio-label">
                 Out of Stock
@@ -82,7 +82,10 @@ function InventoryForm({ formtype }) {
           </div>
         </div>
       </div>
-      <div className="inventory-form__buttons"></div>
+      <div className="inventory-form__buttons">
+        <button className="inventory-form__button inventory-form__button--cancel">Cancel</button>
+        <button className="inventory-form__button inventory-form__button--action">{buttonLabel}</button>
+      </div>
     </form>
   );
 }

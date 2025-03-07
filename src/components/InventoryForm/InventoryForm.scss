@@ -4,3 +4,27 @@
 @use "../../styles/partials/mixins" as *;
 
 
+.inventory-form{
+    @include responsive-horizontal-padding; 
+
+    &__buttons{
+        background-color: $background-color-two;
+    }
+
+    &__button{
+        &--cancel{
+
+            &:hover{
+
+            }
+        }
+
+
+        &--action{
+            &:hover{
+                
+            }
+        }
+    }
+
+}

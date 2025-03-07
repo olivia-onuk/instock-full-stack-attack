@@ -6,7 +6,7 @@ function InventoryAdd() {
   return (<>
     <div className=" main inventroy-add">
       <FormHero title={"Add New Inventory Item"}/>
-      <InventoryForm formtype={"addInventoryForm"}/>
+      <InventoryForm formtype={"addInventoryForm"} buttonLabel={"+ Add Item"}/>
     </div>
   </>);
 }

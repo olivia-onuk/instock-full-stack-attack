@@ -5,8 +5,8 @@
 
 .form-hero {
   @include responsive-horizontal-padding;
-  padding-top: 2.5rem;
-  padding-bottom: 1.75rem;
+  padding-top: 24px;
+  padding-bottom: 20px;
   border-bottom: 0.0625rem solid $secondary-color-two;
   display: flex;
   justify-content: start;
