@@ -1,8 +1,7 @@
 import "./WarehouseEdit.scss";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { fetchWarehouse, updateWarehouse } from "../../api/ApiService.js";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
 import Error from "../../assets/icons/error-24px.svg";
 
@@ -16,7 +15,9 @@ function WarehouseEdit() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState({});
+  const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
   const { id } = useParams();
 
   console.log("WarehouseEdit component is rendering with ID:", id);
@@ -61,6 +62,25 @@ function WarehouseEdit() {
     setError((prevErrors) => ({ ...prevErrors, email: "" }));
   };
 
+  useEffect(() => {
+    const loadWarehouse = async () => {
+      try {
+        const data = await fetchWarehouse(id);
+        setWarehouseName(data.warehouse_name);
+        setStreetAddress(data.address);
+        setCity(data.city);
+        setCountry(data.country);
+        setContactName(data.contact_name);
+        setPosition(data.contact_position);
+        setPhoneNumber(data.contact_phone);
+        setEmail(data.contact_email);
+      } catch (error) {
+        console.error("Error fetching warehouse:", error);
+      }
+    };
+    loadWarehouse();
+  }, [id]);
+
   const validateForm = () => {
     const errorObject = {};
     if (!warehouseName.trim()) {
@@ -81,14 +101,14 @@ function WarehouseEdit() {
     if (!position.trim()) {
       errorObject.position = "Position is required";
     }
-    const phoneRegex = /^\d{10}$/;
+    const phoneRegex = /^(\+1\s?)?(\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$/;
     if (!phoneRegex.test(phoneNumber)) {
-      errorObject.phoneNumber = "Phone number must be 10 digits.";
+      errorObject.phoneNumber = "Invalid phone number format.";
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      errorObject.email = "Invalid email format";
+      errorObject.email = "Invalid email format.";
     }
     setError(errorObject);
 
@@ -97,35 +117,50 @@ function WarehouseEdit() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (!validateForm()) return;
 
-    const formInput = {
-      warehouseName: warehouseName,
-      streetAddress: streetAddress,
-      city: city,
-      country: country,
-      contactName: contactName,
-      position: position,
-      phoneNumber: phoneNumber,
-      email: email,
-    };
+    setLoading(true);
+    try {
+      const updatedData = {
+        warehouse_name: warehouseName,
+        address: streetAddress,
+        city: city,
+        country: country,
+        contact_name: contactName,
+        contact_position: position,
+        contact_phone: phoneNumber,
+        contact_email: email,
+      };
 
-    setWarehouseName("");
-    setStreetAddress("");
-    setCity("");
-    setCountry("");
-    setContactName("");
-    setPosition("");
-    setPhoneNumber("");
-    setEmail("");
+      await updateWarehouse(id, updatedData);
+      alert("Warehouse updated successfully!");
+
+      setWarehouseName("");
+      setStreetAddress("");
+      setCity("");
+      setCountry("");
+      setContactName("");
+      setPosition("");
+      setPhoneNumber("");
+      setEmail("");
+    } catch (error) {
+      console.error("Error updating warehouse:", error);
+      alert("Failed to update warehouse. Please try again.");
+    }
+    setLoading(false);
+  };
+
+  const handleCancel = () => {
+    window.history.back();
   };
 
   return (
     <>
       <section className="edit-warehouse">
         <div className="edit-warehouse__link">
-          <img className="edit-warehouse__link-arrow" src={Arrow} />
+          <Link to="/warehouse">
+            <img className="edit-warehouse__link-arrow" src={Arrow} />
+          </Link>
           <h1 className="edit-warehouse__link-title">Edit Warehouse</h1>
         </div>
 
@@ -284,6 +319,7 @@ function WarehouseEdit() {
             <button
               className="edit-warehouse__form-button-cancel"
               type="button"
+              onClick={handleCancel}
             >
               Cancel
             </button>
