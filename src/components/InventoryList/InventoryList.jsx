@@ -24,7 +24,6 @@ function InventoryList({
     } else {
       const getInventories = async () => {
         const resp = await fetchInventories();
-        console.log(resp);
         setInventory(resp);
       };
       getInventories();
