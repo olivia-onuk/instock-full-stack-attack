@@ -38,12 +38,14 @@ function InventoryDetails() {
             />
             <h1 className="inventory-details__title">{item.item_name}</h1>
           </div>
-          <div className="inventory-details__button">
+          <div
+            className="inventory-details__button"
+            onClick={() => navigate(`/inventory/edit/${id}`)}
+          >
             <img
               src={editIcon}
               alt="Edit Button"
               className="inventory-details__edit-icon"
-              onClick={() => navigate(`/inventory/edit/${id}`)}
             />
             <span className="inventory-details__edit-text">Edit</span>
           </div>
