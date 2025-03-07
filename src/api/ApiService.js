@@ -22,6 +22,27 @@ export const fetchWarehouse = async (id) => {
   }
 };
 
+export const deleteWarehoue = async (id) => {
+  try {
+    await axios.delete(`${BASE_URL}/api/warehouses/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateWarehouse = async (id, warehouseData) => {
+  try {
+    const resp = await axios.put(
+      `${BASE_URL}/api/warehouses/${id}`,
+      warehouseData
+    );
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+    alert("Failed to update Warehouse. Please try again.");
+  }
+};
+
 export const fetchWarehouseInventory = async (id) => {
   try {
     const resp = await axios.get(
@@ -64,10 +85,31 @@ export const addInventory = async (inventoryItem) => {
 
 export const updateInventory = async (id, inventoryItem) => {
   try {
-    const resp = await axios.put(`${BASE_URL}/api/inventories/:id`, inventoryItem);
+    const resp = await axios.put(
+      `${BASE_URL}/api/inventories/:id`,
+      inventoryItem
+    );
     return resp.data;
   } catch (error) {
     console.log(error);
     alert("Failed to update Inventory. Please try again.");
+  }
+};
+
+export const searchInventories = async (query) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/api/inventories?search=${query}`);
+    return resp.data;
+  } catch (error) {
+    console.error("Error searching inventory:", error);
+  }
+};
+
+export const deleteInventory = async (id) => {
+  try {
+    await axios.delete(`${BASE_URL}/api/inventories/${id}`);
+  } catch (error) {
+    console.error(`Error deleting inventory item with ID ${id}:`, error);
+    throw error;
   }
 };

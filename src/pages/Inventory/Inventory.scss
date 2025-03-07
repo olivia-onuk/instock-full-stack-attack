@@ -3,7 +3,7 @@
 @use "../../components/Typography/Typography.scss" as typography;
 
 .inventory-hero {
-  @include responsive-horizontal-padding; 
+  @include responsive-horizontal-padding;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   @include tablet {
@@ -28,7 +28,6 @@
   }
 }
 
-
 .inventory-search {
   margin: 1rem 0;
   position: relative;
@@ -43,7 +42,7 @@
     border: 0.0625rem solid $secondary-color-two;
     border-radius: 1.25rem;
     &:active {
-        border: 0.0625rem solid $primary-color-two;
+      border: 0.0625rem solid $primary-color-two;
     }
     &::placeholder {
       color: $secondary-color-one;
@@ -83,7 +82,7 @@
     width: $button-width-tablet;
     flex-shrink: 0;
     &__text {
-      white-space: nowrap; 
+      white-space: nowrap;
     }
   }
 }

@@ -16,220 +16,236 @@
     }
   }
   
-  .warehouse-tablet-label {
+.warehouse-tablet-label {
+  display: flex;
+  align-items: center;
+  color: $secondary-color-one;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:nth-child(1) {
+    width: calc((100% - 5rem) * 0.26);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.25);
+    }
+  }
+  &:nth-child(2) {
+    width: calc((100% - 5rem) * 0.24);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.3);
+    }
+  }
+  &:nth-child(3) {
+    width: calc((100% - 5rem) * 0.24);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.216);
+    }
+  }
+  &:nth-child(4) {
+    width: calc((100% - 5rem) * 0.26);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.234);
+    }
+  }
+  
+  &:nth-child(5) {
+    flex: 0 0 5rem;
+    justify-content: flex-end;
+  }
+  
+}
+
+.warehouse-tablet-icon {
+  height: 1rem;
+  margin-left: 0.25rem;
+}
+
+.warehouse-list {
+  @include tablet {
+    .warehouse-item:first-child {
+      border-top: none;
+    }
+  }
+}
+
+.warehouse-item {
+  border-top: .0625rem solid $secondary-color-two;
+  @include responsive-horizontal-padding; 
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  @include tablet {
     display: flex;
+    justify-content: space-between;
+    position: relative; 
+    box-sizing: border-box;
     align-items: center;
+  }
+
+  &__label {
     color: $secondary-color-one;
-    white-space: nowrap;
-    flex-shrink: 0;
-  
-    &:nth-child(1) {
-      width: calc((100% - 5rem) * 0.26);
-      @include desktop {
-        width: calc((100% - 5rem) * 0.286);
-      }
-    }
-    &:nth-child(2) {
-      width: calc((100% - 5rem) * 0.24);
-      @include desktop {
-        width: calc((100% - 5rem) * 0.264);
-      }
-    }
-    &:nth-child(3) {
-      width: calc((100% - 5rem) * 0.24);
-      @include desktop {
-        width: calc((100% - 5rem) * 0.216);
-      }
-    }
-    &:nth-child(4) {
-      width: calc((100% - 5rem) * 0.26);
-      @include desktop {
-        width: calc((100% - 5rem) * 0.234);
-      }
-    }
+    margin-bottom: 0.25rem;
     
-    &:nth-child(5) {
-      flex: 0 0 5rem;
-      justify-content: flex-end;
-    }
-    
-  }
-  
-  .warehouse-tablet-icon {
-    height: 1rem;
-    margin-left: 0.25rem;
-  }
-  
-  .warehouse-list {
     @include tablet {
-      .warehouse-item:first-child {
-        border-top: none;
-      }
+    display: none;
     }
   }
 
-  .warehouse-item {
-    border-top: .0625rem solid $secondary-color-two;
-    @include responsive-horizontal-padding; 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  
+  &__content {
+    @include tablet {
+      width: calc(100% - 5rem);
+    }
+  }
+
+  &__columns {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+
+    @include tablet {
+      gap: 0;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__column {
+    width: 50%;
     @include tablet {
       display: flex;
-      justify-content: space-between;
-      position: relative; 
-      box-sizing: border-box;
       align-items: center;
     }
+    @include desktop {
+      &:nth-child(1) { width: 55%; }
+      &:nth-child(2) { width: 45%; }
+    }
+  }
 
-    &__label {
-      color: $secondary-color-one;
-      margin-bottom: 0.25rem;
-      
-      @include tablet {
-      display: none;
-      }
+  &__attribute {
+    margin-bottom: 1rem;
+
+    @include tablet {
+      flex-wrap: wrap;
+      margin-bottom: 0;
     }
-  
-    &__content {
-      @include tablet {
-        width: calc(100% - 5rem);
-      }
+  }
+  &__name {
+    @include tablet {width:52%;}
+    @include desktop {width:45%;}
+  }
+  &__address {
+    @include tablet {
+      width:42%;
+      padding-right: 1rem;
     }
-  
-    &__columns {
-      display: flex;
-      width: 100%;
-      gap: 1rem;
-  
-      @include tablet {
-        gap: 0;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-  
-    &__column {
-      width: 50%;
-      @include tablet {
+    @include desktop {width:45%;}
+  }
+  &__contact-name {@include tablet {width:48%;}}
+  &__contact-infor {@include tablet {width:52%;}}
+  &__link {
+        color: $primary-color-two;
         display: flex;
         align-items: center;
-      }
-      @include desktop {
-        &:nth-child(1) { width: 55%; }
-        &:nth-child(2) { width: 45%; }
-      }
-    }
-  
-    &__attribute {
-      margin-bottom: 1rem;
-  
-      @include tablet {
-        flex-wrap: wrap;
-        margin-bottom: 0;
-      }
-    }
-    &__name {@include tablet {width:52%;}}
-    &__address {
-      @include tablet {
-        width:48%;
-        padding-right: 1rem;
-      }}
-    &__contact-name {@include tablet {width:48%;}}
-    &__contact-infor {@include tablet {width:52%;}}
-    &__link {
-          color: $primary-color-two;
-          display: flex;
-          align-items: center;
-    }
-  
-    &__actions {
-      display: flex;
-      justify-content: space-between;
-      
-      @include tablet {
-        position: absolute;
-        right: 1.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 4rem;
-        justify-content: flex-end;
-        gap: 1rem;
-      }
-    }
   }
-
-
-  .delete-modal {
-    position: fixed;
-    background: $primary-color-three;
-    padding: 1rem;
-    height: 100vh;
-    width: 100%;
-    @include tablet {
-      height: 16.375rem;
-      width: 42rem;
-      border-radius: .1875rem;
-      top: 11.5625rem;
+  &__link-icon {
+    &:hover {
+      transform: translateX(4px)
     }
-    &__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease-in-out;
+  }
+  &__actions {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    }
-    &__content {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    &__close {
-      width: 1.5rem;
-      height: 1.5rem;
-      margin-left: auto;
-      cursor: pointer;
-    }
-    &__text {
-      display: flex;
-      flex-direction: column;
+    justify-content: space-between;
+    
+    @include tablet {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4rem;
+      justify-content: flex-end;
       gap: 1rem;
-      @include tablet {
-        padding:0 4rem;
-      }
-    }
-    &__actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      @include tablet {
-        justify-content: flex-end;
-        margin: 1.5rem 3rem;
-      }
-    }
-    &__button {
-      height: 2.25rem;
-      width: 50%;
-      border-radius: 1.25rem;
-      @include tablet {
-        width: 4.5rem;
-        height: 2.375rem;
-      }
-      &.cancel{
-        border: .0625rem solid $secondary-color-two;
-        color: $secondary-color-one;
-        background-color: $primary-color-three;
-      }
-      &.confirm {
-        border: none;
-        background-color: $supporting-color-two;
-        color: $primary-color-three;
-      }
     }
   }
+  &__delete-icon {
+    cursor: pointer;
+  }
+}
+
+
+.delete-modal {
+  position: fixed;
+  background: $primary-color-three;
+  padding: 1rem;
+  height: 100vh;
+  width: 100%;
+  &:active {
+    border: none;
+  }
+  @include tablet {
+    height: 16.375rem;
+    width: 42rem;
+    border-radius: .1875rem;
+    top: 11.5625rem;
+  }
+  &__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  }
+  &__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__close {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: auto;
+    cursor: pointer;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include tablet {
+      padding:0 4rem;
+    }
+  }
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    @include tablet {
+      justify-content: flex-end;
+      margin: 1.5rem 3rem;
+    }
+  }
+  &__button {
+    height: 2.25rem;
+    width: 50%;
+    border-radius: 1.25rem;
+    @include tablet {
+      width: 4.5rem;
+      height: 2.375rem;
+    }
+    &.cancel{
+      border: .0625rem solid $secondary-color-two;
+      color: $secondary-color-one;
+      background-color: $primary-color-three;
+    }
+    &.confirm {
+      border: none;
+      background-color: $supporting-color-two;
+      color: $primary-color-three;
+    }
+  }
+}
