@@ -9,7 +9,7 @@
     display: flex;
     width: 100%;
     gap: 0;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     height: 2.5rem;
     box-sizing: border-box;
@@ -21,8 +21,7 @@
   display: flex;
   align-items: center;
   color: $secondary-color-one;
-  white-space: nowrap;
-  flex-shrink: 0;
+
 
   &:nth-child(1) {
     width: calc((100% - 5rem) * 0.26);
@@ -199,6 +198,13 @@
     align-items: center;
   }
 
+  &__link-icon {
+    &:hover {
+      transform: translateX(4px);
+    }
+    transition: transform 0.2s ease-in-out;
+  }
+  
   &__actions {
     display: flex;
     justify-content: space-between;
