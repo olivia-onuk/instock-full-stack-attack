@@ -4,11 +4,43 @@
 @use "../../styles/partials/mixins" as *;
 
 .inventory-form {
-  
+  &__main {
+  }
 
-    &__main{
-        @include responsive-horizontal-padding;
+  &__title{
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+
+  &__column {
+    @include responsive-horizontal-padding;
+    border-bottom: 0.0625rem solid $secondary-color-two;
+  }
+
+  &__input-section {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16px;
+  }
+
+  &__input-label {
+    padding-bottom: 4px;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+
+  &__input {
+    outline:none;
+    border-radius: 20px;
+    padding: 16px;
+    border: 1px solid $secondary-color-two;
+    
+    &:focus{
+        border-color: $primary-color-two;
     }
+
+  }
 
   &__buttons {
     padding: 24px 0px;
@@ -27,12 +59,13 @@
     min-width: calc(50% - 8px);
     font-size: 13px;
     line-height: 20px;
+    font-weight: 600;
     &--cancel {
       border: none;
-      border: 0.125rem solid $secondary-color-two;
+      border: 1px solid $secondary-color-two;
       color: $secondary-color-one;
       background-color: $primary-color-three;
-      
+
       &:hover {
       }
     }
@@ -42,6 +75,7 @@
       border: 0.125rem solid $primary-color-two;
       color: $primary-color-three;
       background-color: $primary-color-two;
+
       &:hover {
       }
     }
