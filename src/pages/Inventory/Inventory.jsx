@@ -1,12 +1,14 @@
 import "./Inventory.scss";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import InventoryDeleteModal from "../../components/InventoryDeleteModal/InventoryDeleteModal";
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+import {
+  fetchInventories,
+  deleteInventory,
+  searchInventories,
+} from "../../api/ApiService";
 
 function Inventory() {
   const [query, setQuery] = useState("");
@@ -15,17 +17,11 @@ function Inventory() {
   const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
-    const fetchInventory = async () => {
-      try {
-        console.log("Fetching inventory...");
-        const response = await axios.get(`${API_BASE_URL}/api/inventories`);
-        console.log("Inventory Data:", response.data);
-        setInventory(response.data);
-      } catch (error) {
-        console.error("Error fetching inventory:", error);
-      }
+    const getInventory = async () => {
+      const data = await fetchInventories();
+      if (data) setInventory(data);
     };
-    fetchInventory();
+    getInventory();
   }, []);
 
   const handleDeleteClick = (item) => {
@@ -42,14 +38,10 @@ function Inventory() {
     if (!selectedItem) return;
 
     try {
-      console.log(`Deleting inventory item with ID: ${selectedItem.id}...`);
-      await axios.delete(`${API_BASE_URL}/api/inventories/${selectedItem.id}`);
-
+      await deleteInventory(selectedItem.id);
       setInventory((prevInventory) =>
         prevInventory.filter((item) => item.id !== selectedItem.id)
       );
-
-      console.log(`Inventory item ${selectedItem.id} deleted successfully!`);
     } catch (error) {
       console.error("Error deleting inventory item:", error);
     }
@@ -61,11 +53,8 @@ function Inventory() {
     if (query.trim() === "") return;
 
     try {
-      console.log(`Searching for: ${query}`);
-      const response = await axios.get(
-        `${API_BASE_URL}/api/inventories?search=${query}`
-      );
-      setInventory(response.data);
+      const data = await searchInventories(query);
+      if (data) setInventory(data);
     } catch (error) {
       console.error("Error searching inventory:", error);
     }
@@ -111,7 +100,7 @@ function Inventory() {
         isOpen={showModal}
         onClose={handleCloseModal}
         onDelete={handleConfirmDelete}
-        itemName={selectedItem?.item_name} // Ensure the correct key from the backend
+        itemName={selectedItem?.item_name}
       />
     </div>
   );

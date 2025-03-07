@@ -4,7 +4,7 @@ import {
   fetchWarehouseInventory,
   fetchInventories,
 } from "../../api/ApiService";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 function InventoryList({
   id,
@@ -29,7 +29,7 @@ function InventoryList({
       };
       getInventories();
     }
-  }, [isFullInventory, inventory]);
+  }, [id, isFullInventory]);
 
   return (
     <>
