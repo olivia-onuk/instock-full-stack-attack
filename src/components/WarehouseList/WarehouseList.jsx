@@ -1,54 +1,12 @@
 import "./WarehouseList.scss";
-import { useState, useEffect } from "react";
-import { deleteWarehouse } from "../../api/ApiService";
 import { P2 } from '../Typography/Typography';
 import { Link } from 'react-router-dom'
-import { fetchWarehouses } from "../../api/ApiService";
 import WarehouseListHeader from "../WarehouseListHeader/WarehouseListHeader";
-import WarehouseDeleteModal from "../WarehouseDeleteModal/WarehouseDeleteModal";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
 
-function WarehouseList() {
-  const [warehouses, setWarehouses] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const handleOpenModal = (warehouse) => {
-    setSelectedWarehouse(warehouse);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedWarehouse(null);
-    setIsDeleting(false);
-  };
-
-  const handleDeleteConfirmed = async() => {
-    if (!selectedWarehouse || isDeleting) return;
-    setIsDeleting(true);
-    try {
-      await deleteWarehouse(selectedWarehouse.id);
-      setWarehouses(prev => prev.filter(
-        warehouse => warehouse.id !== selectedWarehouse.id
-      ));
-    } catch (error) {
-      console.error('Delete failed:', error);
-    }
-    handleCloseModal();
-  };
-
-  useEffect(() => {
-    const getWarehouses = async() => {
-      const resp = await fetchWarehouses();
-      setWarehouses(resp);
-    }
-    getWarehouses();
-  }, []);
-
+function WarehouseList({ warehouses, onDeleteClick }) {
   return(
     <div className="warehouse-list-section">
     <WarehouseListHeader />
@@ -92,7 +50,7 @@ function WarehouseList() {
             <img 
               src={deleteIcon} 
               alt="delete"
-              onClick={() => handleOpenModal(warehouse)}
+              onClick={() => onDeleteClick(warehouse)} 
               className="warehouse-item__delete-icon"
             />
             <Link to={`/warehouse/edit/${warehouse.id}`}>
@@ -102,14 +60,6 @@ function WarehouseList() {
         </div>
       ))}
     </div>
-
-    <WarehouseDeleteModal
-      isOpen={isModalOpen}
-      onClose={handleCloseModal}
-      warehouse={selectedWarehouse}
-      onDelete={handleDeleteConfirmed}
-      isDeleting={isDeleting}
-    />
     </div>
   );
 }
