@@ -1,6 +1,7 @@
 import "./Warehouse.scss";
-import WarehouseTable from "../../components/WarehouseTable/WarehouseTable";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import WarehouseTable from "../../components/WarehouseTable/WarehouseTable";
 import searchIcon from "../../assets/icons/search-24px.svg";
 
 function Warehouse() {
@@ -28,7 +29,11 @@ function Warehouse() {
             />
             <img src={searchIcon} alt="Search" className="warehouse-search__icon" onClick={handleSearch} />
           </div>
-          <button className="add-warehouse-button"><h3 className="add-warehouse-button__text">+ Add New Warehouse</h3></button>
+          <Link to="/warehouse/add">
+            <button className="add-warehouse-button">
+              <h3 className="add-warehouse-button__text">+ Add New Warehouse</h3>
+            </button>
+          </Link>
         </div>
       </div>
       <WarehouseTable />
