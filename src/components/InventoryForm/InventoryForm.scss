@@ -3,28 +3,47 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+.inventory-form {
+  
 
-.inventory-form{
-    @include responsive-horizontal-padding; 
-
-    &__buttons{
-        background-color: $background-color-two;
+    &__main{
+        @include responsive-horizontal-padding;
     }
 
-    &__button{
-        &--cancel{
+  &__buttons {
+    padding: 24px 0px;
+    @include responsive-horizontal-padding;
+    background-color: $background-color-two;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
 
-            &:hover{
-
-            }
-        }
-
-
-        &--action{
-            &:hover{
-                
-            }
-        }
+  &__button {
+    font-family: "Titillium Web";
+    height: 36px;
+    border-radius: 20px;
+    padding: 0px 16px;
+    min-width: calc(50% - 8px);
+    font-size: 13px;
+    line-height: 20px;
+    &--cancel {
+      border: none;
+      border: 0.125rem solid $secondary-color-two;
+      color: $secondary-color-one;
+      background-color: $primary-color-three;
+      
+      &:hover {
+      }
     }
 
+    &--action {
+      border: none;
+      border: 0.125rem solid $primary-color-two;
+      color: $primary-color-three;
+      background-color: $primary-color-two;
+      &:hover {
+      }
+    }
+  }
 }

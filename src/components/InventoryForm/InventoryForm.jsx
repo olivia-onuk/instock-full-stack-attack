@@ -28,7 +28,11 @@ function InventoryForm({ formtype, item, buttonLabel }) {
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Category</label>
-            <select className="inventory-form__dropdown" name="category" id="category">
+            <select
+              className="inventory-form__dropdown"
+              name="category"
+              id="category"
+            >
               <option value="Accessories">Accessories</option>
               <option value="Apparel">Apparel</option>
               <option value="Electronics">Television</option>
@@ -70,7 +74,11 @@ function InventoryForm({ formtype, item, buttonLabel }) {
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Warehouse</label>
-            <select className="inventory-form__dropdown" name="warehouse" id="warehouse">
+            <select
+              className="inventory-form__dropdown"
+              name="warehouse"
+              id="warehouse"
+            >
               <option value="Manhattan">Manhattan</option>
               <option value="Washington">Washington</option>
               <option value="Jersey">Jersey</option>
@@ -83,8 +91,12 @@ function InventoryForm({ formtype, item, buttonLabel }) {
         </div>
       </div>
       <div className="inventory-form__buttons">
-        <button className="inventory-form__button inventory-form__button--cancel">Cancel</button>
-        <button className="inventory-form__button inventory-form__button--action">{buttonLabel}</button>
+        <button className="inventory-form__button inventory-form__button--cancel">
+          Cancel
+        </button>
+        <button className="inventory-form__button inventory-form__button--action">
+          {buttonLabel}
+        </button>
       </div>
     </form>
   );
