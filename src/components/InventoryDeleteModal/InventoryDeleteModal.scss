@@ -16,6 +16,7 @@
     width: 42rem;
     border-radius: 0.1875rem;
     top: 11.5625rem;
+    padding: 40px 64px;
   }
 
   &__overlay {
@@ -38,12 +39,18 @@
     height: 100%;
 
     @include tablet {
-      padding: 2rem;
+      padding: 0px;
     }
 
     &-header {
       display: flex;
       justify-content: flex-end;
+
+      @include tablet {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+      }
 
       &--close {
         width: 1.5rem;
@@ -60,18 +67,22 @@
       flex-grow: 1;
 
       @include tablet {
-        padding: 0 4rem;
+        padding: 0px;
       }
 
       &-title {
         font-size: 1.5rem;
         font-weight: bold;
         color: $primary-color-one;
+
+        @include tablet {
+          font-size: 32px;
+        }
       }
 
       &-description {
         font-size: 1rem;
-        color: $secondary-color-one;
+        color: $primary-color-one;
       }
     }
 
@@ -82,8 +93,8 @@
       padding-bottom: 8px;
 
       @include tablet {
+        gap: 16px;
         justify-content: flex-end;
-        margin: 1.5rem 3rem;
       }
 
       &--cancel {
@@ -94,6 +105,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        font-size: 13px;
         width: 50%;
         height: 36px;
         padding: 0.75rem 1.5rem;
@@ -101,6 +113,7 @@
         cursor: pointer;
 
         @include tablet {
+          font-size: 14px;
           width: 4.5rem;
           height: 2.375rem;
         }
@@ -112,6 +125,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        font-size: 13px;
         width: 50%;
         height: 36px;
         background-color: $supporting-color-two;
@@ -121,6 +135,7 @@
         cursor: pointer;
 
         @include tablet {
+          font-size: 14px;
           width: 4.5rem;
           height: 2.375rem;
         }
