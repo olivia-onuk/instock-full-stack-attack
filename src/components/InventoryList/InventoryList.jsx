@@ -6,9 +6,13 @@ import {
 } from "../../api/ApiService";
 import { useState, useEffect } from "react";
 
-function InventoryList({ id, isFullInventory, onDeleteClick }) {
-  const [inventory, setInventory] = useState([]);
-
+function InventoryList({
+  id,
+  isFullInventory,
+  inventory,
+  setInventory,
+  onDeleteClick,
+}) {
   useEffect(() => {
     const getWarehouseInventory = async () => {
       const resp = await fetchWarehouseInventory(id);
@@ -25,7 +29,7 @@ function InventoryList({ id, isFullInventory, onDeleteClick }) {
       };
       getInventories();
     }
-  }, []);
+  }, [isFullInventory, inventory]);
 
   return (
     <>
