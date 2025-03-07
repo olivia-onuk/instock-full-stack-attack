@@ -1,15 +1,14 @@
 import "./WarehouseList.scss";
 import { useState, useEffect } from "react";
 import { deleteWarehouse } from "../../api/ApiService";
-import { P1, P2 } from '../Typography/Typography';
+import { P2 } from '../Typography/Typography';
 import { Link } from 'react-router-dom'
-import ReactModal from "react-modal";
 import { fetchWarehouses } from "../../api/ApiService";
 import WarehouseListHeader from "../WarehouseListHeader/WarehouseListHeader";
+import WarehouseDeleteModal from "../WarehouseDeleteModal/WarehouseDeleteModal";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
-import closeIcon from "../../assets/icons/close-24px.svg";
 
 function WarehouseList() {
   const [warehouses, setWarehouses] = useState([]);
@@ -104,44 +103,13 @@ function WarehouseList() {
       ))}
     </div>
 
-    <ReactModal
-        isOpen={isModalOpen}
-        onRequestClose={handleCloseModal}
-        contentLabel="Delete Confirmation"
-        className="delete-modal"
-        overlayClassName="delete-modal__overlay"
-      >
-        <div className="delete-modal__content">
-          <div className="delete-modal__top">
-            <div 
-              className="delete-modal__close"
-              onClick={handleCloseModal}
-            >
-              <img src={closeIcon} alt="close" />
-            </div>
-            <div className="delete-modal__text">
-              <h1 className="delete-modal__title">Delete {selectedWarehouse ? selectedWarehouse.warehouse_name : "Warehouse"}</h1>
-              <P1>Please confirm that you’d like to delete the {selectedWarehouse ? selectedWarehouse.warehouse_name : "Warehouse"} from the list of warehouses. You won’t be able to undo this action.</P1>
-            </div>
-          </div>
-          <div className="delete-modal__actions">
-            <button 
-              className="delete-modal__button cancel"
-              onClick={handleCloseModal}
-              disabled={isDeleting}
-            >
-              <h3>Cancel</h3>
-            </button>
-            <button 
-              className="delete-modal__button confirm"
-              onClick={handleDeleteConfirmed}
-              disabled={isDeleting}
-            >
-              <h3>Delete</h3>
-            </button>
-          </div>
-        </div>
-      </ReactModal>
+    <WarehouseDeleteModal
+      isOpen={isModalOpen}
+      onClose={handleCloseModal}
+      warehouse={selectedWarehouse}
+      onDelete={handleDeleteConfirmed}
+      isDeleting={isDeleting}
+    />
     </div>
   );
 }
