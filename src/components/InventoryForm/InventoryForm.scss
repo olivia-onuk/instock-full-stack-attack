@@ -35,6 +35,28 @@
     }
   }
 
+  &__error-text {
+    display: none;
+    
+    padding-top: 4px;
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 400;
+    color: $supporting-color-two;
+    @include tablet {
+    }
+
+    &--img {
+      padding-right: 3px;
+      max-height: 13px;
+    }
+
+    &--visible{
+      display: flex;
+      align-items: center;
+    }
+  }
+
   &__input-section {
     display: flex;
     flex-direction: column;
