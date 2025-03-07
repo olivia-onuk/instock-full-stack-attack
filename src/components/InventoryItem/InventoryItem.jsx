@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
-import sortIcon from "../../assets/icons/sort-24px.svg";
 
 function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
   const [isInStock, setIsInStock] = useState({});
@@ -20,40 +19,6 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
 
   return (
     <div className="inventory-list-section">
-      <div className="inventory-tablet-header">
-        <span className="inventory-tablet-label">
-          <h4>INVENTORY ITEM</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        <span className="inventory-tablet-label">
-          <h4>CATEGORY</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        <span className="inventory-tablet-label">
-          <h4>STATUS</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        {isFullInventory ? (
-        <span className="inventory-tablet-label inventory-tablet-label__full">
-          <span className="inventory-tablet-label inventory-tablet-label__quantity">
-            <h4>QTY</h4>
-            <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-          </span>
-          <span className="inventory-tablet-label inventory-tablet-label__warehouse">
-            <h4>WAREHOUSE</h4>
-            <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-          </span>
-        </span>
-      ) : (
-        <span className="inventory-tablet-label">
-          <h4>QUANTITY</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-      )}
-        <span className="inventory-tablet-label inventory-tablet-label--action">
-          <h4>ACTIONS</h4>
-        </span>
-      </div>
       <div className="inventory-list">
         {inventory.map((item) => (
           <div key={item.id} className="inventory-item">

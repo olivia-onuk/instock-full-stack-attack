@@ -9,7 +9,6 @@ import WarehouseTableHeader from "../WarehouseTableHeader/WarehouseTableHeader";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
-import sortIcon from "../../assets/icons/sort-24px.svg";
 import closeIcon from "../../assets/icons/close-24px.svg";
 
 function WarehouseTable() {
@@ -103,8 +102,6 @@ function WarehouseTable() {
           </div>
         </div>
       ))}
-
-
     </div>
 
     <ReactModal

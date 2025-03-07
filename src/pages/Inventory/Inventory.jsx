@@ -1,8 +1,9 @@
 import "./Inventory.scss";
-import InventoryList from "../../components/InventoryList/InventoryList";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import searchIcon from "../../assets/icons/search-24px.svg";
+import InventoryListHeader from "../../components/InventoryListHeader/InventoryListHeader";
+import InventoryList from "../../components/InventoryList/InventoryList";
 import InventoryDeleteModal from "../../components/InventoryDeleteModal/InventoryDeleteModal";
 import {
   fetchInventories,
@@ -88,6 +89,8 @@ function Inventory() {
           </Link>
         </div>
       </div>
+
+      <InventoryListHeader isFullInventory={true} />
 
       <InventoryList
         isFullInventory={true}
