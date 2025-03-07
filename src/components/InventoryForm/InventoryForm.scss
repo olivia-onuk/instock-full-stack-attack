@@ -41,7 +41,7 @@
     padding-bottom: 16px;
 
     &--invisible {
-        display: none;
+      display: none;
     }
   }
 
@@ -70,6 +70,7 @@
     @include tablet {
       font-size: 14px;
       line-height: 22px;
+      border: 0.0938rem solid $secondary-color-two;
     }
 
     &--large {
@@ -80,6 +81,15 @@
 
     &:focus {
       border-color: $primary-color-two;
+    }
+
+    &--error {
+      outline: none;
+      border: 0.0625rem solid $supporting-color-two;
+
+      @include tablet {
+        border: 0.0938rem solid $supporting-color-two;
+      }
     }
   }
 
@@ -106,6 +116,14 @@
     @include tablet {
       font-size: 14px;
       line-height: 22px;
+      border: 1.5px solid $secondary-color-two;
+    }
+
+    &--error {
+      border: 0.0625rem solid $supporting-color-two;
+      @include tablet {
+        border: 0.0938rem solid $supporting-color-two;
+      }
     }
   }
 
