@@ -108,6 +108,10 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
     }
   };
 
+  const handleCancel = () => {
+    navigate("/inventory");
+  }
+
   return (
     <form id={formtype} className="inventory-form" onSubmit={handleSubmit}>
       <div className="inventory-form__main">
@@ -332,7 +336,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
         </div>
       </div>
       <div className="inventory-form__buttons">
-        <button className="inventory-form__button inventory-form__button--cancel">
+        <button onClick={handleCancel} className="inventory-form__button inventory-form__button--cancel">
           Cancel
         </button>
         <button className="inventory-form__button inventory-form__button--action">
