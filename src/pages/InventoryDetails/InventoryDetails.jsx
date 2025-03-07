@@ -26,30 +26,31 @@ function InventoryDetails() {
   if (!item) return <p className="loading-message">Loading...</p>;
 
   return (
-    <>
     <section className="inventory-details">
-      <div className="inventory-details__header">
-        <div className="inventory-details__container">
-          <img
-            src={backArrow}
-            alt="Back Arrow Icon"
-            className="inventory-details__arrow"
-            onClick={() => navigate("/inventory")}
-          />
-          <h1 className="inventory-details__title">{item.item_name}</h1>
+      <div className="inventory-details__container">
+        <div className="inventory-details__header">
+          <div className="inventory-details__header-group">
+            <img
+              src={backArrow}
+              alt="Back Arrow Icon"
+              className="inventory-details__arrow"
+              onClick={() => navigate("/inventory")}
+            />
+            <h1 className="inventory-details__title">{item.item_name}</h1>
+          </div>
+          <div className="inventory-details__button">
+            <img
+              src={editIcon}
+              alt="Edit Button"
+              className="inventory-details__edit-icon"
+              onClick={() => navigate(`/inventory/edit/${id}`)}
+            />
+            <span className="inventory-details__edit-text">Edit</span>
+          </div>
         </div>
-        <div className="inventory-details__button">
-          <img
-            src={editIcon}
-            alt="Edit Button"
-            className="inventory-details__edit-icon"
-            onClick={() => navigate(`/inventory/edit/${id}`)}
-          />
-        </div>
+        <InventoryItemDetails item={item} />
       </div>
-      <InventoryItemDetails item={item} />
-      </section>
-      </>
+    </section>
   );
 }
 
