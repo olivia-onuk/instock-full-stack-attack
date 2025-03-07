@@ -1,17 +1,17 @@
-import "./WarehouseTable.scss";
+import "./WarehouseList.scss";
 import { useState, useEffect } from "react";
 import { deleteWarehouse } from "../../api/ApiService";
 import { P1, P2 } from '../Typography/Typography';
 import { Link } from 'react-router-dom'
 import ReactModal from "react-modal";
 import { fetchWarehouses } from "../../api/ApiService";
-import WarehouseTableHeader from "../WarehouseTableHeader/WarehouseTableHeader";
+import WarehouseListHeader from "../WarehouseListHeader/WarehouseListHeader";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import closeIcon from "../../assets/icons/close-24px.svg";
 
-function WarehouseTable() {
+function WarehouseList() {
   const [warehouses, setWarehouses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
@@ -52,7 +52,7 @@ function WarehouseTable() {
 
   return(
     <div className="warehouse-list-section">
-    <WarehouseTableHeader />
+    <WarehouseListHeader />
     <div className="warehouse-list">
       {warehouses.map((warehouse) => (
         <div key={warehouse.id} className="warehouse-item">
@@ -146,4 +146,4 @@ function WarehouseTable() {
   );
 }
 
-export default WarehouseTable;
+export default WarehouseList;

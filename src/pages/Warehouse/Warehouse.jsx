@@ -1,7 +1,7 @@
 import "./Warehouse.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import WarehouseTable from "../../components/WarehouseTable/WarehouseTable";
+import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import searchIcon from "../../assets/icons/search-24px.svg";
 
 function Warehouse() {
@@ -36,7 +36,7 @@ function Warehouse() {
           </Link>
         </div>
       </div>
-      <WarehouseTable />
+      <WarehouseList />
     </div>
 
   )

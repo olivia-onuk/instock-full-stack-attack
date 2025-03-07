@@ -1,7 +1,7 @@
-import "./WarehouseTableHeader.scss";
+import "./WarehouseListHeader.scss";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
-function WarehouseTableHeader() {
+function WarehouseListHeader() {
   return (
     <div className="warehouse-tablet-header">
       <span className="warehouse-tablet-label">
@@ -27,4 +27,4 @@ function WarehouseTableHeader() {
   );
 }
 
-export default WarehouseTableHeader;
+export default WarehouseListHeader;
