@@ -148,8 +148,12 @@
   }
 
   &__warehouse {
-    &--invisible {
-      display: none;
+    @include tablet {
+      width: 52%;
+    }
+
+    &--invisible{
+        display: none;
     }
   }
 
@@ -172,5 +176,9 @@
       justify-content: flex-end;
       gap: 1rem;
     }
+  }
+
+  &__delete-icon {
+    cursor: pointer;
   }
 }

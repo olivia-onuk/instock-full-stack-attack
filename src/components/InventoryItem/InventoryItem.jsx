@@ -7,7 +7,7 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
-function InventoryItem({ inventory, isFullInventory }) {
+function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
   const [isInStock, setIsInStock] = useState({});
 
   useEffect(() => {
@@ -118,7 +118,7 @@ function InventoryItem({ inventory, isFullInventory }) {
               <img
                 src={deleteIcon}
                 alt="delete"
-                onClick={() => handleOpenModal(item.id)}
+                onClick={() => onDeleteClick(item)}
                 className="inventory-item__delete-icon"
               />
               <Link to={`/inventory/edit/${item.id}`}>
