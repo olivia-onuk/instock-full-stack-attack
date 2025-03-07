@@ -9,7 +9,6 @@
     width: 100%;
     gap: 0;
     align-items: center;
-    justify-content: space-between;
     height: 2.5rem;
     @include responsive-horizontal-padding;
     box-sizing: border-box;
@@ -21,19 +20,40 @@
   display: flex;
   align-items: center;
   color: $secondary-color-one;
-
-  @include tablet {
-    justify-content: space-between;
-  }
-
-  @include desktop {
-    justify-content: space-between;
-  }
-
-  &__warehouse {
-    &--invisible {
-      display: none;
+  &:nth-child(1) {
+    width: calc((100% - 5rem) * 0.25);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.25);
     }
+  }
+  &:nth-child(2) {
+    width: calc((100% - 5rem) * 0.20);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.3);
+    }
+  }
+  &:nth-child(3) {
+    width: calc((100% - 5rem) * 0.20);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.216);
+    }
+  }
+  &:nth-child(4) {
+    width: calc((100% - 5rem) * 0.30);
+    display: flex;
+    justify-content: center;
+    @include desktop {
+      width: calc((100% - 5rem) * 0.234);
+    }
+  }
+  &:last-child {
+    flex: 0 0 5rem;
+    justify-content: flex-end;
+    margin-left: auto; 
+  }
+  &__full {
+    display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -55,6 +75,7 @@
   @include responsive-horizontal-padding;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  box-sizing: border-box;
 
   @include tablet {
     display: flex;
@@ -73,11 +94,11 @@
       display: none;
     }
 
-    &--action {
-      @include tablet {
-        order: 1;
-      }
-    }
+    // &--action {
+    //   @include tablet {
+    //     order: 1;
+    //   }
+    // }
   }
 
   &__content {
@@ -104,24 +125,36 @@
     @include tablet {
       padding: 0px;
       display: flex;
-      align-items: center;
+      // align-items: center;
+      &:nth-child(1) { width: 45%; }
+      &:nth-child(2) { width: 50%; }
     }
+  }
+
+  &__name {
+    @include tablet {width:55.56%;}
+    @include desktop {width:45%;}
+  }
+
+  &__status {
+    @include tablet { 
+      width: 40%;
+      flex-shrink: 0;
+    }
+    @include desktop {width:45%;}
   }
 
   &__attribute {
     margin-bottom: 1rem;
-
     @include tablet {
-      width: 120px;
-      flex-wrap: wrap;
       margin-bottom: 0;
     }
-
-    @include desktop {
-      width: 150px;
-      flex-wrap: wrap;
-      margin-bottom: 0;
-    }
+  }
+  
+  &__link {
+    color: $primary-color-two;
+    display: flex;
+    align-items: center;
   }
 
   &__stock {
@@ -147,19 +180,10 @@
     }
   }
 
-  &__warehouse {
-    @include tablet {
-      width: 52%;
-    }
-
-    &--invisible{
-        display: none;
-    }
-  }
-
-  &__link {
-    color: $primary-color-two;
+  &__full {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 
