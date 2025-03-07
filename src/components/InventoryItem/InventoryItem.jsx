@@ -37,15 +37,17 @@ function InventoryItem({ inventory, isFullInventory }) {
           <h4>QUANTITY</h4>
           <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
         </span>
-        <span className= {`inventory-tablet-label ${
-                      isFullInventory
-                        ? ""
-                        : "inventory-tablet-label--invisible"
-                    }`}>
+        <span
+          className={`inventory-tablet-label inventory-tablet-label__warehouse${
+            isFullInventory
+              ? ""
+              : " inventory-tablet-label__warehouse--invisible"
+          }`}
+        >
           <h4>WAREHOUSE</h4>
           <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
         </span>
-        <span className="inventory-tablet-label">
+        <span className="inventory-tablet-label inventory-tablet-label--action">
           <h4>ACTIONS</h4>
         </span>
       </div>
@@ -54,11 +56,7 @@ function InventoryItem({ inventory, isFullInventory }) {
           <div key={item.id} className="inventory-item">
             <div className="inventory-item__content">
               <div className="inventory-item__columns">
-                <div className={`inventory-item__column ${
-                      isFullInventory
-                        ? "inventory-item__column--extra-column"
-                        : "inventory-item__column--normal"
-                    }`}>
+                <div className="inventory-item__column">
                   <div className="inventory-item__attribute inventory-item__name">
                     <h4 className="inventory-item__label">INVENTORY ITEM</h4>
                     <Link
@@ -80,11 +78,7 @@ function InventoryItem({ inventory, isFullInventory }) {
                   </div>
                 </div>
 
-                <div className={` inventory-item__column${
-                      !isFullInventory
-                        ? " inventory-item__column--normal"
-                        : " inventory-item__column--warehouse"
-                    }`}>
+                <div className="inventory-item__column">
                   <div className="inventory-item__attribute inventory-item__status">
                     <h4 className="inventory-item__label">STATUS</h4>
                     <p
@@ -98,11 +92,7 @@ function InventoryItem({ inventory, isFullInventory }) {
                     </p>
                   </div>
 
-                  <div className={`inventory-item__attribute inventory-item__qty ${
-                      isFullInventory
-                        ? "inventory-item__qty--extra-column"
-                        : ""
-                    }`}>
+                  <div className="inventory-item__attribute inventory-item__qty">
                     <h4 className="inventory-item__label">QTY</h4>
                     <P2>
                       <p>{item.quantity}</p>

@@ -1,6 +1,10 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
+.inventory-list-section{
+  display: grid;
+}
+
 .inventory-tablet-header {
   display: none;
   @include tablet {
@@ -8,7 +12,6 @@
     display: flex;
     width: 100%;
     gap: 0;
-    justify-content: flex-start;
     align-items: center;
     height: 2.5rem;
     @include responsive-horizontal-padding;
@@ -17,43 +20,19 @@
 }
 
 .inventory-tablet-label {
+  width: 160px;
   display: flex;
   align-items: center;
   color: $secondary-color-one;
-  white-space: nowrap;
-  flex-shrink: 0;
 
-  &:nth-child(1) {
-    width: calc((100% - 5rem) * 0.26);
-    @include desktop {
-      width: calc((100% - 5rem) * 0.286);
-    }
-  }
-  &:nth-child(2) {
-    width: calc((100% - 5rem) * 0.24);
-    @include desktop {
-      width: calc((100% - 5rem) * 0.264);
-    }
-  }
-  &:nth-child(3) {
-    width: calc((100% - 5rem) * 0.24);
-    @include desktop {
-      width: calc((100% - 5rem) * 0.216);
-    }
-  }
-  &:nth-child(4) {
-    width: calc((100% - 5rem) * 0.26);
-    @include desktop {
-      width: calc((100% - 5rem) * 0.234);
-    }
+  @include desktop {
+    width: 150px;
   }
 
-  &:nth-child(5) {
-    flex: 0 0 5rem;
-    justify-content: flex-end;
-  }
-  &--invisible {
-    display: none;
+  &__warehouse {
+    &--invisible {
+      display: none;
+    }
   }
 }
 
@@ -78,7 +57,7 @@
 
   @include tablet {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     position: relative;
     box-sizing: border-box;
     align-items: center;
@@ -87,9 +66,16 @@
   &__label {
     color: $secondary-color-one;
     margin-bottom: 0.25rem;
+    display: flex;
 
     @include tablet {
       display: none;
+    }
+
+    &--action {
+      @include tablet {
+        order: 1;
+      }
     }
   }
 
@@ -101,45 +87,23 @@
 
   &__columns {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     gap: 1rem;
 
     @include tablet {
+      justify-content: start;
       gap: 0;
       align-items: center;
-      justify-content: space-between;
     }
   }
 
   &__column {
-    width: 50%;
+    padding-right: 50px;
     @include tablet {
+      padding: 0px;
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
-    }
-
-    &--normal {
-      @include desktop {
-        &:nth-child(1) {
-          width: 55%;
-        }
-        &:nth-child(2) {
-          width: 45%;
-        }
-      }
-    }
-
-    &--extra-column {
-      @include desktop {
-        width: 45%;
-      }
-    }
-
-    &--warehouse {
-      @include desktop {
-        width: 55%;
-      }
     }
   }
 
@@ -147,70 +111,47 @@
     margin-bottom: 1rem;
 
     @include tablet {
+      width: 120px;
       flex-wrap: wrap;
       margin-bottom: 0;
     }
-  }
-  &__name {
-    @include tablet {
-      width: 52%;
-    }
-  }
-  &__category {
-    @include tablet {
-      width: 48%;
-      padding-right: 1rem;
-    }
-  }
-  &__status {
-    @include tablet {
-      width: 48%;
+
+    @include desktop {
+      width: 150px;
+      flex-wrap: wrap;
+      margin-bottom: 0;
     }
   }
 
   &__stock {
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.6875rem;
-    padding: 0.25rem 0.5rem;
-    height: 1.5rem;
-    border-radius: 1.25rem;
+    font-size: 11px;
+    padding: 4px 8px;
+
+    height: 24px;
+    border-radius: 20px;
     text-align: center;
 
     &--in-stock {
-      width: 3.8125rem;
+      width: 61px;
       background-color: rgba($supporting-color-one, 0.07);
       color: $supporting-color-one;
     }
 
     &--out-of-stock {
-      width: 5.375rem;
+      width: 86px;
       background-color: rgba($supporting-color-two, 0.07);
       color: $supporting-color-two;
     }
   }
 
-  &__qty {
-    @include tablet {
-      width: 33%;
-    }
-
-    &--extra-column {
-      @include tablet {
-        width: 33%;
-      }
-    }
-  }
-
   &__warehouse {
-    @include tablet {
-      width: 33%;
-    }
-
     &--invisible {
       display: none;
     }
   }
+
   &__link {
     color: $primary-color-two;
     display: flex;
@@ -229,80 +170,6 @@
       width: 4rem;
       justify-content: flex-end;
       gap: 1rem;
-    }
-  }
-}
-
-.delete-modal {
-  position: fixed;
-  background: $primary-color-three;
-  padding: 1rem;
-  height: 100vh;
-  width: 100%;
-  @include tablet {
-    height: 16.375rem;
-    width: 42rem;
-    border-radius: 0.1875rem;
-    top: 11.5625rem;
-  }
-  &__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-  }
-  &__content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  &__close {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-left: auto;
-    cursor: pointer;
-  }
-  &__text {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    @include tablet {
-      padding: 0 4rem;
-    }
-  }
-  &__actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    @include tablet {
-      justify-content: flex-end;
-      margin: 1.5rem 3rem;
-    }
-  }
-  &__button {
-    height: 2.25rem;
-    width: 50%;
-    border-radius: 1.25rem;
-    @include tablet {
-      width: 4.5rem;
-      height: 2.375rem;
-    }
-    &.cancel {
-      border: 0.0625rem solid $secondary-color-two;
-      color: $secondary-color-one;
-      background-color: $primary-color-three;
-    }
-    &.confirm {
-      border: none;
-      background-color: $supporting-color-two;
-      color: $primary-color-three;
     }
   }
 }
