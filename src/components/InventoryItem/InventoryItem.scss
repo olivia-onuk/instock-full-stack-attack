@@ -23,19 +23,19 @@
   &:nth-child(1) {
     width: calc((100% - 5rem) * 0.25);
     @include desktop {
-      width: calc((100% - 5rem) * 0.25);
+      width: calc((100% - 5rem) * 0.2025);
     }
   }
   &:nth-child(2) {
     width: calc((100% - 5rem) * 0.20);
     @include desktop {
-      width: calc((100% - 5rem) * 0.3);
+      width: calc((100% - 5rem) * 0.2475);
     }
   }
   &:nth-child(3) {
     width: calc((100% - 5rem) * 0.20);
     @include desktop {
-      width: calc((100% - 5rem) * 0.216);
+      width: calc((100% - 5rem) * 0.225);
     }
   }
   &:nth-child(4) {
@@ -43,7 +43,7 @@
     display: flex;
     justify-content: center;
     @include desktop {
-      width: calc((100% - 5rem) * 0.234);
+      width: calc((100% - 5rem) * 0.275);
     }
   }
   &:last-child {
@@ -145,8 +145,8 @@
   }
 
   &__qty--not-full {
-    width: 60%;
-    text-align: center;
+    width: 4.5912rem;
+    margin: auto;
   }
 
   &__warehouse {
@@ -189,10 +189,12 @@
   }
 
   &__full {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include tablet {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   &__actions {
