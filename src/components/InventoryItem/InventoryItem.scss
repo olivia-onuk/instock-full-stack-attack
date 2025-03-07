@@ -76,6 +76,7 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   box-sizing: border-box;
+  @include responsive-horizontal-padding;
 
   @include tablet {
     display: flex;
@@ -94,11 +95,6 @@
       display: none;
     }
 
-    // &--action {
-    //   @include tablet {
-    //     order: 1;
-    //   }
-    // }
   }
 
   &__content {
@@ -125,7 +121,6 @@
     @include tablet {
       padding: 0px;
       display: flex;
-      // align-items: center;
       &:nth-child(1) { width: 45%; }
       &:nth-child(2) { width: 50%; }
     }
