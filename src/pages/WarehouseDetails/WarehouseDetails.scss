@@ -1,51 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.warehouse-hero {
-    padding-top: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: .0625rem solid $secondary-color-two;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    @include responsive-horizontal-padding;
-
-    @include tablet {
-        padding-bottom: 1.3125rem;
-    }
-    &__left {
-        display: flex;
-        gap: .5rem;
-        align-items: end;
-    }
-    &__arrow {
-        height: 1.5rem;
-    }
-    &__edit {
-        height: 2.25rem;
-        width: 2.25rem;
-        background-color: $primary-color-two;
-        border-radius: 1.25rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        @include tablet {
-            width: 5.0625rem;
-        }
-    }
-    &__edit-icon {
-        height: 1.25rem;
-    }
-    &__edit-text {
-        display: none;
-
-        @include tablet {
-            display: contents;
-            color: $primary-color-three;
-        }
-    }
-}
 
 .warehouse-detail {
     color: $primary-color-one;
