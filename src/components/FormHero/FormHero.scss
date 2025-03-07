@@ -1,0 +1,25 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/font" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.form-hero {
+  @include responsive-horizontal-padding;
+  padding-top: 2.5rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 0.0625rem solid $secondary-color-two;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+
+  &__title {
+    font-size: 26px;
+    line-height: 36px;
+    padding-left: 5px;
+  }
+
+  &__arrow {
+    padding-top: 5px;
+    min-height: 30px;
+  }
+}
