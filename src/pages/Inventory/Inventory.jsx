@@ -18,7 +18,7 @@ function Inventory() {
     const fetchInventory = async () => {
       try {
         console.log("Fetching inventory...");
-        const response = await axios.get(`${API_BASE_URL}api/inventories`);
+        const response = await axios.get(`${API_BASE_URL}/api/inventories`);
         console.log("Inventory Data:", response.data);
         setInventory(response.data);
       } catch (error) {
@@ -43,7 +43,7 @@ function Inventory() {
 
     try {
       console.log(`Deleting inventory item with ID: ${selectedItem.id}...`);
-      await axios.delete(`${API_BASE_URL}api/inventories/${selectedItem.id}`);
+      await axios.delete(`${API_BASE_URL}/api/inventories/${selectedItem.id}`);
 
       setInventory((prevInventory) =>
         prevInventory.filter((item) => item.id !== selectedItem.id)
