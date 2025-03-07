@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import InventoryListHeader from "../InventoryListHeader/InventoryListHeader";
 import InventoryItem from "../InventoryItem/InventoryItem";
 import { fetchWarehouseInventory, fetchInventories } from "../../api/ApiService";
 import "./InventoryList.scss";
@@ -24,11 +25,14 @@ function InventoryList({ id, isFullInventory, onDeleteClick }) {
   }, [id, isFullInventory]);
 
   return (
+    <>
+    <InventoryListHeader isFullInventory={isFullInventory} />
     <InventoryItem
       inventory={inventory}
       isFullInventory={isFullInventory}
       onDeleteClick={onDeleteClick}
-    />
+      />
+      </>
   );
 }
 
