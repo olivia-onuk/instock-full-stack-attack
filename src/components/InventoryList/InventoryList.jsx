@@ -1,9 +1,12 @@
 import "./InventoryList.scss";
 import InventoryItem from "../InventoryItem/InventoryItem";
-import { fetchWarehouseInventory, fetchInventories } from "../../api/ApiService";
+import {
+  fetchWarehouseInventory,
+  fetchInventories,
+} from "../../api/ApiService";
 import { useState, useEffect } from "react";
 
-function InventoryList({ id, isFullInventory }) {
+function InventoryList({ id, isFullInventory, onDeleteClick }) {
   const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
@@ -15,18 +18,22 @@ function InventoryList({ id, isFullInventory }) {
     if (!isFullInventory) {
       getWarehouseInventory();
     } else {
-      const getInventories = async() => {
+      const getInventories = async () => {
         const resp = await fetchInventories();
         console.log(resp);
         setInventory(resp);
-      }
+      };
       getInventories();
     }
   }, []);
 
   return (
     <>
-      <InventoryItem inventory={inventory} isFullInventory={isFullInventory} />
+      <InventoryItem
+        inventory={inventory}
+        isFullInventory={isFullInventory}
+        onDeleteClick={onDeleteClick}
+      />
     </>
   );
 }

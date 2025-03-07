@@ -1,58 +1,83 @@
 import "./Inventory.scss";
 import InventoryList from "../../components/InventoryList/InventoryList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import InventoryDeleteModal from "../../components/InventoryDeleteModal/InventoryDeleteModal";
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 function Inventory() {
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [inventory, setInventory] = useState([
-    { id: 1, name: "Television" },
-    { id: 2, name: "Gym Bag" },
-    { id: 3, name: "Kitchen Utensils" },
-    { id: 4, name: "Cleaning Supplies" },
-    { id: 5, name: "Stationery" },
-  ]);
+  const [inventory, setInventory] = useState([]);
 
-  const handleSearch = async () => {
-    if (query.trim() !== "") {
-      searchWarehouse(query);
-    }
-  };
+  // ✅ Fetch inventory items from API on page load
+  useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        console.log("Fetching inventory...");
+        const response = await axios.get(`${API_BASE_URL}/api/inventories`);
+        console.log("Inventory Data:", response.data);
+        setInventory(response.data);
+      } catch (error) {
+        console.error("Error fetching inventory:", error);
+      }
+    };
+    fetchInventory();
+  }, []);
 
+  // ✅ Handle Delete Button Click (Open Modal)
   const handleDeleteClick = (item) => {
     setSelectedItem(item);
     setShowModal(true);
   };
 
+  // ✅ Close Modal
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedItem(null);
   };
 
+  // ✅ API Call to Delete an Inventory Item
   const handleConfirmDelete = async () => {
     if (!selectedItem) return;
 
     try {
-      // TODO: Replace with API call when backend is ready
-      console.log(`Deleting ${selectedItem.name}...`);
+      console.log(`Deleting inventory item with ID: ${selectedItem.id}...`);
+      await axios.delete(`${API_BASE_URL}/api/inventories/${selectedItem.id}`);
 
-      // Temporarily remove the item from state (for frontend testing)
-      setInventory((prev) =>
-        prev.filter((item) => item.id !== selectedItem.id)
+      setInventory((prevInventory) =>
+        prevInventory.filter((item) => item.id !== selectedItem.id)
       );
+
+      console.log(`Inventory item ${selectedItem.id} deleted successfully!`);
     } catch (error) {
-      console.error("Error deleting item:", error);
+      console.error("Error deleting inventory item:", error);
     }
 
     handleCloseModal();
   };
 
+  // ✅ Fix: Define handleSearch function
+  const handleSearch = async () => {
+    if (query.trim() === "") return;
+
+    try {
+      console.log(`Searching for: ${query}`);
+      const response = await axios.get(
+        `${API_BASE_URL}/api/inventories?search=${query}`
+      );
+      setInventory(response.data);
+    } catch (error) {
+      console.error("Error searching inventory:", error);
+    }
+  };
+
   return (
-    <div className=" main">
+    <div className="main">
       <div className="inventory-hero">
         <h1 className="inventory-title">Inventory</h1>
         <div className="inventory-hero__right">
@@ -79,13 +104,20 @@ function Inventory() {
           </Link>
         </div>
       </div>
-      <InventoryList isFullInventory={true} onDeleteClick={handleDeleteClick} />
 
+      {/* ✅ Pass inventory data to InventoryList */}
+      <InventoryList
+        isFullInventory={true}
+        onDeleteClick={handleDeleteClick}
+        inventory={inventory}
+      />
+
+      {/* ✅ Delete Modal */}
       <InventoryDeleteModal
         isOpen={showModal}
         onClose={handleCloseModal}
         onDelete={handleConfirmDelete}
-        itemName={selectedItem?.name}
+        itemName={selectedItem?.item_name} // Ensure the correct key from the backend
       />
     </div>
   );

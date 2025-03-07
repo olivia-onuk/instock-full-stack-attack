@@ -8,36 +8,32 @@ function InventoryDeleteModal({ itemName, onDelete, onClose, isOpen }) {
       isOpen={isOpen}
       onRequestClose={onClose}
       contentLabel="Delete Confirmation"
-      className="delete-modal"
-      overlayClassName="delete-modal__overlay"
+      className="modal"
+      overlayClassName="modal__overlay"
     >
-      <div className="inventory-delete">
-        <div className="inventory-delete__close">
+      <div className="modal__content">
+        <div className="modal__content-header">
           <img
             src={Close}
             alt="Close Icon"
-            className="inventory-delete__close-icon"
+            className="modal__content-header--close"
             onClick={onClose}
           />
         </div>
-        <div className="inventory-delete__text">
-          <h1>Delete {itemName} inventory item?</h1>
-          <p>
+        <div className="modal__content-body">
+          <h1 className="modal__content-body-title">
+            Delete {itemName} inventory item?
+          </h1>
+          <p className="modal__content-body-description">
             Please confirm you'd like to delete {itemName} from the inventory
-            list. You won't be able to undo this action
+            list. You won't be able to undo this action.
           </p>
         </div>
-        <div className="inventory-delete__buttons">
-          <button
-            className="inventory-delete__buttons-cancel"
-            onClick={onClose}
-          >
+        <div className="modal__content-actions">
+          <button className="modal__content-actions--cancel" onClick={onClose}>
             Cancel
           </button>
-          <button
-            className="inventory-delete__buttons-delete"
-            onClick={onDelete}
-          >
+          <button className="modal__content-actions--delete" onClick={onDelete}>
             Delete
           </button>
         </div>
