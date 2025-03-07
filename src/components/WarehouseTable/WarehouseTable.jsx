@@ -5,6 +5,7 @@ import { P1, P2 } from '../Typography/Typography';
 import { Link } from 'react-router-dom'
 import ReactModal from "react-modal";
 import { fetchWarehouses } from "../../api/ApiService";
+import WarehouseTableHeader from "../WarehouseTableHeader/WarehouseTableHeader";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
@@ -52,27 +53,7 @@ function WarehouseTable() {
 
   return(
     <div className="warehouse-list-section">
-    <div className="warehouse-tablet-header">
-      <span className="warehouse-tablet-label">
-      <h4>WAREHOUSE</h4>
-      <img src={sortIcon} alt="sort" className="warehouse-tablet-icon" />
-      </span>
-      <span className="warehouse-tablet-label">
-      <h4>ADDRESS</h4>
-      <img src={sortIcon} alt="sort" className="warehouse-tablet-icon" />
-      </span>
-      <span className="warehouse-tablet-label">
-      <h4>CONTACT NAME</h4>
-      <img src={sortIcon} alt="sort" className="warehouse-tablet-icon" />
-      </span>
-      <span className="warehouse-tablet-label">
-      <h4>CONTACT INFORMATION</h4>
-      <img src={sortIcon} alt="sort" className="warehouse-tablet-icon" />
-      </span>
-      <span className="warehouse-tablet-label">
-      <h4>ACTIONS</h4>
-      </span>
-    </div>
+    <WarehouseTableHeader />
     <div className="warehouse-list">
       {warehouses.map((warehouse) => (
         <div key={warehouse.id} className="warehouse-item">
