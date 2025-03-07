@@ -53,9 +53,7 @@ function InventoryForm({ formtype, item, buttonLabel }) {
           </div>
         </div>
         <div className="inventory-form__column inventory-form__column--border">
-          <h2 className="inventory-form__title">
-            Item Availability
-          </h2>
+          <h2 className="inventory-form__title">Item Availability</h2>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Status</label>
             <div className="inventory-form__radio-button">
@@ -82,16 +80,22 @@ function InventoryForm({ formtype, item, buttonLabel }) {
                 className="inventory-form__stock inventory-form__stock--outofstock"
                 onChange={handleColorChange}
               />
-              <label className={`inventory-form__radio-label ${
+              <label
+                className={`inventory-form__radio-label ${
                   radio === "outofstock"
                     ? "inventory-form__radio-label--active"
                     : ""
-                }`}>
+                }`}
+              >
                 Out of stock
               </label>
             </div>
           </div>
-          <div className="inventory-form__input-section">
+          <div
+            className={`inventory-form__input-section ${
+              radio === "outofstock" ? "inventory-form__input-section--invisible" : ""
+            }`}
+          >
             <label className="inventory-form__input-label">Quantity</label>
             <input
               type="number"

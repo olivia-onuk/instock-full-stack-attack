@@ -5,6 +5,12 @@
 
 .inventory-form {
   &__main {
+    width: 100%;
+    @include tablet {
+      padding: 24px 0px;
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   &__title {
@@ -17,14 +23,26 @@
     padding-bottom: 16px;
 
     &--border {
-        border-top: 0.0625rem solid $secondary-color-two;
+      border-top: 0.0625rem solid $secondary-color-two;
+      @include tablet {
+        border-top: none;
+        border-left: 1.5px solid $secondary-color-two;
       }
+    }
+
+    @include tablet {
+      width: 50%;
+    }
   }
 
   &__input-section {
     display: flex;
     flex-direction: column;
     padding-bottom: 16px;
+
+    &--invisible {
+        display: none;
+    }
   }
 
   &__input-label {
@@ -32,6 +50,11 @@
     font-size: 13px;
     line-height: 20px;
     font-weight: 600;
+
+    @include tablet {
+      font-size: 14px;
+      line-height: 22px;
+    }
   }
 
   &__input {
@@ -43,6 +66,11 @@
     font-size: 13px;
     line-height: 20px;
     font-weight: 400;
+
+    @include tablet {
+      font-size: 14px;
+      line-height: 22px;
+    }
 
     &--large {
       padding-top: 8px;
@@ -74,6 +102,11 @@
     background-repeat: no-repeat;
     background-position: right 10px center;
     padding-right: 30px;
+
+    @include tablet {
+      font-size: 14px;
+      line-height: 22px;
+    }
   }
 
   &__dropdown option:disabled {
@@ -101,6 +134,11 @@
     font-weight: 400;
     color: $secondary-color-one;
 
+    @include tablet {
+      font-size: 14px;
+      line-height: 22px;
+    }
+
     &--active {
       color: black;
     }
@@ -113,6 +151,10 @@
     display: flex;
     justify-content: space-between;
     flex: 1;
+
+    @include tablet {
+      justify-content: end;
+    }
   }
 
   &__button {
@@ -124,6 +166,14 @@
     font-size: 13px;
     line-height: 20px;
     font-weight: 600;
+
+    @include tablet {
+      font-size: 14px;
+      line-height: 22px;
+      min-width: calc(10% - 8px);
+      margin-left: 16px;
+    }
+
     &--cancel {
       border: none;
       border: 1px solid $secondary-color-two;
