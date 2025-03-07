@@ -113,7 +113,7 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
                   </div>
                   </div>)
                 : (                    
-                <div className="inventory-item__attribute inventory-item__qty">
+                <div className="inventory-item__attribute inventory-item__qty--not-full">
                   <h4 className="inventory-item__label">QTY</h4>
                   <P2>
                     <p>{item.quantity}</p>

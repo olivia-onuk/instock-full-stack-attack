@@ -144,6 +144,14 @@
     @include desktop {width:45%;}
   }
 
+  &__qty--not-full {
+    width: 60%;
+    text-align: center;
+  }
+
+  &__warehouse {
+    width: 5.5rem;
+  }
   &__attribute {
     margin-bottom: 1rem;
     @include tablet {
