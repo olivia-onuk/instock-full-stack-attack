@@ -12,26 +12,73 @@ function InventoryForm({ formtype }) {
           <h2 className="inventory-form__title">Item Details</h2>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Item Name</label>
-            <input type="text" id="itemName" className="inventory-form__input"/>
+            <input
+              type="text"
+              id="itemName"
+              className="inventory-form__input"
+            />
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Description</label>
-            <input type="text" id="itemDescription" className="inventory-form__input inventory-form__input--large"/>
+            <input
+              type="text"
+              id="itemDescription"
+              className="inventory-form__input inventory-form__input--large"
+            />
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Category</label>
+            <select className="inventory-form__dropdown" name="category" id="category">
+              <option value="Accessories">Accessories</option>
+              <option value="Apparel">Apparel</option>
+              <option value="Electronics">Television</option>
+              <option value="Gear">Gear</option>
+              <option value="Health">Health</option>
+            </select>
           </div>
         </div>
         <div className="inventory-form__column">
           <h2 className="inventory-form__title">Item Availability</h2>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Status</label>
+            <div>
+              <input
+                type="radio"
+                name="status"
+                value="instock"
+                className="stock__instock"
+              />
+              <label className="inventory-form__radio-label">In stock</label>
+              <input
+                type="radio"
+                name="status"
+                value="outofstock"
+                className="stock__outofstock"
+              />
+              <label className="inventory-form__radio-label">
+                Out of Stock
+              </label>
+            </div>
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Quantity</label>
+            <input
+              type="number"
+              id="qtyDescription"
+              className="inventory-form__input inventory-form__input--small"
+            />
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Warehouse</label>
+            <select className="inventory-form__dropdown" name="warehouse" id="warehouse">
+              <option value="Manhattan">Manhattan</option>
+              <option value="Washington">Washington</option>
+              <option value="Jersey">Jersey</option>
+              <option value="San Fran">San Fran</option>
+              <option value="Santa Monica">Santa Monica</option>
+              <option value="Seattle">Seattle</option>
+              <option value="Miami">Miami</option>
+            </select>
           </div>
         </div>
       </div>
