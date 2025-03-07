@@ -9,7 +9,6 @@
     display: flex;
     width: 100%;
     gap: 0;
-    justify-content: space-between;
     align-items: center;
     height: 2.5rem;
     box-sizing: border-box;
@@ -18,42 +17,44 @@
 }
 
 .inventory-tablet-label {
+  width: 160px;
   display: flex;
   align-items: center;
   color: $secondary-color-one;
-
-
   &:nth-child(1) {
-    width: calc((100% - 5rem) * 0.26);
+    width: calc((100% - 5rem) * 0.25);
     @include desktop {
-      width: calc((100% - 5rem) * 0.286);
+      width: calc((100% - 5rem) * 0.2025);
     }
   }
   &:nth-child(2) {
-    width: calc((100% - 5rem) * 0.24);
-
+    width: calc((100% - 5rem) * 0.20);
     @include desktop {
-      width: calc((100% - 5rem) * 0.264);
+      width: calc((100% - 5rem) * 0.2475);
     }
   }
   &:nth-child(3) {
-    width: calc((100% - 5rem) * 0.24);
-
+    width: calc((100% - 5rem) * 0.20);
     @include desktop {
-      width: calc((100% - 5rem) * 0.216);
+      width: calc((100% - 5rem) * 0.225);
     }
   }
   &:nth-child(4) {
-    width: calc((100% - 5rem) * 0.26);
-
+    width: calc((100% - 5rem) * 0.30);
+    display: flex;
+    justify-content: center;
     @include desktop {
-      width: calc((100% - 5rem) * 0.234);
+      width: calc((100% - 5rem) * 0.275);
     }
   }
-
-  &:nth-child(5) {
+  &:last-child {
     flex: 0 0 5rem;
     justify-content: flex-end;
+    margin-left: auto; 
+  }
+  &__full {
+    display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -74,11 +75,11 @@
   border-top: 0.0625rem solid $secondary-color-two;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  @include responsive-horizontal-padding;
+  box-sizing: border-box;
 
   @include tablet {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     position: relative;
     box-sizing: border-box;
     align-items: center;
@@ -87,10 +88,17 @@
   &__label {
     color: $secondary-color-one;
     margin-bottom: 0.25rem;
+    display: flex;
 
     @include tablet {
       display: none;
     }
+
+    // &--action {
+    //   @include tablet {
+    //     order: 1;
+    //   }
+    // }
   }
 
   &__content {
@@ -101,57 +109,60 @@
 
   &__columns {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     gap: 1rem;
 
     @include tablet {
+      justify-content: start;
       gap: 0;
       align-items: center;
-      justify-content: space-between;
     }
   }
 
   &__column {
-    width: 50%;
-
+    padding-right: 50px;
     @include tablet {
+      padding: 0px;
       display: flex;
-      align-items: center;
-    }
-    @include desktop {
-      &:nth-child(1) {
-        width: 55%;
-      }
-      &:nth-child(2) {
-        width: 45%;
-      }
+      // align-items: center;
+      &:nth-child(1) { width: 45%; }
+      &:nth-child(2) { width: 50%; }
     }
   }
 
-  &__attribute {
-    margin-bottom: 1rem;
-
-    @include tablet {
-      flex-wrap: wrap;
-      margin-bottom: 0;
-    }
-  }
   &__name {
-    @include tablet {
-      width: 52%;
-    }
-  }
-  &__category {
-    @include tablet {
-      width: 48%;
-      padding-right: 1rem;
-    }
+    @include tablet {width:55.56%;}
+    @include desktop {width:45%;}
   }
 
   &__status {
-    @include tablet {
-      width: 48%;
+    @include tablet { 
+      width: 40%;
+      flex-shrink: 0;
     }
+    @include desktop {width:45%;}
+  }
+
+  &__qty--not-full {
+    width: 4.5912rem;
+    margin: auto;
+  }
+
+  &__warehouse {
+    width: 5.5rem;
+  }
+  &__attribute {
+    margin-bottom: 1rem;
+    @include tablet {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__link {
+    color: $primary-color-two;
+    display: flex;
+    align-items: center;
   }
 
   &__stock {
@@ -176,35 +187,16 @@
       color: $supporting-color-two;
     }
   }
-  &__qty {
+
+  &__full {
     @include tablet {
-      width: 52%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 
-  &__warehouse {
-    @include tablet {
-      width: 52%;
-    }
-
-    &--invisible {
-      display: none;
-    }
-  }
-
-  &__link {
-    color: $primary-color-two;
-    display: flex;
-    align-items: center;
-  }
-
-  &__link-icon {
-    &:hover {
-      transform: translateX(4px);
-    }
-    transition: transform 0.2s ease-in-out;
-  }
-  
   &__actions {
     display: flex;
     justify-content: space-between;

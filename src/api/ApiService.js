@@ -3,6 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:8080";
 
 export const fetchWarehouses = async () => {
+
   try {
     const resp = await axios.get(`${BASE_URL}/api/warehouses`);
     return resp.data;
@@ -73,6 +74,29 @@ export const fetchInventories = async () => {
   }
 };
 
+export const addInventory = async (inventoryItem) => {
+  try {
+    const resp = await axios.post(`${BASE_URL}/api/inventories`, inventoryItem);
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+    alert("Failed to update Inventory. Please try again.");
+  }
+};
+
+export const updateInventory = async (id, inventoryItem) => {
+  try {
+    const resp = await axios.put(
+      `${BASE_URL}/api/inventories/:id`,
+      inventoryItem
+    );
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+    alert("Failed to update Inventory. Please try again.");
+  }
+};
+
 export const searchInventories = async (query) => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/inventories?search=${query}`);
@@ -90,16 +114,3 @@ export const deleteInventory = async (id) => {
     throw error;
   }
 };
-
-export const addInventory = async (inventoryItem) => {
-    try {
-      const resp = await axios.post(
-        `${BASE_URL}/api/inventories`,
-        inventoryItem
-      );
-      return resp.data;
-    } catch (error) {
-      console.log(error);
-      alert("Failed to update Inventory. Please try again.");
-    }
-  };

@@ -33,15 +33,24 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
           <h4>STATUS</h4>
           <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
         </span>
+        {isFullInventory ? (
+        <span className="inventory-tablet-label inventory-tablet-label__full">
+          <span className="inventory-tablet-label inventory-tablet-label__quantity">
+            <h4>QTY</h4>
+            <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
+          </span>
+          <span className="inventory-tablet-label inventory-tablet-label__warehouse">
+            <h4>WAREHOUSE</h4>
+            <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
+          </span>
+        </span>
+      ) : (
         <span className="inventory-tablet-label">
           <h4>QUANTITY</h4>
           <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
         </span>
-        <span className="inventory-tablet-label">
-          <h4>WAREHOUSE</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        <span className="inventory-tablet-label">
+      )}
+        <span className="inventory-tablet-label inventory-tablet-label--action">
           <h4>ACTIONS</h4>
         </span>
       </div>
@@ -85,8 +94,10 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
                       {item.status}
                     </p>
                   </div>
-
-                  <div className="inventory-item__attribute inventory-item__qty">
+                  {isFullInventory
+                  ? (           
+                    <div className="inventory-item__attribute inventory-item__full">
+                    <div className="inventory-item__attribute inventory-item__qty">
                     <h4 className="inventory-item__label">QTY</h4>
                     <P2>
                       <p>{item.quantity}</p>
@@ -94,17 +105,21 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
                   </div>
 
                   <div
-                    className={`inventory-item__attribute inventory-item__warehouse${
-                      isFullInventory
-                        ? ""
-                        : " inventory-item__warehouse--invisible"
-                    }`}
-                  >
+                    className={"inventory-item__attribute inventory-item__warehouse"}>
                     <h4 className="inventory-item__label">WAREHOUSE</h4>
                     <P2>
                       <p>{item.warehouse_name}</p>
                     </P2>
                   </div>
+                  </div>)
+                : (                    
+                <div className="inventory-item__attribute inventory-item__qty--not-full">
+                  <h4 className="inventory-item__label">QTY</h4>
+                  <P2>
+                    <p>{item.quantity}</p>
+                  </P2>
+                </div>) }
+
                 </div>
               </div>
             </div>
