@@ -14,7 +14,6 @@ function Inventory() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [inventory, setInventory] = useState([]);
 
-  // ✅ Fetch inventory items from API on page load
   useEffect(() => {
     const fetchInventory = async () => {
       try {
@@ -29,19 +28,16 @@ function Inventory() {
     fetchInventory();
   }, []);
 
-  // ✅ Handle Delete Button Click (Open Modal)
   const handleDeleteClick = (item) => {
     setSelectedItem(item);
     setShowModal(true);
   };
 
-  // ✅ Close Modal
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedItem(null);
   };
 
-  // ✅ API Call to Delete an Inventory Item
   const handleConfirmDelete = async () => {
     if (!selectedItem) return;
 
@@ -61,7 +57,6 @@ function Inventory() {
     handleCloseModal();
   };
 
-  // ✅ Fix: Define handleSearch function
   const handleSearch = async () => {
     if (query.trim() === "") return;
 
@@ -105,14 +100,12 @@ function Inventory() {
         </div>
       </div>
 
-      {/* ✅ Pass inventory data to InventoryList */}
       <InventoryList
         isFullInventory={true}
         onDeleteClick={handleDeleteClick}
         inventory={inventory}
       />
 
-      {/* ✅ Delete Modal */}
       <InventoryDeleteModal
         isOpen={showModal}
         onClose={handleCloseModal}
