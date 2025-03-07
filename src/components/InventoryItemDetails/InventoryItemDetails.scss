@@ -21,7 +21,8 @@ p {
         padding-bottom: 1rem;
 
         @include tablet {
-            padding: 0;
+            padding: 0 ;
+            
         }
 
     }
@@ -47,10 +48,12 @@ p {
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            padding-bottom: .5rem;
 
         }
         @include desktop {
             width: 100%;
+            gap: 2rem;
             
         }
     }
@@ -63,10 +66,13 @@ p {
             display: flex;
             flex-direction: column;
             gap: 1.875rem;
+            padding-bottom: 1.5rem;
         }
 
         @include desktop {
             padding-right: 11.3125rem;
+            gap: 2rem;
+            padding-bottom: 0;
         }
     }
 }

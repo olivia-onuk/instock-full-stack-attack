@@ -3,13 +3,16 @@
 .inventory-details {
   padding: 2rem 1rem;
   background-color: $background-color-two;
+  padding-bottom: 4rem;
 
   @include tablet {
     padding: 2rem;
+    padding-bottom: 31.75rem;
   }
 
   @include desktop {
     padding: 2rem 8.125rem;
+    padding-bottom: 25.5rem;
   }
   &__arrow {
     width: 1.5rem;
@@ -27,11 +30,11 @@
 
     @include tablet {
       margin-top: -7.9rem;
-      padding: 1.5rem 2rem 1rem;
+      padding: 1.5rem 2rem 1.5rem 2rem;
     }
 
     @include desktop {
-      padding: 1.5rem 2.5rem 2.25rem;
+      padding: 1.5rem 2.5rem;
     }
   }
 
