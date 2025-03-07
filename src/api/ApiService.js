@@ -2,9 +2,14 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8080";
 
-export const fetchWarehouses = async () => {
+export const fetchWarehouses = async (
+  sortBy = "warehouse_name",
+  orderBy = "asc"
+) => {
   try {
-    const resp = await axios.get(`${BASE_URL}/api/warehouses`);
+    const resp = await axios.get(`${BASE_URL}/api/warehouses`, {
+      params: { sort_by: sortBy, order_by: orderBy },
+    });
     return resp.data;
   } catch (error) {
     console.log(error);
@@ -64,9 +69,14 @@ export const deleteWarehouse = async (id) => {
   }
 };
 
-export const fetchInventories = async () => {
+export const fetchInventories = async (
+  sortBy = "item_name",
+  orderBy = "asc"
+) => {
   try {
-    const resp = await axios.get(`${BASE_URL}/api/inventories`);
+    const resp = await axios.get(`${BASE_URL}/api/inventories`, {
+      params: { sort_by: sortBy, order_by: orderBy },
+    });
     return resp.data;
   } catch (error) {
     console.log("Failed to fetch inventories. Please try again:", error);
