@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
 import "./InventoryForm.scss";
-import errorIcon from "../../assets/icons/error-24px.svg"; 
+import errorIcon from "../../assets/icons/error-24px.svg";
 
-function InventoryForm({
-  formtype,
-  item,
-  buttonLabel,
-  handleUpdate = () => {},
-}) {
+function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -15,6 +10,16 @@ function InventoryForm({
   const [warehouse, setWarehouse] = useState("");
   const [radio, setRadio] = useState(null);
   const [error, setError] = useState(false);
+
+  const warehouseMap = [
+    "Manhattan",
+    "Washington",
+    "Jersey",
+    "San Fran",
+    "Santa Monica",
+    "Seattle",
+    "Miami",
+  ];
 
   const handleChangeRadio = (e) => {
     setRadio(e.target.value);
@@ -61,6 +66,29 @@ function InventoryForm({
     if (isFormValid()) {
       try {
         setError(false);
+        let index = warehouseMap.indexOf(warehouse);
+        let radioValue = "";
+        let qtyValue = "";
+
+        if (radio == "instock") {
+          radioValue = "in stock";
+          qtyValue = qty;
+        } else {
+          radioValue = "out of stock";
+          qtyValue = 0;
+        }
+
+        const inv = {
+          index,
+          itemName,
+          itemDescription,
+          category,
+          radio,
+          quantity,
+        };
+
+        handleUpdate(inv);
+
       } catch (error) {
         console.log(error);
       }
@@ -68,7 +96,7 @@ function InventoryForm({
       setError(true);
     }
   };
-  
+
   return (
     <form id={formtype} className="inventory-form" onSubmit={handleSubmit}>
       <div className="inventory-form__main">
@@ -85,11 +113,20 @@ function InventoryForm({
               placeholder="Item Name"
               onChange={handleChangeItemName}
             />
-            <p className={`inventory-form__error-text ${
+            <p
+              className={`inventory-form__error-text ${
                 error && !itemName.trim()
                   ? "inventory-form__error-text--visible"
                   : ""
-              }`}><img className="inventory-form__error-text--img"src={errorIcon} alt="error"/>This field is required</p>
+              }`}
+            >
+              <img
+                className="inventory-form__error-text--img"
+                src={errorIcon}
+                alt="error"
+              />
+              This field is required
+            </p>
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Description</label>
@@ -104,11 +141,20 @@ function InventoryForm({
               placeholder="Please enter a brief description..."
               onChange={handleChangeDescription}
             />
-            <p className={`inventory-form__error-text ${
+            <p
+              className={`inventory-form__error-text ${
                 error && !itemDescription.trim()
                   ? "inventory-form__error-text--visible"
                   : ""
-              }`}><img className="inventory-form__error-text--img"src={errorIcon} alt="error"/>This field is required</p>
+              }`}
+            >
+              <img
+                className="inventory-form__error-text--img"
+                src={errorIcon}
+                alt="error"
+              />
+              This field is required
+            </p>
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Category</label>
@@ -131,11 +177,20 @@ function InventoryForm({
               <option value="Gear">Gear</option>
               <option value="Health">Health</option>
             </select>
-            <p className={`inventory-form__error-text ${
+            <p
+              className={`inventory-form__error-text ${
                 error && !category.trim()
                   ? "inventory-form__error-text--visible"
                   : ""
-              }`}><img className="inventory-form__error-text--img"src={errorIcon} alt="error"/>This field is required</p>
+              }`}
+            >
+              <img
+                className="inventory-form__error-text--img"
+                src={errorIcon}
+                alt="error"
+              />
+              This field is required
+            </p>
           </div>
         </div>
         <div className="inventory-form__column inventory-form__column--border">
@@ -148,9 +203,7 @@ function InventoryForm({
                 name="status"
                 value="instock"
                 className={`inventory-form__stock inventory-form__stock--instock ${
-                  error && !radio
-                    ? "inventory-form__stock--error"
-                    : ""
+                  error && !radio ? "inventory-form__stock--error" : ""
                 }`}
                 onChange={handleChangeRadio}
               />
@@ -168,9 +221,7 @@ function InventoryForm({
                 name="status"
                 value="outofstock"
                 className={`inventory-form__stock inventory-form__stock--outofstock ${
-                  error && !radio
-                    ? "inventory-form__stock--error"
-                    : ""
+                  error && !radio ? "inventory-form__stock--error" : ""
                 }`}
                 onChange={handleChangeRadio}
               />
@@ -184,11 +235,18 @@ function InventoryForm({
                 Out of stock
               </label>
             </div>
-            <p className={`inventory-form__error-text ${
-                error && !radio
-                  ? "inventory-form__error-text--visible"
-                  : ""
-              }`}><img className="inventory-form__error-text--img"src={errorIcon} alt="error"/>This field is required</p>
+            <p
+              className={`inventory-form__error-text ${
+                error && !radio ? "inventory-form__error-text--visible" : ""
+              }`}
+            >
+              <img
+                className="inventory-form__error-text--img"
+                src={errorIcon}
+                alt="error"
+              />
+              This field is required
+            </p>
           </div>
           <div
             className={`inventory-form__input-section ${
@@ -201,15 +259,26 @@ function InventoryForm({
             <input
               type="number"
               id="qty"
-              className={`inventory-form__input inventory-form__input--small ${error && !qty.trim() ? "inventory-form__input--error" : ""}`}
+              className={`inventory-form__input inventory-form__input--small ${
+                error && !qty.trim() ? "inventory-form__input--error" : ""
+              }`}
               placeholder="0"
               onChange={handleChangeQty}
             />
-            <p className={`inventory-form__error-text ${
+            <p
+              className={`inventory-form__error-text ${
                 error && !qty.trim()
                   ? "inventory-form__error-text--visible"
                   : ""
-              }`}><img className="inventory-form__error-text--img"src={errorIcon} alt="error"/>This field is required</p>
+              }`}
+            >
+              <img
+                className="inventory-form__error-text--img"
+                src={errorIcon}
+                alt="error"
+              />
+              This field is required
+            </p>
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Warehouse</label>
@@ -234,11 +303,20 @@ function InventoryForm({
               <option value="Seattle">Seattle</option>
               <option value="Miami">Miami</option>
             </select>
-            <p className={`inventory-form__error-text ${
+            <p
+              className={`inventory-form__error-text ${
                 error && !warehouse.trim()
                   ? "inventory-form__error-text--visible"
                   : ""
-              }`}><img className="inventory-form__error-text--img"src={errorIcon} alt="error"/>This field is required</p>
+              }`}
+            >
+              <img
+                className="inventory-form__error-text--img"
+                src={errorIcon}
+                alt="error"
+              />
+              This field is required
+            </p>
           </div>
         </div>
       </div>
