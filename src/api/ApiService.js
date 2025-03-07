@@ -60,15 +60,15 @@ export const fetchInventories = async() => {
     }
 }
 
-export const addInventory = async (id, inventoryItem) => {
+export const addInventory = async (inventoryItem) => {
     try {
       const resp = await axios.post(
-        `${BASE_URL}/api/inventories/${id}`,
+        `${BASE_URL}/api/inventories`,
         inventoryItem
       );
       return resp.data;
     } catch (error) {
       console.log(error);
-      alert("Failed to update Warehouse. Please try again.");
+      alert("Failed to update Inventory. Please try again.");
     }
   };

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./InventoryForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
 
@@ -10,6 +11,8 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
   const [warehouse, setWarehouse] = useState("");
   const [radio, setRadio] = useState(null);
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   const warehouseMap = [
     "Manhattan",
@@ -66,9 +69,9 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
     if (isFormValid()) {
       try {
         setError(false);
-        let index = warehouseMap.indexOf(warehouse);
+        let index = warehouseMap.indexOf(warehouse) + 1;
         let radioValue = "";
-        let qtyValue = "";
+        let qtyValue = 0;
 
         if (radio == "instock") {
           radioValue = "in stock";
@@ -79,16 +82,24 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
         }
 
         const inv = {
-          index,
-          itemName,
-          itemDescription,
-          category,
-          radio,
-          quantity,
+          warehouse_id: index,
+          item_name: itemName,
+          description: itemDescription,
+          category: category,
+          status: radioValue,
+          quantity: `${qtyValue}`,
         };
 
-        handleUpdate(inv);
+        console.log(inv);
 
+        handleUpdate(inv);
+        if (formtype == "addInventoryForm") {
+          alert("Invetory Successfully Added. Rerouting to Inventory Page");
+          
+          setTimeout(() => {
+            navigate("/inventory");
+          }, 400);
+        }
       } catch (error) {
         console.log(error);
       }
