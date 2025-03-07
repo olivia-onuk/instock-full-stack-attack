@@ -147,7 +147,12 @@
         display: flex;
         align-items: center;
   }
-
+  &__link-icon {
+    &:hover {
+      transform: translateX(4px)
+    }
+    transition: transform 0.2s ease-in-out;
+  }
   &__actions {
     display: flex;
     justify-content: space-between;

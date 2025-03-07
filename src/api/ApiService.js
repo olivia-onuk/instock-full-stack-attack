@@ -91,3 +91,16 @@ export const deleteInventory = async (id) => {
     throw error;
   }
 };
+
+export const addInventory = async (inventoryItem) => {
+    try {
+      const resp = await axios.post(
+        `${BASE_URL}/api/inventories`,
+        inventoryItem
+      );
+      return resp.data;
+    } catch (error) {
+      console.log(error);
+      alert("Failed to update Inventory. Please try again.");
+    }
+  };
