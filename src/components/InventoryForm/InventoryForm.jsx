@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
-import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
+import { useState, useEffect } from "react";
 import "./InventoryForm.scss";
 
 function InventoryForm({ formtype, item, buttonLabel }) {
+  const [error, setError] = useState(false);
+  const [radio, setRadio] = useState(null);
+
+  const handleColorChange = (e) => {
+    setRadio(e.target.value);
+  };
+
   const handleSubmit = () => {};
 
   return (
@@ -16,14 +22,16 @@ function InventoryForm({ formtype, item, buttonLabel }) {
               type="text"
               id="itemName"
               className="inventory-form__input"
+              placeholder="Item Name"
             />
           </div>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Description</label>
-            <input
+            <textarea
               type="text"
               id="itemDescription"
               className="inventory-form__input inventory-form__input--large"
+              placeholder="Please enter a brief description..."
             />
           </div>
           <div className="inventory-form__input-section">
@@ -33,6 +41,9 @@ function InventoryForm({ formtype, item, buttonLabel }) {
               name="category"
               id="category"
             >
+              <option value="" disabled selected hidden>
+                Please Select
+              </option>
               <option value="Accessories">Accessories</option>
               <option value="Apparel">Apparel</option>
               <option value="Electronics">Television</option>
@@ -41,8 +52,10 @@ function InventoryForm({ formtype, item, buttonLabel }) {
             </select>
           </div>
         </div>
-        <div className="inventory-form__column">
-          <h2 className="inventory-form__title">Item Availability</h2>
+        <div className="inventory-form__column inventory-form__column--border">
+          <h2 className="inventory-form__title">
+            Item Availability
+          </h2>
           <div className="inventory-form__input-section">
             <label className="inventory-form__input-label">Status</label>
             <div className="inventory-form__radio-button">
@@ -51,16 +64,30 @@ function InventoryForm({ formtype, item, buttonLabel }) {
                 name="status"
                 value="instock"
                 className="inventory-form__stock inventory-form__stock--instock"
+                onChange={handleColorChange}
               />
-              <label className="inventory-form__radio-label">In stock</label>
+              <label
+                className={`inventory-form__radio-label ${
+                  radio === "instock"
+                    ? "inventory-form__radio-label--active"
+                    : ""
+                }`}
+              >
+                In stock
+              </label>
               <input
                 type="radio"
                 name="status"
                 value="outofstock"
                 className="inventory-form__stock inventory-form__stock--outofstock"
+                onChange={handleColorChange}
               />
-              <label className="inventory-form__radio-label">
-                Out of Stock
+              <label className={`inventory-form__radio-label ${
+                  radio === "outofstock"
+                    ? "inventory-form__radio-label--active"
+                    : ""
+                }`}>
+                Out of stock
               </label>
             </div>
           </div>
@@ -68,8 +95,9 @@ function InventoryForm({ formtype, item, buttonLabel }) {
             <label className="inventory-form__input-label">Quantity</label>
             <input
               type="number"
-              id="qtyDescription"
+              id="qty"
               className="inventory-form__input inventory-form__input--small"
+              placeholder="0"
             />
           </div>
           <div className="inventory-form__input-section">
@@ -79,6 +107,9 @@ function InventoryForm({ formtype, item, buttonLabel }) {
               name="warehouse"
               id="warehouse"
             >
+              <option value="" disabled selected hidden>
+                Please Select
+              </option>
               <option value="Manhattan">Manhattan</option>
               <option value="Washington">Washington</option>
               <option value="Jersey">Jersey</option>

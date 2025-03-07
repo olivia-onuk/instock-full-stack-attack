@@ -7,14 +7,18 @@
   &__main {
   }
 
-  &__title{
+  &__title {
     padding-top: 16px;
     padding-bottom: 24px;
   }
 
   &__column {
     @include responsive-horizontal-padding;
-    border-bottom: 0.0625rem solid $secondary-color-two;
+    padding-bottom: 16px;
+
+    &--border {
+        border-top: 0.0625rem solid $secondary-color-two;
+      }
   }
 
   &__input-section {
@@ -31,19 +35,79 @@
   }
 
   &__input {
-    outline:none;
+    outline: none;
     border-radius: 20px;
-    padding: 16px;
+    min-height: 36px;
+    padding: 0px 16px;
     border: 1px solid $secondary-color-two;
-    
-    &:focus{
-        border-color: $primary-color-two;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+
+    &--large {
+      padding-top: 8px;
+      height: 6.25rem;
+      resize: none;
     }
 
+    &:focus {
+      border-color: $primary-color-two;
+    }
+  }
+
+  &__dropdown {
+    outline: none;
+    border-radius: 20px;
+    min-height: 36px;
+    padding: 0px 14px;
+    border: 1px solid $secondary-color-two;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+    font-family: "Titillium Web";
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+  }
+
+  &__dropdown option:disabled {
+    color: $secondary-color-two;
+  }
+
+  &__dropdown::-ms-expand {
+    display: none;
+  }
+
+  &__radio-button {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__stock {
+    padding-right: 8px;
+  }
+
+  &__radio-label {
+    padding-right: 48px;
+    padding-left: 8px;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+    color: $secondary-color-one;
+
+    &--active {
+      color: black;
+    }
   }
 
   &__buttons {
-    padding: 24px 0px;
+    padding: 16px 0px;
     @include responsive-horizontal-padding;
     background-color: $background-color-two;
     display: flex;
@@ -67,6 +131,8 @@
       background-color: $primary-color-three;
 
       &:hover {
+        color: $primary-color-two;
+        border-color: $primary-color-two;
       }
     }
 
@@ -77,6 +143,8 @@
       background-color: $primary-color-two;
 
       &:hover {
+        background-color: $primary-color-one;
+        border-color: $primary-color-one;
       }
     }
   }
