@@ -95,7 +95,7 @@ function InventoryForm({
 
     if (isFormValid()) {
       try {
-        setError(false);;
+        setError(false);
         let radioValue = "";
         let qtyValue = 0;
 
