@@ -21,6 +21,9 @@
     position: relative; 
     box-sizing: border-box;
     align-items: center;
+    &:hover {
+      background-color: rgba(46, 102, 229, 0.07);
+    }
   }
 
   &__label {
@@ -93,7 +96,7 @@
   }
   &__link-icon {
     &:hover {
-      transform: translateX(4px)
+      transform: translateX(0.25rem);
     }
     transition: transform 0.2s ease-in-out;
   }

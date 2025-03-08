@@ -5,24 +5,21 @@ import axios from "axios";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../assets/icons/edit-white-24px.svg";
 import InventoryItemDetails from "../../components/InventoryItemDetails/InventoryItemDetails";
+import { getInventoryById } from "../../api/ApiService";
 
 function InventoryDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [item, setItem] = useState(null);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/inventories/${id}`)
-      .then((response) => setItem(response.data))
-      .catch((error) => {
-        console.error("Error fetching inventory item:", error);
-        setError("Failed to load inventory item.");
-      });
+    const getInventoryItem = async () => {
+      const data = await getInventoryById(id);
+      setItem(data);
+    };
+    getInventoryItem();
   }, [id]);
 
-  if (error) return <p className="error-message">{error}</p>;
   if (!item) return <p className="loading-message">Loading...</p>;
 
   return (

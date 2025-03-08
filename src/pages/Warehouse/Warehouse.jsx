@@ -14,6 +14,8 @@ function Warehouse() {
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [warehouses, setWarehouses] = useState([]);
+  const [sortBy, setSortBy] = useState("warehouse_name");
+  const [orderBy, setOrderBy] = useState("asc");
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
@@ -64,7 +66,14 @@ function Warehouse() {
     const params = new URLSearchParams(window.location.search);
     const initialQuery = params.get('s') || '';
     setQuery(initialQuery);
-  }, []);
+  }, [sortBy, orderBy]);
+
+  const handleSort = (column) => {
+    setOrderBy((prevOrder) =>
+      sortBy === column && prevOrder === "asc" ? "desc" : "asc"
+    );
+    setSortBy(column);
+  };
 
   const handleOpenModal = (warehouse) => {
     setSelectedWarehouse(warehouse);
@@ -77,21 +86,21 @@ function Warehouse() {
     setIsDeleting(false);
   };
 
-  const handleDeleteConfirmed = async() => {
+  const handleDeleteConfirmed = async () => {
     if (!selectedWarehouse || isDeleting) return;
     setIsDeleting(true);
     try {
       await deleteWarehouse(selectedWarehouse.id);
-      setWarehouses(prev => prev.filter(
-        warehouse => warehouse.id !== selectedWarehouse.id
-      ));
+      setWarehouses((prev) =>
+        prev.filter((warehouse) => warehouse.id !== selectedWarehouse.id)
+      );
     } catch (error) {
-      console.error('Delete failed:', error);
+      console.error("Delete failed:", error);
     }
     handleCloseModal();
   };
 
-  return(
+  return (
     <div className=" main">
       <div className="warehouses-hero">
         <h1 className="warehouses-title">Warehouses</h1>
@@ -113,14 +122,17 @@ function Warehouse() {
           </div>
           <Link to="/warehouse/add">
             <button className="add-warehouse-button">
-              <h3 className="add-warehouse-button__text">+ Add New Warehouse</h3>
+              <h3 className="add-warehouse-button__text">
+                + Add New Warehouse
+              </h3>
             </button>
           </Link>
         </div>
       </div>
-      <WarehouseList 
+      <WarehouseList
         warehouses={warehouses}
-        onDeleteClick={handleOpenModal} 
+        onDeleteClick={handleOpenModal}
+        onSort={handleSort}
       />
       <WarehouseDeleteModal
         isOpen={isModalOpen}
@@ -130,7 +142,7 @@ function Warehouse() {
         isDeleting={isDeleting}
       />
     </div>
-  )
+  );
 }
 
 export default Warehouse;

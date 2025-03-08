@@ -7,26 +7,30 @@
   &__main {
     width: 100%;
     @include tablet {
-      padding: 24px 0px;
+      padding: 1.5rem 0rem;
       display: flex;
       flex-direction: row;
     }
   }
 
   &__title {
-    padding-top: 16px;
-    padding-bottom: 24px;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+
+    @include tablet {
+      padding-top: 0rem;
+    }
   }
 
   &__column {
+    padding-bottom: 1rem;
     @include responsive-horizontal-padding;
-    padding-bottom: 16px;
 
     &--border {
       border-top: 0.0625rem solid $secondary-color-two;
       @include tablet {
         border-top: none;
-        border-left: 1.5px solid $secondary-color-two;
+        border-left: 0.0938rem solid $secondary-color-two;
       }
     }
 
@@ -37,21 +41,18 @@
 
   &__error-text {
     display: none;
-    
-    padding-top: 4px;
-    font-size: 11px;
-    line-height: 16px;
+    padding-top: 0.25rem;
+    font-size: 0.6875rem;
+    line-height: 1rem;
     font-weight: 400;
     color: $supporting-color-two;
-    @include tablet {
-    }
 
     &--img {
-      padding-right: 3px;
-      max-height: 13px;
+      padding-right: 0.1875rem;
+      max-height: 0.8125rem;
     }
 
-    &--visible{
+    &--visible {
       display: flex;
       align-items: center;
     }
@@ -60,7 +61,7 @@
   &__input-section {
     display: flex;
     flex-direction: column;
-    padding-bottom: 16px;
+    padding-bottom: 1rem;
 
     &--invisible {
       display: none;
@@ -68,35 +69,35 @@
   }
 
   &__input-label {
-    padding-bottom: 4px;
-    font-size: 13px;
-    line-height: 20px;
+    padding-bottom: 0.25rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
     font-weight: 600;
 
     @include tablet {
-      font-size: 14px;
-      line-height: 22px;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
     }
   }
 
   &__input {
     outline: none;
-    border-radius: 20px;
-    min-height: 36px;
-    padding: 0px 16px;
-    border: 1px solid $secondary-color-two;
-    font-size: 13px;
-    line-height: 20px;
+    border-radius: 1.25rem;
+    min-height: 2.25rem;
+    padding: 0rem 1rem;
+    border: 0.0625rem solid $secondary-color-two;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
     font-weight: 400;
 
     @include tablet {
-      font-size: 14px;
-      line-height: 22px;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
       border: 0.0938rem solid $secondary-color-two;
     }
 
     &--large {
-      padding-top: 8px;
+      padding-top: 0.5rem;
       height: 6.25rem;
       resize: none;
     }
@@ -117,12 +118,12 @@
 
   &__dropdown {
     outline: none;
-    border-radius: 20px;
-    min-height: 36px;
-    padding: 0px 14px;
-    border: 1px solid $secondary-color-two;
-    font-size: 13px;
-    line-height: 20px;
+    border-radius: 1.25rem;
+    min-height: 2.25rem;
+    padding: 0rem 0.875rem;
+    border: 0.0625rem solid $secondary-color-two;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
     font-weight: 400;
     font-family: "Titillium Web";
 
@@ -132,17 +133,18 @@
 
     background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
     background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 30px;
+    background-position: right 0.625rem center;
+    padding-right: 1.875rem;
 
     @include tablet {
-      font-size: 14px;
-      line-height: 22px;
-      border: 1.5px solid $secondary-color-two;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+      border: 0.0938rem solid $secondary-color-two;
     }
 
     &--error {
       border: 0.0625rem solid $supporting-color-two;
+
       @include tablet {
         border: 0.0938rem solid $supporting-color-two;
       }
@@ -163,20 +165,20 @@
   }
 
   &__stock {
-    padding-right: 8px;
+    padding-right: 0.5rem;
   }
 
   &__radio-label {
-    padding-right: 48px;
-    padding-left: 8px;
-    font-size: 13px;
-    line-height: 20px;
+    padding-right: 3rem;
+    padding-left: 0.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
     font-weight: 400;
     color: $secondary-color-one;
 
     @include tablet {
-      font-size: 14px;
-      line-height: 22px;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
     }
 
     &--active {
@@ -185,12 +187,12 @@
   }
 
   &__buttons {
-    padding: 16px 0px;
-    @include responsive-horizontal-padding;
+    padding: 1rem 0rem;
     background-color: $background-color-two;
     display: flex;
     justify-content: space-between;
     flex: 1;
+    @include responsive-horizontal-padding;
 
     @include tablet {
       justify-content: end;
@@ -199,24 +201,24 @@
 
   &__button {
     font-family: "Titillium Web";
-    height: 36px;
-    border-radius: 20px;
-    padding: 0px 16px;
-    min-width: calc(50% - 8px);
-    font-size: 13px;
-    line-height: 20px;
+    height: 2.25rem;
+    border-radius: 1.25rem;
+    padding: 0rem 1rem;
+    min-width: calc(50% - 0.5rem);
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
     font-weight: 600;
 
     @include tablet {
-      font-size: 14px;
-      line-height: 22px;
-      min-width: calc(10% - 8px);
-      margin-left: 16px;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+      min-width: calc(10% - 0.5rem);
+      margin-left: 1rem;
     }
 
     &--cancel {
       border: none;
-      border: 1px solid $secondary-color-two;
+      border: 0.0625rem solid $secondary-color-two;
       color: $secondary-color-one;
       background-color: $primary-color-three;
 

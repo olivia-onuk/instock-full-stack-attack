@@ -59,32 +59,34 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
                       {item.status}
                     </p>
                   </div>
-                  {isFullInventory
-                  ? (           
+                  {isFullInventory ? (
                     <div className="inventory-item__attribute inventory-item__full">
-                    <div className="inventory-item__attribute inventory-item__qty">
-                    <h4 className="inventory-item__label">QTY</h4>
-                    <P2>
-                      <p>{item.quantity}</p>
-                    </P2>
-                  </div>
+                      <div className="inventory-item__attribute inventory-item__qty">
+                        <h4 className="inventory-item__label">QTY</h4>
+                        <P2>
+                          <p>{item.quantity}</p>
+                        </P2>
+                      </div>
 
-                  <div
-                    className={"inventory-item__attribute inventory-item__warehouse"}>
-                    <h4 className="inventory-item__label">WAREHOUSE</h4>
-                    <P2>
-                      <p>{item.warehouse_name}</p>
-                    </P2>
-                  </div>
-                  </div>)
-                : (                    
-                <div className="inventory-item__attribute inventory-item__qty--not-full">
-                  <h4 className="inventory-item__label">QTY</h4>
-                  <P2>
-                    <p>{item.quantity}</p>
-                  </P2>
-                </div>) }
-
+                      <div
+                        className={
+                          "inventory-item__attribute inventory-item__warehouse"
+                        }
+                      >
+                        <h4 className="inventory-item__label">WAREHOUSE</h4>
+                        <P2>
+                          <p>{item.warehouse_name}</p>
+                        </P2>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="inventory-item__attribute inventory-item__qty--not-full">
+                      <h4 className="inventory-item__label">QTY</h4>
+                      <P2>
+                        <p>{item.quantity}</p>
+                      </P2>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

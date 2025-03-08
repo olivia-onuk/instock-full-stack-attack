@@ -135,28 +135,22 @@ function WarehouseEdit() {
       await updateWarehouse(id, updatedData);
       alert("Warehouse updated successfully!");
 
-      setWarehouseName("");
-      setStreetAddress("");
-      setCity("");
-      setCountry("");
-      setContactName("");
-      setPosition("");
-      setPhoneNumber("");
-      setEmail("");
+      setTimeout(() => {
+        navigate("/warehouse");
+      }, 400);
     } catch (error) {
       console.error("Error updating warehouse:", error);
       alert("Failed to update warehouse. Please try again.");
     }
-    setLoading(false);
   };
 
   const handleCancel = () => {
-    window.history.back();
+    navigate("/warehouse");
   };
 
   return (
     <>
-      <section className="edit-warehouse">
+      <section className="main edit-warehouse">
         <div className="edit-warehouse__link">
           <Link to="/warehouse">
             <img className="edit-warehouse__link-arrow" src={Arrow} />

@@ -1,7 +1,6 @@
 import "./WarehouseAdd.scss";
 import { useState, useEffect } from "react";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
 import Error from "../../assets/icons/error-24px.svg";
 
@@ -15,6 +14,8 @@ function WarehouseAdd() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState({});
+
+  const navigate = useNavigate();
 
   const handleWarehouseNameInput = (event) => {
     setWarehouseName(event.target.value);
@@ -108,21 +109,24 @@ function WarehouseAdd() {
       email: email,
     };
 
-    setWarehouseName("");
-    setStreetAddress("");
-    setCity("");
-    setCountry("");
-    setContactName("");
-    setPosition("");
-    setPhoneNumber("");
-    setEmail("");
+    alert("Warehouse updated successfully!");
+
+    setTimeout(() => {
+      navigate("/warehouse");
+    }, 400);
+  };
+
+  const handleCancel = () => {
+    navigate("/warehouse");
   };
 
   return (
     <>
-      <section className="add-warehouse">
+      <section className="main add-warehouse">
         <div className="add-warehouse__link">
-          <img className="add-warehouse__link-arrow" src={Arrow} />
+          <Link to="/warehouse">
+            <img className="add-warehouse__link-arrow" src={Arrow} />
+          </Link>
           <h1 className="add-warehouse__link-title">Add New Warehouse</h1>
         </div>
 
@@ -279,7 +283,11 @@ function WarehouseAdd() {
           </div>
 
           <div className="add-warehouse__form-button">
-            <button className="add-warehouse__form-button-cancel" type="button">
+            <button
+              className="add-warehouse__form-button-cancel"
+              type="button"
+              onClick={handleCancel}
+            >
               Cancel
             </button>
             <button

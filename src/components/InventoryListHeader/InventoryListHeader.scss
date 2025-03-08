@@ -17,7 +17,7 @@
 }
 
 .inventory-tablet-label {
-  width: 160px;
+  width: 10rem;
   display: flex;
   align-items: center;
   color: $secondary-color-one;
@@ -28,19 +28,19 @@
     }
   }
   &:nth-child(2) {
-    width: calc((100% - 5rem) * 0.20);
+    width: calc((100% - 5rem) * 0.2);
     @include desktop {
       width: calc((100% - 5rem) * 0.2475);
     }
   }
   &:nth-child(3) {
-    width: calc((100% - 5rem) * 0.20);
+    width: calc((100% - 5rem) * 0.2);
     @include desktop {
       width: calc((100% - 5rem) * 0.225);
     }
   }
   &:nth-child(4) {
-    width: calc((100% - 5rem) * 0.30);
+    width: calc((100% - 5rem) * 0.3);
     display: flex;
     justify-content: center;
     @include desktop {
@@ -50,7 +50,7 @@
   &:last-child {
     flex: 0 0 5rem;
     justify-content: flex-end;
-    margin-left: auto; 
+    margin-left: auto;
   }
   &__full {
     display: flex;

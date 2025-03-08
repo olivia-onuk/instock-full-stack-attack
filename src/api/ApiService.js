@@ -2,10 +2,14 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8080";
 
-export const fetchWarehouses = async () => {
-
+export const fetchWarehouses = async (
+  sortBy = "warehouse_name",
+  orderBy = "asc"
+) => {
   try {
-    const resp = await axios.get(`${BASE_URL}/api/warehouses`);
+    const resp = await axios.get(`${BASE_URL}/api/warehouses`, {
+      params: { sort_by: sortBy, order_by: orderBy },
+    });
     return resp.data;
   } catch (error) {
     console.log(error);
@@ -77,9 +81,14 @@ export const searchWarehouses = async (query) => {
   }
 };
 
-export const fetchInventories = async () => {
+export const fetchInventories = async (
+  sortBy = "item_name",
+  orderBy = "asc"
+) => {
   try {
-    const resp = await axios.get(`${BASE_URL}/api/inventories`);
+    const resp = await axios.get(`${BASE_URL}/api/inventories`, {
+      params: { sort_by: sortBy, order_by: orderBy },
+    });
     return resp.data;
   } catch (error) {
     console.log("Failed to fetch inventories. Please try again:", error);
@@ -99,7 +108,7 @@ export const addInventory = async (inventoryItem) => {
 export const updateInventory = async (id, inventoryItem) => {
   try {
     const resp = await axios.put(
-      `${BASE_URL}/api/inventories/:id`,
+      `${BASE_URL}/api/inventories/${id}`,
       inventoryItem
     );
     return resp.data;
@@ -109,14 +118,6 @@ export const updateInventory = async (id, inventoryItem) => {
   }
 };
 
-// export const searchInventories = async (query) => {
-//   try {
-//     const resp = await axios.get(`${BASE_URL}/api/inventories?search=${query}`);
-//     return resp.data;
-//   } catch (error) {
-//     console.error("Error searching inventory:", error);
-//   }
-// };
 
 export const deleteInventory = async (id) => {
   try {
@@ -126,6 +127,17 @@ export const deleteInventory = async (id) => {
     throw error;
   }
 };
+
+export const getInventoryById = async (id) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/api/inventories/${id}`);
+    return resp.data;
+  } catch (error) {
+    console.error(`Error getting inventory item with ID ${id}:`, error);
+    throw error;
+  }
+};
+
 
 export const searchInventories = async (query) => {
   try {

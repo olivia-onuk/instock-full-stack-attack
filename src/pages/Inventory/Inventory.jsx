@@ -106,10 +106,10 @@ function Inventory() {
       </div>
 
       <InventoryList
-        isFullInventory={true}
-        onDeleteClick={handleDeleteClick}
         inventory={inventory}
         setInventory={setInventory}
+        isFullInventory={true}
+        onDeleteClick={handleDeleteClick}
       />
 
       <InventoryDeleteModal

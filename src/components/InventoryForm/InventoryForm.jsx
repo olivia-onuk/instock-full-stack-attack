@@ -2,8 +2,14 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./InventoryForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
+import { fetchWarehouses } from "../../api/ApiService";
 
-function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
+function InventoryForm({
+  formtype,
+  buttonLabel,
+  handleUpdate = (inv) => {},
+  item,
+}) {
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -11,18 +17,34 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
   const [warehouse, setWarehouse] = useState("");
   const [radio, setRadio] = useState(null);
   const [error, setError] = useState(false);
+  const [warehouseList, setWarehouseList] = useState([]);
 
   const navigate = useNavigate();
 
-  const warehouseMap = [
-    "Manhattan",
-    "Washington",
-    "Jersey",
-    "San Fran",
-    "Santa Monica",
-    "Seattle",
-    "Miami",
-  ];
+  useEffect(() => {
+    const getWarehouses = async () => {
+      const resp = await fetchWarehouses();
+      setWarehouseList(resp);
+    };
+    getWarehouses();
+  }, []);
+
+  useEffect(() => {
+    if (item) {
+      setItemName(item.item_name || "");
+      setItemDescription(item.description || "");
+      setCategory(item.category || "");
+      setQty(item.quantity || "");
+      setWarehouse(item.warehouse_name || "");
+      if (item.status) {
+        setRadio(
+          item.status.toLowerCase() === "in stock" ? "instock" : "outofstock"
+        );
+      } else {
+        setRadio("instock");
+      }
+    }
+  }, [item]);
 
   const handleChangeRadio = (e) => {
     setRadio(e.target.value);
@@ -49,6 +71,11 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
   };
 
   const isFormValid = () => {
+    if (qty < 0) {
+      alert("Can only have over 1 inventory");
+      return false;
+    }
+
     if (
       !itemName.trim() ||
       !itemDescription.trim() ||
@@ -57,7 +84,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
       !radio
     ) {
       return false;
-    } else if (radio == "instock" && !itemDescription.trim()) {
+    } else if (radio == "instock" && !`${qty}`.trim()) {
       return false;
     }
     return true;
@@ -69,37 +96,42 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
     if (isFormValid()) {
       try {
         setError(false);
-        let index = warehouseMap.indexOf(warehouse) + 1;
         let radioValue = "";
         let qtyValue = 0;
 
+        const selectedWarehouse = warehouseList.find(
+          (wh) => wh.warehouse_name === warehouse
+        );
+
         if (radio == "instock") {
           radioValue = "in stock";
-          qtyValue = qty;
+          qtyValue = `${qty}`;
         } else {
           radioValue = "out of stock";
           qtyValue = 0;
         }
 
+        console.log(selectedWarehouse);
+
         const inv = {
-          warehouse_id: index,
+          warehouse_id: selectedWarehouse.id,
           item_name: itemName,
-          description: itemDescription,
+          description: `${itemDescription}`,
           category: category,
           status: radioValue,
           quantity: `${qtyValue}`,
         };
 
-        console.log(inv);
-
         handleUpdate(inv);
         if (formtype == "addInventoryForm") {
           alert("Invetory Successfully Added. Rerouting to Inventory Page");
-          
-          setTimeout(() => {
-            navigate("/inventory");
-          }, 400);
+        } else {
+          alert("Invetory Successfully Updated. Rerouting to Inventory Page");
         }
+
+        setTimeout(() => {
+          navigate("/inventory");
+        }, 400);
       } catch (error) {
         console.log(error);
       }
@@ -110,7 +142,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
 
   const handleCancel = () => {
     navigate("/inventory");
-  }
+  };
 
   return (
     <form id={formtype} className="inventory-form" onSubmit={handleSubmit}>
@@ -127,6 +159,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               }`}
               placeholder="Item Name"
               onChange={handleChangeItemName}
+              value={itemName}
             />
             <p
               className={`inventory-form__error-text ${
@@ -155,6 +188,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               }`}
               placeholder="Please enter a brief description..."
               onChange={handleChangeDescription}
+              value={itemDescription}
             />
             <p
               className={`inventory-form__error-text ${
@@ -182,8 +216,9 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               name="category"
               id="category"
               onChange={handleChangeCategory}
+              value={category}
             >
-              <option value="" disabled selected hidden>
+              <option value="" disabled hidden>
                 Please Select
               </option>
               <option value="Accessories">Accessories</option>
@@ -217,6 +252,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
                 type="radio"
                 name="status"
                 value="instock"
+                checked={radio === "instock"}
                 className={`inventory-form__stock inventory-form__stock--instock ${
                   error && !radio ? "inventory-form__stock--error" : ""
                 }`}
@@ -235,6 +271,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
                 type="radio"
                 name="status"
                 value="outofstock"
+                checked={radio === "outofstock"}
                 className={`inventory-form__stock inventory-form__stock--outofstock ${
                   error && !radio ? "inventory-form__stock--error" : ""
                 }`}
@@ -279,6 +316,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               }`}
               placeholder="0"
               onChange={handleChangeQty}
+              value={qty}
             />
             <p
               className={`inventory-form__error-text ${
@@ -306,17 +344,17 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               name="warehouse"
               id="warehouse"
               onChange={handleChangeWarehouse}
+              value={warehouse}
             >
-              <option value="" disabled selected hidden>
+              <option value="" disabled hidden>
                 Please Select
               </option>
-              <option value="Manhattan">Manhattan</option>
-              <option value="Washington">Washington</option>
-              <option value="Jersey">Jersey</option>
-              <option value="San Fran">San Fran</option>
-              <option value="Santa Monica">Santa Monica</option>
-              <option value="Seattle">Seattle</option>
-              <option value="Miami">Miami</option>
+              {Array.isArray(warehouseList) &&
+                warehouseList.map((wh) => (
+                  <option key={wh.warehouse_name} value={wh.warehouse_name}>
+                    {wh.warehouse_name}
+                  </option>
+                ))}
             </select>
             <p
               className={`inventory-form__error-text ${
@@ -336,10 +374,17 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
         </div>
       </div>
       <div className="inventory-form__buttons">
-        <button onClick={handleCancel} className="inventory-form__button inventory-form__button--cancel">
+        <button
+          type="button"
+          onClick={handleCancel}
+          className="inventory-form__button inventory-form__button--cancel"
+        >
           Cancel
         </button>
-        <button className="inventory-form__button inventory-form__button--action">
+        <button
+          onClick={handleSubmit}
+          className="inventory-form__button inventory-form__button--action"
+        >
           {buttonLabel}
         </button>
       </div>

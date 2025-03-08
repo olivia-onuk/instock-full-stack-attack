@@ -1,38 +1,54 @@
 import { useState, useEffect } from "react";
 import InventoryListHeader from "../InventoryListHeader/InventoryListHeader";
 import InventoryItem from "../InventoryItem/InventoryItem";
-import { fetchWarehouseInventory, fetchInventories } from "../../api/ApiService";
-import "./InventoryList.scss";
+import {
+  fetchWarehouseInventory,
+  fetchInventories,
+} from "../../api/ApiService";
 
-function InventoryList({ id, isFullInventory, onDeleteClick }) {
-  const [inventory, setInventory] = useState([]);
-
+function InventoryList({
+  id,
+  inventory,
+  setInventory,
+  isFullInventory,
+  onDeleteClick,
+}) {
+  const [sortConfig, setSortConfig] = useState({
+    key: "item_name",
+    order: "asc",
+  });
   useEffect(() => {
-    const getData = async () => {
-      try {
-        let resp;
-        if (!isFullInventory) {
-          resp = await fetchWarehouseInventory(id);
-        } else {
-          resp = await fetchInventories();
-        }
-        setInventory(resp);
-      } catch (error) {
-        console.error("Error fetching inventory:", error);
-      }
+    const fetchData = async () => {
+      const resp = isFullInventory
+        ? await fetchInventories(sortConfig.key, sortConfig.order)
+        : await fetchWarehouseInventory(id, sortConfig.key, sortConfig.order);
+      setInventory(resp);
     };
-    getData();
-  }, [id, isFullInventory]);
 
+    fetchData();
+  }, [id, isFullInventory, sortConfig]);
+
+  const handleSort = (column) => {
+    setSortConfig((prev) => {
+      const isSameColumn = prev.key === column;
+      return {
+        key: column,
+        order: isSameColumn ? (prev.order === "asc" ? "desc" : "asc") : "asc",
+      };
+    });
+  };
   return (
     <>
-    <InventoryListHeader isFullInventory={isFullInventory} />
-    <InventoryItem
-      inventory={inventory}
-      isFullInventory={isFullInventory}
-      onDeleteClick={onDeleteClick}
+      <InventoryListHeader
+        isFullInventory={isFullInventory}
+        onSort={handleSort}
       />
-      </>
+      <InventoryItem
+        inventory={inventory}
+        isFullInventory={isFullInventory}
+        onDeleteClick={onDeleteClick}
+      />
+    </>
   );
 }
 
