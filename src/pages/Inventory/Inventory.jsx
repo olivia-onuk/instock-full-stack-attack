@@ -106,8 +106,6 @@ function Inventory() {
       </div>
 
       <InventoryList
-        inventory={inventory}
-        setInventory={setInventory}
         isFullInventory={true}
         onDeleteClick={handleDeleteClick}
       />
