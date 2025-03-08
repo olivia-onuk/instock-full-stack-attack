@@ -30,10 +30,12 @@
   }
 
   &__link {
-    padding: 2rem 1.625rem 1.5rem 1.5rem;
+    padding: 2rem 1.625rem 1.3rem 1.5rem;
     border-bottom: 0.0625rem solid $secondary-color-two;
     display: flex;
     gap: 0.5rem;
+    align-items: center;
+    
 
     &-title {
       font-weight: 600;
@@ -43,6 +45,11 @@
       @include tablet {
         font-size: 1.75rem;
       }
+    }
+
+    &-arrow, a {
+      width: 1.875rem;
+      height: 1.875rem
     }
   }
 
