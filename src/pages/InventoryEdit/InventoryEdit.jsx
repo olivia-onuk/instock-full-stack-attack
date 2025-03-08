@@ -27,7 +27,7 @@ function InventoryEdit() {
 
   function putInventory(inv) {
     try {
-      updateInventory(inv);
+      updateInventory(id, inv);
     } catch (error) {
       console.error("Error posting inventory:", error);
     }

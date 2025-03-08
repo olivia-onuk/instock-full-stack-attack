@@ -35,7 +35,7 @@ function InventoryForm({
       setItemDescription(item.description || "");
       setCategory(item.category || "");
       setQty(item.quantity || "");
-      setWarehouse(warehouseMap.indexOf(item.warehouse_id - 1)|| "");
+      setWarehouse(item.warehouse_name || "");
       setRadio(item.status === "in stock" ? "instock" : "outofstock");
     }
   }, [item]);
@@ -100,7 +100,7 @@ function InventoryForm({
         const inv = {
           warehouse_id: index,
           item_name: itemName,
-          description: itemDescription,
+          description: `${itemDescription}`,
           category: category,
           status: radioValue,
           quantity: `${qtyValue}`,

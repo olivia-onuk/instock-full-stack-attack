@@ -86,7 +86,7 @@ export const addInventory = async (inventoryItem) => {
 export const updateInventory = async (id, inventoryItem) => {
   try {
     const resp = await axios.put(
-      `${BASE_URL}/api/inventories/:id`,
+      `${BASE_URL}/api/inventories/${id}`,
       inventoryItem
     );
     return resp.data;
