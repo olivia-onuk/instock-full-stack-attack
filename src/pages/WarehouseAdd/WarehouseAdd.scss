@@ -216,8 +216,7 @@
 
       &-cancel {
         height: 2.25rem;
-        width: 50%;
-        min-width: 7.5rem;
+        width: auto;
         text-align: center;
         display: flex;
         align-items: center;
@@ -230,6 +229,7 @@
         font-size: 0.8125rem;
         border: 0.0625rem solid $secondary-color-two;
         border-radius: 1.25rem;
+        padding: .5rem 3.1875rem;
 
         &:hover {
           border: 0.0625rem solid $primary-color-two;
@@ -238,7 +238,6 @@
 
         @include tablet {
           height: 2.375rem;
-          width: 4.5rem;
           padding: 0.5rem 1rem;
         }
       }
