@@ -156,7 +156,7 @@ function WarehouseEdit() {
 
   return (
     <>
-      <section className="edit-warehouse">
+      <section className="main edit-warehouse">
         <div className="edit-warehouse__link">
           <Link to="/warehouse">
             <img className="edit-warehouse__link-arrow" src={Arrow} />

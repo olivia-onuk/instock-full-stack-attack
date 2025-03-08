@@ -87,7 +87,7 @@ export const addInventory = async (inventoryItem) => {
 export const updateInventory = async (id, inventoryItem) => {
   try {
     const resp = await axios.put(
-      `${BASE_URL}/api/inventories/:id`,
+      `${BASE_URL}/api/inventories/${id}`,
       inventoryItem
     );
     return resp.data;
@@ -111,6 +111,16 @@ export const deleteInventory = async (id) => {
     await axios.delete(`${BASE_URL}/api/inventories/${id}`);
   } catch (error) {
     console.error(`Error deleting inventory item with ID ${id}:`, error);
+    throw error;
+  }
+};
+
+export const getInventoryById = async (id) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/api/inventories/${id}`);
+    return resp.data;
+  } catch (error) {
+    console.error(`Error getting inventory item with ID ${id}:`, error);
     throw error;
   }
 };
