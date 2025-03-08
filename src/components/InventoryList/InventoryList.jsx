@@ -8,11 +8,10 @@ import {
 
 function InventoryList({
   id,
-  inventory,
-  setInventory,
   isFullInventory,
   onDeleteClick,
 }) {
+  const [inventory, setInventory] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: "item_name",
     order: "asc",
