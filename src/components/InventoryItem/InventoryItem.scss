@@ -94,6 +94,12 @@
     @include tablet {
       display: none;
     }
+
+    // &--action {
+    //   @include tablet {
+    //     order: 1;
+    //   }
+    // }
   }
 
   &__content {

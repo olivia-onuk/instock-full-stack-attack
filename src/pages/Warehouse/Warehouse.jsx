@@ -1,17 +1,56 @@
 import "./Warehouse.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import WarehouseTable from "../../components/WarehouseTable/WarehouseTable";
+import { fetchWarehouses, deleteWarehouse } from "../../api/ApiService";
+import WarehouseList from "../../components/WarehouseList/WarehouseList";
+import WarehouseDeleteModal from "../../components/WarehouseDeleteModal/WarehouseDeleteModal";
 import searchIcon from "../../assets/icons/search-24px.svg";
 
 function Warehouse() {
   const [query, setQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [warehouses, setWarehouses] = useState([]);
+
+  useEffect(() => {
+    const getWarehouses = async() => {
+      const resp = await fetchWarehouses();
+      setWarehouses(resp);
+    }
+    getWarehouses();
+  }, []);
 
   const handleSearch = async() => {
     if(query.trim()!== "") {
       searchWarehouse(query);
     }
   }
+
+  const handleOpenModal = (warehouse) => {
+    setSelectedWarehouse(warehouse);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedWarehouse(null);
+    setIsDeleting(false);
+  };
+
+  const handleDeleteConfirmed = async() => {
+    if (!selectedWarehouse || isDeleting) return;
+    setIsDeleting(true);
+    try {
+      await deleteWarehouse(selectedWarehouse.id);
+      setWarehouses(prev => prev.filter(
+        warehouse => warehouse.id !== selectedWarehouse.id
+      ));
+    } catch (error) {
+      console.error('Delete failed:', error);
+    }
+    handleCloseModal();
+  };
 
   return(
     <div className=" main">
@@ -36,9 +75,18 @@ function Warehouse() {
           </Link>
         </div>
       </div>
-      <WarehouseTable />
+      <WarehouseList 
+        warehouses={warehouses}
+        onDeleteClick={handleOpenModal} 
+      />
+      <WarehouseDeleteModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        warehouse={selectedWarehouse}
+        onDelete={handleDeleteConfirmed}
+        isDeleting={isDeleting}
+      />
     </div>
-
   )
 }
 
