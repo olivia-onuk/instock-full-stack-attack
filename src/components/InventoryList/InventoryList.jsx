@@ -9,10 +9,9 @@ import {
 function InventoryList({
   id,
   inventory,
-  setInventory,
-  isFullInventory,
   onDeleteClick,
 }) {
+  const [Inventory, setInventory] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: "item_name",
     order: "asc",
