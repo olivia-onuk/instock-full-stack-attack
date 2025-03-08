@@ -1,6 +1,6 @@
 import "./WarehouseAdd.scss";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
 import Error from "../../assets/icons/error-24px.svg";
 
@@ -14,6 +14,8 @@ function WarehouseAdd() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState({});
+
+  const navigate = useNavigate();
 
   const handleWarehouseNameInput = (event) => {
     setWarehouseName(event.target.value);
@@ -107,14 +109,15 @@ function WarehouseAdd() {
       email: email,
     };
 
-    setWarehouseName("");
-    setStreetAddress("");
-    setCity("");
-    setCountry("");
-    setContactName("");
-    setPosition("");
-    setPhoneNumber("");
-    setEmail("");
+    alert("Warehouse updated successfully!");
+
+    setTimeout(() => {
+      navigate("/warehouse");
+    }, 400);
+  };
+
+  const handleCancel = () => {
+    navigate("/warehouse");
   };
 
   return (
@@ -280,7 +283,11 @@ function WarehouseAdd() {
           </div>
 
           <div className="add-warehouse__form-button">
-            <button className="add-warehouse__form-button-cancel" type="button">
+            <button
+              className="add-warehouse__form-button-cancel"
+              type="button"
+              onClick={handleCancel}
+            >
               Cancel
             </button>
             <button
