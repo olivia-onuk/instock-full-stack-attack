@@ -173,7 +173,13 @@
     display: flex;
     align-items: center;
   }
-
+  
+  &__link-icon {
+    &:hover {
+      transform: translateX(0.25rem);
+    }
+    transition: transform 0.2s ease-in-out;
+  }
   &__stock {
     font-weight: 600;
     text-transform: uppercase;
