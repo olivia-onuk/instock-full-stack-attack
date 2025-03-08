@@ -43,6 +43,7 @@
     width: calc((100% - 5rem) * 0.30);
     display: flex;
     justify-content: center;
+    
     @include desktop {
       width: calc((100% - 5rem) * 0.275);
     }

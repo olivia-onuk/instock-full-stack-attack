@@ -23,8 +23,8 @@
   }
 
   &__column {
-    @include responsive-horizontal-padding;
     padding-bottom: 1rem;
+    @include responsive-horizontal-padding;
 
     &--border {
       border-top: 0.0625rem solid $secondary-color-two;
@@ -188,11 +188,11 @@
 
   &__buttons {
     padding: 1rem 0rem;
-    @include responsive-horizontal-padding;
     background-color: $background-color-two;
     display: flex;
     justify-content: space-between;
     flex: 1;
+    @include responsive-horizontal-padding;
 
     @include tablet {
       justify-content: end;
