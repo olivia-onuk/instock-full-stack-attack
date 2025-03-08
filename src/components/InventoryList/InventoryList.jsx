@@ -1,15 +1,9 @@
 import { useState, useEffect } from "react";
 import InventoryListHeader from "../InventoryListHeader/InventoryListHeader";
 import InventoryItem from "../InventoryItem/InventoryItem";
-import {
-  fetchWarehouseInventory,
-  fetchInventories,
-} from "../../api/ApiService";
 
 function InventoryList({
-  id,
   inventory,
-  setInventory,
   isFullInventory,
   onDeleteClick,
 }) {
@@ -17,16 +11,6 @@ function InventoryList({
     key: "item_name",
     order: "asc",
   });
-  useEffect(() => {
-    const fetchData = async () => {
-      const resp = isFullInventory
-        ? await fetchInventories(sortConfig.key, sortConfig.order)
-        : await fetchWarehouseInventory(id, sortConfig.key, sortConfig.order);
-      setInventory(resp);
-    };
-
-    fetchData();
-  }, [id, isFullInventory, sortConfig]);
 
   const handleSort = (column) => {
     setSortConfig((prev) => {
@@ -45,8 +29,8 @@ function InventoryList({
       />
       <InventoryItem
         inventory={inventory}
-        isFullInventory={isFullInventory}
         onDeleteClick={onDeleteClick}
+        isFullInventory={isFullInventory}
       />
     </>
   );

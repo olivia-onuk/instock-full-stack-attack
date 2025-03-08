@@ -31,7 +31,7 @@ function Inventory() {
         setInventory(data || []);
       } catch (error) {
         console.error("Search failed:", error);
-        alert(`搜索失败: ${error.message}`); // 显示具体错误信息
+        alert(`搜索失败: ${error.message}`);
       } finally {
         setIsSearching(false);
       }

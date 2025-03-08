@@ -8,12 +8,12 @@ import WarehouseDeleteModal from "../../components/WarehouseDeleteModal/Warehous
 import searchIcon from "../../assets/icons/search-24px.svg";
 
 function Warehouse() {
+  const [warehouses, setWarehouses] = useState([]);
   const [query, setQuery] = useState("");
   const [debouncedQuery] = useDebounce(query, 300);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [warehouses, setWarehouses] = useState([]);
   const [sortBy, setSortBy] = useState("warehouse_name");
   const [orderBy, setOrderBy] = useState("asc");
   const [isSearching, setIsSearching] = useState(false);
@@ -39,7 +39,6 @@ function Warehouse() {
         setIsSearching(false);
       }
     };
-    
     search();
   }, [debouncedQuery]);
 
