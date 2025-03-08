@@ -31,8 +31,7 @@ function InventoryList({ id, isFullInventory, onDeleteClick }) {
         order: isSameColumn ? (prev.order === "asc" ? "desc" : "asc") : "asc",
       };
     });
-  };
-
+  };    
   return (
     <>
       <InventoryListHeader
