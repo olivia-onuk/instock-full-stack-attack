@@ -7,7 +7,13 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
-function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
+function InventoryItem({
+  inventory,
+  isFullInventory,
+  onDeleteClick,
+  onSort,
+  sortConfig,
+}) {
   const [isInStock, setIsInStock] = useState({});
 
   useEffect(() => {
@@ -23,23 +29,48 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
       <div className="inventory-tablet-header">
         <span className="inventory-tablet-label">
           <h4>INVENTORY ITEM</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
+          <img
+            src={sortIcon}
+            alt="sort"
+            className="inventory-tablet-icon"
+            onClick={() => onSort("item_name")}
+          />
         </span>
         <span className="inventory-tablet-label">
           <h4>CATEGORY</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
+          <img
+            src={sortIcon}
+            alt="sort"
+            className="inventory-tablet-icon"
+            onClick={() => onSort("category")}
+          />
         </span>
         <span className="inventory-tablet-label">
           <h4>STATUS</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
+          <img
+            src={sortIcon}
+            alt="sort"
+            className="inventory-tablet-icon"
+            onClick={() => onSort("status")}
+          />
         </span>
         <span className="inventory-tablet-label">
           <h4>QUANTITY</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
+          <img
+            src={sortIcon}
+            alt="sort"
+            className="inventory-tablet-icon"
+            onClick={() => onSort("quantity")}
+          />
         </span>
         <span className="inventory-tablet-label">
           <h4>WAREHOUSE</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
+          <img
+            src={sortIcon}
+            alt="sort"
+            className="inventory-tablet-icon"
+            onClick={() => onSort("warehouse_name")}
+          />
         </span>
         <span className="inventory-tablet-label">
           <h4>ACTIONS</h4>

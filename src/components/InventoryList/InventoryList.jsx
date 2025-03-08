@@ -4,7 +4,7 @@ import {
   fetchWarehouseInventory,
   fetchInventories,
 } from "../../api/ApiService";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function InventoryList({
   id,
@@ -13,23 +13,31 @@ function InventoryList({
   setInventory,
   onDeleteClick,
 }) {
+  const [sortConfig, setSortConfig] = useState({
+    key: "item_name",
+    order: "asc",
+  });
+
   useEffect(() => {
-    const getWarehouseInventory = async () => {
-      const resp = await fetchWarehouseInventory(id);
-      console.log(resp);
+    const fetchData = async () => {
+      const resp = isFullInventory
+        ? await fetchInventories(sortConfig.key, sortConfig.order)
+        : await fetchWarehouseInventory(id, sortConfig.key, sortConfig.order);
       setInventory(resp);
     };
-    if (!isFullInventory) {
-      getWarehouseInventory();
-    } else {
-      const getInventories = async () => {
-        const resp = await fetchInventories();
-        console.log(resp);
-        setInventory(resp);
+
+    fetchData();
+  }, [id, isFullInventory, sortConfig]);
+
+  const handleSort = (column) => {
+    setSortConfig((prev) => {
+      const isSameColumn = prev.key === column;
+      return {
+        key: column,
+        order: isSameColumn ? (prev.order === "asc" ? "desc" : "asc") : "asc",
       };
-      getInventories();
-    }
-  }, [id, isFullInventory]);
+    });
+  };
 
   return (
     <>
@@ -37,6 +45,8 @@ function InventoryList({
         inventory={inventory}
         isFullInventory={isFullInventory}
         onDeleteClick={onDeleteClick}
+        onSort={handleSort}
+        sortConfig={sortConfig}
       />
     </>
   );
