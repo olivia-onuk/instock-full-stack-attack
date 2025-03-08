@@ -213,7 +213,7 @@ function InventoryForm({
               onChange={handleChangeCategory}
               value={category}
             >
-              <option value="" disabled selected hidden>
+              <option value="" disabled hidden>
                 Please Select
               </option>
               <option value="Accessories">Accessories</option>
@@ -341,7 +341,7 @@ function InventoryForm({
               onChange={handleChangeWarehouse}
               value={warehouse}
             >
-              <option value="" disabled selected hidden>
+              <option value="" disabled hidden>
                 Please Select
               </option>
               <option value="Manhattan">Manhattan</option>
