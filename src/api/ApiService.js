@@ -48,6 +48,17 @@ export const updateWarehouse = async (id, warehouseData) => {
   }
 };
 
+export const addWarehouse = async (warehouseData) => {
+  try {
+    const resp = await axios.post(`${BASE_URL}/api/warehouses`, warehouseData);
+    return resp.data;
+  } catch (error) {
+    console.error("Error adding warehouse:", error);
+    alert("Failed to add warehouse. Please try again.");
+    throw error;
+  }
+};
+
 export const fetchWarehouseInventory = async (id) => {
   try {
     const resp = await axios.get(
