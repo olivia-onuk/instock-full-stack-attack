@@ -118,10 +118,10 @@
   &__column {
     padding-right: 50px;
     width: 50%;
+
     @include tablet {
       padding: 0px;
       display: flex;
-      // align-items: center;
       &:nth-child(1) { width: 45%; }
       &:nth-child(2) { width: 50%; }
     }
