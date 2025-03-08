@@ -68,7 +68,7 @@ export const deleteWarehouse = async (id) => {
 export const searchWarehouses = async (query) => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/warehouses`, {
-      params: { s: query } // 使用标准参数传递方式
+      params: { s: query }
     });
     return resp.data;
   } catch (error) {
@@ -130,7 +130,7 @@ export const deleteInventory = async (id) => {
 export const searchInventories = async (query) => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/inventories`, {
-      params: { s: query } // 修正参数名为s
+      params: { s: query }
     });
     return resp.data;
   } catch (error) {

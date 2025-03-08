@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import InventoryDeleteModal from "../../components/InventoryDeleteModal/InventoryDeleteModal";
+import { useDebounce } from 'use-debounce';
+
 import {
   fetchInventories,
   deleteInventory,
@@ -15,14 +17,39 @@ function Inventory() {
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [inventory, setInventory] = useState([]);
+  const [debouncedQuery] = useDebounce(query, 300);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
-    const getInventory = async () => {
-      const data = await fetchInventories();
-      if (data) setInventory(data);
+    const search = async () => {
+      try {
+        setIsSearching(true);
+        const data = debouncedQuery 
+          ? await searchInventories(debouncedQuery)
+          : await fetchInventories();
+        
+        setInventory(data || []);
+      } catch (error) {
+        console.error("Search failed:", error);
+        alert(`搜索失败: ${error.message}`); // 显示具体错误信息
+      } finally {
+        setIsSearching(false);
+      }
     };
-    getInventory();
+    search();
+  }, [debouncedQuery]); 
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get('s') || '';
+    setQuery(initialQuery);
   }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (debouncedQuery) params.set('s', debouncedQuery);
+    window.history.replaceState({}, '', `?${params}`);
+  }, [debouncedQuery]);
 
   const handleDeleteClick = (item) => {
     setSelectedItem(item);
@@ -49,16 +76,6 @@ function Inventory() {
     handleCloseModal();
   };
 
-  const handleSearch = async () => {
-    if (query.trim() === "") return;
-
-    try {
-      const data = await searchInventories(query);
-      if (data) setInventory(data);
-    } catch (error) {
-      console.error("Error searching inventory:", error);
-    }
-  };
 
   return (
     <div className="main">
@@ -72,13 +89,12 @@ function Inventory() {
               placeholder="Search..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
             <img
               src={searchIcon}
               alt="Search"
               className="inventory-search__icon"
-              onClick={handleSearch}
+              onClick={() => handleManualSearch()}
             />
           </div>
           <Link to="/inventory/add">
