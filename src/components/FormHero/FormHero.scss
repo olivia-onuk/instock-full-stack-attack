@@ -4,13 +4,13 @@
 @use "../../styles/partials/mixins" as *;
 
 .form-hero {
-  @include responsive-horizontal-padding;
   padding-top: 1.5rem; 
   padding-bottom: 1.25rem; 
   border-bottom: 0.0625rem solid $secondary-color-two;
   display: flex;
   justify-content: start;
   align-items: start;
+  @include responsive-horizontal-padding;
 
   @include tablet {
     padding-top: 2rem; 
