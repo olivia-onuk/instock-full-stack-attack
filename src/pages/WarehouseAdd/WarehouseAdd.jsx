@@ -109,8 +109,8 @@ function WarehouseAdd() {
     };
 
     try {
-      await addWarehouse(newWarehouse); //
-      navigate("/warehouse"); //
+      await addWarehouse(newWarehouse);
+      navigate("/warehouse");
     } catch (error) {
       console.error("Error adding warehouse:", error);
     }
@@ -279,11 +279,7 @@ function WarehouseAdd() {
           </div>
 
           <div className="add-warehouse__form-button">
-            <button
-              className="add-warehouse__form-button-cancel"
-              type="button"
-              onClick={() => navigate("/warehouse")}
-            >
+            <button className="add-warehouse__form-button-cancel" type="button">
               Cancel
             </button>
             <button
