@@ -2,13 +2,14 @@
 @use "../../styles/partials/variables" as *;
 
 .warehouse-hero {
-    @include responsive-horizontal-padding;
     padding-top: 2rem;
     padding-bottom: 1.5rem;
     border-bottom: .0625rem solid $secondary-color-two;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include responsive-horizontal-padding;
+
     @include tablet {
         padding-bottom: 1.3125rem;
     }
@@ -28,6 +29,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
         @include tablet {
             width: 5.0625rem;
         }
@@ -37,6 +39,7 @@
     }
     &__edit-text {
         display: none;
+
         @include tablet {
             display: contents;
             color: $primary-color-three;
@@ -45,13 +48,15 @@
 }
 
 .warehouse-detail {
-    @include responsive-horizontal-padding;
     color: $primary-color-one;
+    @include responsive-horizontal-padding;
+
     @include tablet {
         display: flex;
     }
     &__address {
         padding-top: 1rem;
+
         @include tablet {
             padding-top: 1.5rem;
             width: 40%;
@@ -73,6 +78,7 @@
         justify-content: space-between;
         margin-top: 2rem;
         padding-bottom: 1rem;
+        
         @include tablet {
             width: 60%;
             gap: 1.5rem;
