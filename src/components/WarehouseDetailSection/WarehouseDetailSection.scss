@@ -1,0 +1,55 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+
+.warehouse-detail {
+    color: $primary-color-one;
+    @include responsive-horizontal-padding;
+
+    @include tablet {
+        display: flex;
+    }
+    &__address {
+        padding-top: 1rem;
+
+        @include tablet {
+            padding-top: 1.5rem;
+            width: 40%;
+        }
+    }
+    &__address-content {
+        @include tablet {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &__label {
+        color: $secondary-color-one;
+    }
+    &__contact {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+        
+        @include tablet {
+            width: 60%;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0;
+            padding-left: 2.5rem;
+            border-left: .0625rem solid $secondary-color-two;
+            @include desktop {
+                width: 50%;
+            }
+        }
+    }
+    &__name, &__infor{
+        @include tablet {
+            width: 50%;
+        }
+    }
+}

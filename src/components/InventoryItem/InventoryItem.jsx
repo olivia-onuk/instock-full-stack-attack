@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronIcon from "../../assets/icons/chevron_right-24px.svg";
-import sortIcon from "../../assets/icons/sort-24px.svg";
 
 function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
   const [isInStock, setIsInStock] = useState({});
@@ -20,31 +19,6 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
 
   return (
     <div className="inventory-list-section">
-      <div className="inventory-tablet-header">
-        <span className="inventory-tablet-label">
-          <h4>INVENTORY ITEM</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        <span className="inventory-tablet-label">
-          <h4>CATEGORY</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        <span className="inventory-tablet-label">
-          <h4>STATUS</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        <span className="inventory-tablet-label">
-          <h4>QUANTITY</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        <span className="inventory-tablet-label">
-          <h4>WAREHOUSE</h4>
-          <img src={sortIcon} alt="sort" className="inventory-tablet-icon" />
-        </span>
-        <span className="inventory-tablet-label">
-          <h4>ACTIONS</h4>
-        </span>
-      </div>
       <div className="inventory-list">
         {inventory.map((item) => (
           <div key={item.id} className="inventory-item">
@@ -85,8 +59,10 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
                       {item.status}
                     </p>
                   </div>
-
-                  <div className="inventory-item__attribute inventory-item__qty">
+                  {isFullInventory
+                  ? (           
+                    <div className="inventory-item__attribute inventory-item__full">
+                    <div className="inventory-item__attribute inventory-item__qty">
                     <h4 className="inventory-item__label">QTY</h4>
                     <P2>
                       <p>{item.quantity}</p>
@@ -94,17 +70,21 @@ function InventoryItem({ inventory, isFullInventory, onDeleteClick }) {
                   </div>
 
                   <div
-                    className={`inventory-item__attribute inventory-item__warehouse${
-                      isFullInventory
-                        ? ""
-                        : " inventory-item__warehouse--invisible"
-                    }`}
-                  >
+                    className={"inventory-item__attribute inventory-item__warehouse"}>
                     <h4 className="inventory-item__label">WAREHOUSE</h4>
                     <P2>
                       <p>{item.warehouse_name}</p>
                     </P2>
                   </div>
+                  </div>)
+                : (                    
+                <div className="inventory-item__attribute inventory-item__qty--not-full">
+                  <h4 className="inventory-item__label">QTY</h4>
+                  <P2>
+                    <p>{item.quantity}</p>
+                  </P2>
+                </div>) }
+
                 </div>
               </div>
             </div>

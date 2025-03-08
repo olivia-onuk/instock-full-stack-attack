@@ -1,43 +1,38 @@
-import "./InventoryList.scss";
+import { useState, useEffect } from "react";
+import InventoryListHeader from "../InventoryListHeader/InventoryListHeader";
 import InventoryItem from "../InventoryItem/InventoryItem";
-import {
-  fetchWarehouseInventory,
-  fetchInventories,
-} from "../../api/ApiService";
-import { useEffect } from "react";
+import { fetchWarehouseInventory, fetchInventories } from "../../api/ApiService";
+import "./InventoryList.scss";
 
-function InventoryList({
-  id,
-  isFullInventory,
-  inventory,
-  setInventory,
-  onDeleteClick,
-}) {
+function InventoryList({ id, isFullInventory, onDeleteClick }) {
+  const [inventory, setInventory] = useState([]);
+
   useEffect(() => {
-    const getWarehouseInventory = async () => {
-      const resp = await fetchWarehouseInventory(id);
-      console.log(resp);
-      setInventory(resp);
-    };
-    if (!isFullInventory) {
-      getWarehouseInventory();
-    } else {
-      const getInventories = async () => {
-        const resp = await fetchInventories();
+    const getData = async () => {
+      try {
+        let resp;
+        if (!isFullInventory) {
+          resp = await fetchWarehouseInventory(id);
+        } else {
+          resp = await fetchInventories();
+        }
         setInventory(resp);
-      };
-      getInventories();
-    }
+      } catch (error) {
+        console.error("Error fetching inventory:", error);
+      }
+    };
+    getData();
   }, [id, isFullInventory]);
 
   return (
     <>
-      <InventoryItem
-        inventory={inventory}
-        isFullInventory={isFullInventory}
-        onDeleteClick={onDeleteClick}
+    <InventoryListHeader isFullInventory={isFullInventory} />
+    <InventoryItem
+      inventory={inventory}
+      isFullInventory={isFullInventory}
+      onDeleteClick={onDeleteClick}
       />
-    </>
+      </>
   );
 }
 

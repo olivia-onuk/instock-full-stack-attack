@@ -3,6 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:8080";
 
 export const fetchWarehouses = async () => {
+
   try {
     const resp = await axios.get(`${BASE_URL}/api/warehouses`);
     return resp.data;
