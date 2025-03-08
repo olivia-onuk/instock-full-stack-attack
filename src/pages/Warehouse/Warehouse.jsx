@@ -1,31 +1,70 @@
 import "./Warehouse.scss";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchWarehouses, deleteWarehouse } from "../../api/ApiService";
+import { fetchWarehouses, deleteWarehouse, searchWarehouses } from "../../api/ApiService";
+import { useDebounce } from 'use-debounce'; 
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import WarehouseDeleteModal from "../../components/WarehouseDeleteModal/WarehouseDeleteModal";
 import searchIcon from "../../assets/icons/search-24px.svg";
 
 function Warehouse() {
   const [query, setQuery] = useState("");
+  const [debouncedQuery] = useDebounce(query, 300);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [warehouses, setWarehouses] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
-    const getWarehouses = async() => {
-      const resp = await fetchWarehouses();
-      setWarehouses(resp);
-    }
-    getWarehouses();
-  }, []);
+    const search = async () => {
+      try {
+        setIsSearching(true);
+        const results = debouncedQuery 
+          ? await searchWarehouses(debouncedQuery)
+          : await fetchWarehouses();
+        
+        if (!results) {
+          console.error("Received empty results");
+          return;
+        }
+        
+        setWarehouses(results);
+      } catch (error) {
+        console.error("Search failed:", error);
+        alert("Search failed");
+      } finally {
+        setIsSearching(false);
+      }
+    };
+    
+    search();
+  }, [debouncedQuery]);
 
-  const handleSearch = async() => {
-    if(query.trim()!== "") {
-      searchWarehouse(query);
+
+  const handleManualSearch = async () => {
+    try {
+      setIsSearching(true);
+      const results = await searchWarehouses(query);
+      setWarehouses(results);
+    } catch (error) {
+      console.error("Manual search failed:", error);
+    } finally {
+      setIsSearching(false);
     }
-  }
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (debouncedQuery) params.set('s', debouncedQuery);
+    window.history.replaceState({}, '', `?${params}`);
+  }, [debouncedQuery]);
+  
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get('s') || '';
+    setQuery(initialQuery);
+  }, []);
 
   const handleOpenModal = (warehouse) => {
     setSelectedWarehouse(warehouse);
@@ -64,9 +103,13 @@ function Warehouse() {
             placeholder="Search..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
-            <img src={searchIcon} alt="Search" className="warehouse-search__icon" onClick={handleSearch} />
+            <img 
+              src={searchIcon} 
+              alt="Search" 
+              className="warehouse-search__icon" 
+              onClick={handleManualSearch} 
+              />
           </div>
           <Link to="/warehouse/add">
             <button className="add-warehouse-button">

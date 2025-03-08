@@ -65,6 +65,18 @@ export const deleteWarehouse = async (id) => {
   }
 };
 
+export const searchWarehouses = async (query) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/api/warehouses`, {
+      params: { s: query } // 使用标准参数传递方式
+    });
+    return resp.data;
+  } catch (error) {
+    console.error("Error searching warehouses:", error);
+    throw error;
+  }
+};
+
 export const fetchInventories = async () => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/inventories`);
@@ -97,20 +109,32 @@ export const updateInventory = async (id, inventoryItem) => {
   }
 };
 
-export const searchInventories = async (query) => {
-  try {
-    const resp = await axios.get(`${BASE_URL}/api/inventories?search=${query}`);
-    return resp.data;
-  } catch (error) {
-    console.error("Error searching inventory:", error);
-  }
-};
+// export const searchInventories = async (query) => {
+//   try {
+//     const resp = await axios.get(`${BASE_URL}/api/inventories?search=${query}`);
+//     return resp.data;
+//   } catch (error) {
+//     console.error("Error searching inventory:", error);
+//   }
+// };
 
 export const deleteInventory = async (id) => {
   try {
     await axios.delete(`${BASE_URL}/api/inventories/${id}`);
   } catch (error) {
     console.error(`Error deleting inventory item with ID ${id}:`, error);
+    throw error;
+  }
+};
+
+export const searchInventories = async (query) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/api/inventories`, {
+      params: { s: query } // 修正参数名为s
+    });
+    return resp.data;
+  } catch (error) {
+    console.error("Error searching inventory:", error);
     throw error;
   }
 };
