@@ -36,7 +36,13 @@ function InventoryForm({
       setCategory(item.category || "");
       setQty(item.quantity || "");
       setWarehouse(item.warehouse_name || "");
-      setRadio(item.status === "in stock" ? "instock" : "outofstock");
+      if (item.status) {
+        setRadio(
+          item.status.toLowerCase() === "in stock" ? "instock" : "outofstock"
+        );
+      } else {
+        setRadio("instock");
+      }
     }
   }, [item]);
 
@@ -65,6 +71,11 @@ function InventoryForm({
   };
 
   const isFormValid = () => {
+    if(qty < 0){
+      alert("Can only have over 1 inventory");
+      return false;
+    }
+    
     if (
       !itemName.trim() ||
       !itemDescription.trim() ||
@@ -73,7 +84,7 @@ function InventoryForm({
       !radio
     ) {
       return false;
-    } else if (radio == "instock" && !qty.trim()) {
+    } else if (radio == "instock" && !`${qty}`.trim()) {
       return false;
     }
     return true;
@@ -106,16 +117,16 @@ function InventoryForm({
           quantity: `${qtyValue}`,
         };
 
-        console.log(inv);
-
         handleUpdate(inv);
         if (formtype == "addInventoryForm") {
           alert("Invetory Successfully Added. Rerouting to Inventory Page");
-
-          setTimeout(() => {
-            navigate("/inventory");
-          }, 400);
+        } else {
+          alert("Invetory Successfully Updated. Rerouting to Inventory Page");
         }
+
+        setTimeout(() => {
+          navigate("/inventory");
+        }, 400);
       } catch (error) {
         console.log(error);
       }
@@ -360,12 +371,16 @@ function InventoryForm({
       </div>
       <div className="inventory-form__buttons">
         <button
+          type="button"
           onClick={handleCancel}
           className="inventory-form__button inventory-form__button--cancel"
         >
           Cancel
         </button>
-        <button className="inventory-form__button inventory-form__button--action">
+        <button
+          onClick={handleSubmit}
+          className="inventory-form__button inventory-form__button--action"
+        >
           {buttonLabel}
         </button>
       </div>
