@@ -94,12 +94,6 @@
     @include tablet {
       display: none;
     }
-
-    // &--action {
-    //   @include tablet {
-    //     order: 1;
-    //   }
-    // }
   }
 
   &__content {
@@ -122,28 +116,39 @@
   }
 
   &__column {
-    padding-right: 50px;
+    padding-right: 3.125rem;
     width: 50%;
 
     @include tablet {
-      padding: 0px;
+      padding: 0rem;
       display: flex;
-      &:nth-child(1) { width: 45%; }
-      &:nth-child(2) { width: 50%; }
+
+      &:nth-child(1) {
+        width: 45%;
+      }
+      &:nth-child(2) {
+        width: 50%;
+      }
     }
   }
 
   &__name {
-    @include tablet {width:55.56%;}
-    @include desktop {width:45%;}
+    @include tablet {
+      width: 55.56%;
+    }
+    @include desktop {
+      width: 45%;
+    }
   }
 
   &__status {
-    @include tablet { 
+    @include tablet {
       width: 40%;
       flex-shrink: 0;
     }
-    @include desktop {width:45%;}
+    @include desktop {
+      width: 45%;
+    }
   }
 
   &__qty--not-full {
@@ -154,13 +159,15 @@
   &__warehouse {
     width: 5.5rem;
   }
+
   &__attribute {
     margin-bottom: 1rem;
+
     @include tablet {
       margin-bottom: 0;
     }
   }
-  
+
   &__link {
     color: $primary-color-two;
     display: flex;
@@ -170,21 +177,20 @@
   &__stock {
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 11px;
-    padding: 4px 8px;
-
-    height: 24px;
-    border-radius: 20px;
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.5rem;
+    height: 1.5rem;
+    border-radius: 1.25rem;
     text-align: center;
 
     &--in-stock {
-      width: 61px;
+      width: 3.8125rem;
       background-color: rgba($supporting-color-one, 0.07);
       color: $supporting-color-one;
     }
 
     &--out-of-stock {
-      width: 86px;
+      width: 5.375rem;
       background-color: rgba($supporting-color-two, 0.07);
       color: $supporting-color-two;
     }

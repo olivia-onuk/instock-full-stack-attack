@@ -62,9 +62,9 @@
 
   &__icon {
     position: absolute;
-    right: 10px;
-    top: calc(50% - 12px);
-    height: 24px;
+    right: .625rem;
+    top: calc(50% - .75rem);
+    height: 1.5rem;
     cursor: pointer;
   }
 }

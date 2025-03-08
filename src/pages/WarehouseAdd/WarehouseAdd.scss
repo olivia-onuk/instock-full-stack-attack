@@ -4,42 +4,44 @@
 @use "../../styles/partials/font" as *;
 
 .add-warehouse {
-  width: calc(100% - 32px);
-  max-width: 343px;
+  width: calc(100% - 2rem);
+  max-width: 21.4375rem;
   min-height: 100vh;
-  margin: 136px auto 96px auto;
-  border-radius: 3px;
-  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  margin: 8.5rem auto 6rem auto;
+  border-radius: 0.1875rem;
+  box-shadow: 0rem 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
 
   @include tablet {
-    width: calc(100% - 64px);
-    max-width: 704px;
+    width: calc(100% - 4rem);
+    max-width: 44rem;
     min-height: auto;
     height: auto;
-    margin: 92px auto 320px auto;
+    margin: 5.75rem auto 20rem auto;
   }
 
   @include desktop {
-    width: calc(100% - 26px);
-    max-width: 1254px;
-    height: 612px;
-    margin: 92px auto;
+    width: calc(100% - 1.625rem);
+    max-width: 78.375rem;
+    height: 38.25rem;
+    margin: 5.75rem auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
   &__link {
-    padding: 32px 26px 24px 24px;
-    border-bottom: 1px solid $secondary-color-two;
+    padding: 2rem 1.625rem 1.5rem 1.5rem;
+    border-bottom: 0.0625rem solid $secondary-color-two;
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
+
     &-title {
       font-weight: 600;
-      font-size: 24px;
+      font-size: 1.5rem;
       color: $primary-color-one;
+
       @include tablet {
-        font-size: 28px;
+        font-size: 1.75rem;
       }
     }
   }
@@ -48,148 +50,167 @@
     @include desktop {
       width: 100%;
     }
+
     &-section {
       @include tablet {
         display: flex;
         justify-content: space-between;
-        padding: 24px 32px 32px 32px;
+        padding: 1.5rem 2rem 2rem 2rem;
       }
+
       &-details {
-        padding: 16px 24px 24px 24px;
-        border-bottom: 1px solid $secondary-color-two;
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+        border-bottom: 0.0625rem solid $secondary-color-two;
+
         @include tablet {
           border-bottom: none;
           width: 50%;
-          padding: 16px 31.5px 24px 0px;
+          padding: 1rem 1.96875rem 1.5rem 0rem;
         }
+
         &-title {
           font-weight: 600;
-          font-size: 18px;
-          padding-bottom: 8px;
+          font-size: 1.125rem;
+          padding-bottom: 0.5rem;
           color: $primary-color-one;
+
           @include tablet {
-            font-size: 24px;
+            font-size: 1.5rem;
           }
         }
 
         label {
           display: block;
           font-weight: 600;
-          font-size: 13px;
-          padding: 16px 0px 4px 0px;
+          font-size: 0.8125rem;
+          padding: 1rem 0rem 0.25rem 0rem;
           color: $primary-color-one;
+
           @include tablet {
-            font-size: 14px;
+            font-size: 0.875rem;
           }
         }
 
         input {
-          padding: 8px 16px;
-          height: 36px;
+          padding: 0.5rem 1rem;
+          height: 2.25rem;
           width: 100%;
-          border: 1px solid $secondary-color-two;
-          border-radius: 20px;
+          border: 0.0625rem solid $secondary-color-two;
+          border-radius: 1.25rem;
 
           &::placeholder {
             font-family: "Titillium Web";
             font-weight: 400;
-            font-size: 13px;
+            font-size: 0.8125rem;
             color: $secondary-color-one;
+
             @include tablet {
-              font-size: 14px;
+              font-size: 0.875rem;
             }
           }
 
           &:hover {
-            border: 1px solid $primary-color-two;
+            border: 0.0625rem solid $primary-color-two;
           }
+
           &:focus,
           &:active {
-            border: 2px solid $primary-color-two;
+            border: 0.125rem solid $primary-color-two;
             outline: none;
           }
+
           &.input-error {
-            border: 1px solid #c94515 !important;
+            border: 0.0625rem solid #c94515 !important;
             outline: none;
           }
         }
       }
 
       &-contact {
-        padding: 16px 24px 24px 24px;
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+
         @include tablet {
           width: 50%;
-          border-left: 1px solid $secondary-color-two;
-          padding: 16px 0px 24px 31.5px;
+          border-left: 0.0625rem solid $secondary-color-two;
+          padding: 1rem 0rem 1.5rem 1.96875rem;
         }
+
         &-title {
           font-weight: 600;
-          font-size: 18px;
-          padding-bottom: 8px;
+          font-size: 1.125rem;
+          padding-bottom: 0.5rem;
           color: $primary-color-one;
+
           @include tablet {
-            font-size: 24px;
+            font-size: 1.5rem;
           }
         }
 
         label {
           display: block;
           font-weight: 600;
-          font-size: 13px;
-          padding: 16px 0px 4px 0px;
+          font-size: 0.8125rem;
+          padding: 1rem 0rem 0.25rem 0rem;
           color: $primary-color-one;
+
           @include tablet {
-            font-size: 14px;
+            font-size: 0.875rem;
           }
         }
 
         input {
-          padding: 8px 16px;
-          height: 36px;
+          padding: 0.5rem 1rem;
+          height: 2.25rem;
           width: 100%;
-          border: 1px solid $secondary-color-two;
-          border-radius: 20px;
+          border: 0.0625rem solid $secondary-color-two;
+          border-radius: 1.25rem;
 
           &::placeholder {
             font-family: "Titillium Web";
             font-weight: 400;
-            font-size: 13px;
+            font-size: 0.8125rem;
             color: $secondary-color-one;
+
             @include tablet {
-              font-size: 14px;
+              font-size: 0.875rem;
             }
           }
 
           &:hover {
-            border: 1px solid $primary-color-two;
+            border: 0.0625rem solid $primary-color-two;
           }
+
           &:focus,
           &:active {
-            border: 2px solid $primary-color-two;
+            border: 0.125rem solid $primary-color-two;
             outline: none;
           }
+
           &.input-error {
-            border: 1px solid #c94515 !important;
+            border: 0.0625rem solid #c94515 !important;
             outline: none;
           }
         }
       }
     }
+
     &-button {
       background-color: $background-color-two;
-      padding: 16px 24px 16px 24px;
+      padding: 1rem 1.5rem 1rem 1.5rem;
       display: flex;
-      gap: 16px;
+      gap: 1rem;
       justify-content: center;
+
       @include tablet {
         justify-content: flex-end;
-        gap: 16px;
-        padding-top: 24px;
+        gap: 1rem;
+        padding-top: 1.5rem;
       }
+
       &-cancel {
-        height: 36px;
+        height: 2.25rem;
         width: 50%;
-        min-width: 120px;
+        min-width: 7.5rem;
         text-align: center;
         display: flex;
         align-items: center;
@@ -199,25 +220,26 @@
         color: $secondary-color-one;
         font-family: "Titillium Web";
         font-weight: 600;
-        font-size: 13px;
-        border: 1px solid $secondary-color-two;
-        border-radius: 20px;
+        font-size: 0.8125rem;
+        border: 0.0625rem solid $secondary-color-two;
+        border-radius: 1.25rem;
 
         &:hover {
-          border: 1px solid $primary-color-two;
+          border: 0.0625rem solid $primary-color-two;
           color: $primary-color-two;
         }
 
         @include tablet {
-          height: 38px;
-          width: 72px;
-          padding: 8px 16px;
+          height: 2.375rem;
+          width: 4.5rem;
+          padding: 0.5rem 1rem;
         }
       }
+
       &-addwarehouse {
-        height: 36px;
+        height: 2.25rem;
         width: 50%;
-        min-width: 120px;
+        min-width: 7.5rem;
         text-align: center;
         display: flex;
         align-items: center;
@@ -228,17 +250,18 @@
         border: none;
         font-family: "Titillium Web";
         font-weight: 600;
-        font-size: 13px;
-        border-radius: 20px;
+        font-size: 0.8125rem;
+        border-radius: 1.25rem;
 
         &:hover {
           background-color: $primary-color-one;
           color: $primary-color-three;
         }
+
         @include tablet {
-          width: 138px;
-          height: 38px;
-          padding: 8px 16px;
+          width: 8.625rem;
+          height: 2.375rem;
+          padding: 0.5rem 1rem;
         }
       }
     }
@@ -248,19 +271,20 @@
 .error-container {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-top: 4px;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
 }
 
 .error-icon {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .error-message {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: $supporting-color-two;
+
   @include tablet {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 }
