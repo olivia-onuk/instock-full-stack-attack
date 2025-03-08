@@ -43,6 +43,7 @@
     width: calc((100% - 5rem) * 0.30);
     display: flex;
     justify-content: center;
+    
     @include desktop {
       width: calc((100% - 5rem) * 0.275);
     }
@@ -84,6 +85,9 @@
     position: relative;
     box-sizing: border-box;
     align-items: center;
+    &:hover {
+      background-color: rgba(46, 102, 229, 0.07);
+    }
   }
 
   &__label {
@@ -173,7 +177,13 @@
     display: flex;
     align-items: center;
   }
-
+  
+  &__link-icon {
+    &:hover {
+      transform: translateX(0.25rem);
+    }
+    transition: transform 0.2s ease-in-out;
+  }
   &__stock {
     font-weight: 600;
     text-transform: uppercase;

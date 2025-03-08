@@ -6,8 +6,13 @@ import {
   fetchInventories,
 } from "../../api/ApiService";
 
-function InventoryList({ id, isFullInventory, onDeleteClick }) {
-  const [inventory, setInventory] = useState([]);
+function InventoryList({
+  id,
+  inventory,
+  setInventory,
+  isFullInventory,
+  onDeleteClick,
+}) {
   const [sortConfig, setSortConfig] = useState({
     key: "item_name",
     order: "asc",
@@ -31,7 +36,7 @@ function InventoryList({ id, isFullInventory, onDeleteClick }) {
         order: isSameColumn ? (prev.order === "asc" ? "desc" : "asc") : "asc",
       };
     });
-  };    
+  };
   return (
     <>
       <InventoryListHeader
