@@ -14,15 +14,6 @@ function Inventory() {
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [inventory, setInventory] = useState([]);
-
-  useEffect(() => {
-    const getInventory = async () => {
-      const data = await fetchInventories();
-      if (data) setInventory(data);
-    };
-    getInventory();
-  }, []);
 
   const handleDeleteClick = (item) => {
     setSelectedItem(item);
@@ -89,12 +80,7 @@ function Inventory() {
         </div>
       </div>
 
-      <InventoryList
-        isFullInventory={true}
-        onDeleteClick={handleDeleteClick}
-        inventory={inventory}
-        setInventory={setInventory}
-      />
+      <InventoryList isFullInventory={true} onDeleteClick={handleDeleteClick} />
 
       <InventoryDeleteModal
         isOpen={showModal}

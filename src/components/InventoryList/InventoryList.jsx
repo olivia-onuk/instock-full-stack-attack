@@ -6,13 +6,7 @@ import {
   fetchInventories,
 } from "../../api/ApiService";
 
-function InventoryList({
-  id,
-  isFullInventory,
-  inventory,
-  setInventory,
-  onDeleteClick,
-}) {
+function InventoryList({ id, isFullInventory, onDeleteClick }) {
   const [inventory, setInventory] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: "item_name",
