@@ -1,13 +1,14 @@
 import "./Warehouse.scss";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchWarehouses, deleteWarehouse, searchWarehouses } from "../../api/ApiService";
+import { fetchWarehouses, deleteWarehouse } from "../../api/ApiService";
 import { useDebounce } from 'use-debounce'; 
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import WarehouseDeleteModal from "../../components/WarehouseDeleteModal/WarehouseDeleteModal";
 import searchIcon from "../../assets/icons/search-24px.svg";
 
 function Warehouse() {
+  const [forceSearch, setForceSearch] = useState(0);
   const [warehouses, setWarehouses] = useState([]);
   const [query, setQuery] = useState("");
   const [debouncedQuery] = useDebounce(query, 300);
@@ -19,12 +20,10 @@ function Warehouse() {
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
-    const search = async () => {
+    const loadData = async () => {
       try {
         setIsSearching(true);
-        const results = debouncedQuery 
-          ? await searchWarehouses(debouncedQuery)
-          : await fetchWarehouses();
+        const results = await fetchWarehouses(debouncedQuery, sortBy, orderBy);
         
         if (!results) {
           console.error("Received empty results");
@@ -33,26 +32,19 @@ function Warehouse() {
         
         setWarehouses(results);
       } catch (error) {
-        console.error("Search failed:", error);
-        alert("Search failed");
+        console.error("Data fetch failed:", error);
+        alert("Data fetch failed");
       } finally {
         setIsSearching(false);
       }
     };
-    search();
-  }, [debouncedQuery]);
+    
+    loadData();
+  }, [debouncedQuery, sortBy, orderBy, forceSearch]); 
 
 
-  const handleManualSearch = async () => {
-    try {
-      setIsSearching(true);
-      const results = await searchWarehouses(query);
-      setWarehouses(results);
-    } catch (error) {
-      console.error("Manual search failed:", error);
-    } finally {
-      setIsSearching(false);
-    }
+  const handleIconSearch = () => {
+    setForceSearch(prev => prev + 1);
   };
 
   useEffect(() => {
@@ -68,10 +60,10 @@ function Warehouse() {
   }, [sortBy, orderBy]);
 
   const handleSort = (column) => {
-    setOrderBy((prevOrder) =>
-      sortBy === column && prevOrder === "asc" ? "desc" : "asc"
-    );
+    const newOrder = sortBy === column && orderBy === "asc" ? "desc" : "asc";
     setSortBy(column);
+    setOrderBy(newOrder);
+  
   };
 
   const handleOpenModal = (warehouse) => {
@@ -116,7 +108,7 @@ function Warehouse() {
               src={searchIcon} 
               alt="Search" 
               className="warehouse-search__icon" 
-              onClick={handleManualSearch} 
+              onClick={handleIconSearch}
               />
           </div>
           <Link to="/warehouse/add">
