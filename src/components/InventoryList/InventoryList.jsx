@@ -8,20 +8,20 @@ function InventoryList({ id, isFullInventory, onDeleteClick }) {
   const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        let resp;
-        if (!isFullInventory) {
-          resp = await fetchWarehouseInventory(id);
-        } else {
-          resp = await fetchInventories();
-        }
-        setInventory(resp);
-      } catch (error) {
-        console.error("Error fetching inventory:", error);
-      }
+    const getWarehouseInventory = async () => {
+      const resp = await fetchWarehouseInventory(id);
+      console.log(resp);
+      setInventory(resp);
     };
-    getData();
+    if (!isFullInventory) {
+      getWarehouseInventory();
+    } else {
+      const getInventories = async () => {
+        const resp = await fetchInventories();
+        setInventory(resp);
+      }
+      getInventories();
+    };
   }, [id, isFullInventory]);
 
   return (

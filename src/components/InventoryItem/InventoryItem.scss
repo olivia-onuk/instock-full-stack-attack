@@ -1,6 +1,67 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
+.inventory-tablet-header {
+  display: none;
+
+  @include tablet {
+    background-color: $background-color-two;
+    display: flex;
+    width: 100%;
+    gap: 0;
+    align-items: center;
+    height: 2.5rem;
+    box-sizing: border-box;
+    @include responsive-horizontal-padding;
+  }
+}
+
+.inventory-tablet-label {
+  width: 160px;
+  display: flex;
+  align-items: center;
+  color: $secondary-color-one;
+  &:nth-child(1) {
+    width: calc((100% - 5rem) * 0.25);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.2025);
+    }
+  }
+  &:nth-child(2) {
+    width: calc((100% - 5rem) * 0.20);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.2475);
+    }
+  }
+  &:nth-child(3) {
+    width: calc((100% - 5rem) * 0.20);
+    @include desktop {
+      width: calc((100% - 5rem) * 0.225);
+    }
+  }
+  &:nth-child(4) {
+    width: calc((100% - 5rem) * 0.30);
+    display: flex;
+    justify-content: center;
+    @include desktop {
+      width: calc((100% - 5rem) * 0.275);
+    }
+  }
+  &:last-child {
+    flex: 0 0 5rem;
+    justify-content: flex-end;
+    margin-left: auto; 
+  }
+  &__full {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.inventory-tablet-icon {
+  height: 1rem;
+  margin-left: 0.25rem;
+}
 
 .inventory-list {
   @include tablet {
@@ -34,6 +95,11 @@
       display: none;
     }
 
+    // &--action {
+    //   @include tablet {
+    //     order: 1;
+    //   }
+    // }
   }
 
   &__content {
@@ -57,6 +123,8 @@
 
   &__column {
     padding-right: 50px;
+    width: 50%;
+
     @include tablet {
       padding: 0px;
       display: flex;
