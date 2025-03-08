@@ -3,6 +3,7 @@
 
 .inventory-tablet-header {
   display: none;
+
   @include tablet {
     background-color: $background-color-two;
     display: flex;
@@ -10,8 +11,8 @@
     gap: 0;
     align-items: center;
     height: 2.5rem;
-    @include responsive-horizontal-padding;
     box-sizing: border-box;
+    @include responsive-horizontal-padding;
   }
 }
 
@@ -72,10 +73,10 @@
 
 .inventory-item {
   border-top: 0.0625rem solid $secondary-color-two;
-  @include responsive-horizontal-padding;
   padding-top: 1rem;
   padding-bottom: 1rem;
   box-sizing: border-box;
+  @include responsive-horizontal-padding;
 
   @include tablet {
     display: flex;
@@ -122,6 +123,8 @@
 
   &__column {
     padding-right: 50px;
+    width: 50%;
+
     @include tablet {
       padding: 0px;
       display: flex;
