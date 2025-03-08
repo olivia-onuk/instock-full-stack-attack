@@ -94,12 +94,6 @@
     @include tablet {
       display: none;
     }
-
-    // &--action {
-    //   @include tablet {
-    //     order: 1;
-    //   }
-    // }
   }
 
   &__content {
@@ -128,7 +122,6 @@
     @include tablet {
       padding: 0px;
       display: flex;
-      // align-items: center;
       &:nth-child(1) { width: 45%; }
       &:nth-child(2) { width: 50%; }
     }
