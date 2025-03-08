@@ -1,10 +1,10 @@
-import "./InventoryList.scss";
+import { useState, useEffect } from "react";
+import InventoryListHeader from "../InventoryListHeader/InventoryListHeader";
 import InventoryItem from "../InventoryItem/InventoryItem";
 import {
   fetchWarehouseInventory,
   fetchInventories,
 } from "../../api/ApiService";
-import { useEffect, useState } from "react";
 
 function InventoryList({
   id,
@@ -13,11 +13,11 @@ function InventoryList({
   setInventory,
   onDeleteClick,
 }) {
+  const [inventory, setInventory] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: "item_name",
     order: "asc",
   });
-
   useEffect(() => {
     const fetchData = async () => {
       const resp = isFullInventory
@@ -41,12 +41,14 @@ function InventoryList({
 
   return (
     <>
+      <InventoryListHeader
+        isFullInventory={isFullInventory}
+        onSort={handleSort}
+      />
       <InventoryItem
         inventory={inventory}
         isFullInventory={isFullInventory}
         onDeleteClick={onDeleteClick}
-        onSort={handleSort}
-        sortConfig={sortConfig}
       />
     </>
   );

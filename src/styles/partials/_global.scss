@@ -20,7 +20,7 @@ body {
   margin: -4.25rem auto 0;
   position: relative;
   z-index: 1;
-  width: calc(100% - 2rem); 
+  width: calc(100% - 1.5rem); 
   @include tablet {
     width: calc(100% - 4rem);
     margin: -5.875rem auto 0;
@@ -28,4 +28,9 @@ body {
   @include desktop {
     width: calc(100% - 16.25rem);
   }
+}
+
+.sort-icon {
+  height: 1rem;
+  margin-left: 0.25rem;
 }

@@ -1,7 +1,6 @@
 import "./WarehouseAdd.scss";
 import { useState, useEffect } from "react";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
 import Error from "../../assets/icons/error-24px.svg";
 
@@ -120,9 +119,11 @@ function WarehouseAdd() {
 
   return (
     <>
-      <section className="add-warehouse">
+      <section className="main add-warehouse">
         <div className="add-warehouse__link">
-          <img className="add-warehouse__link-arrow" src={Arrow} />
+          <Link to="/warehouse">
+            <img className="add-warehouse__link-arrow" src={Arrow} />
+          </Link>
           <h1 className="add-warehouse__link-title">Add New Warehouse</h1>
         </div>
 
