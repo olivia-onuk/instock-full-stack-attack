@@ -113,3 +113,13 @@ export const deleteInventory = async (id) => {
     throw error;
   }
 };
+
+export const getInventoryById = async (id) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/api/inventories/${id}`);
+    return resp.data;
+  } catch (error) {
+    console.error(`Error getting inventory item with ID ${id}:`, error);
+    throw error;
+  }
+};

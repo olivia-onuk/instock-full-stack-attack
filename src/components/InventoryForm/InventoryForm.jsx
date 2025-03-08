@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./InventoryForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
 
-function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
+function InventoryForm({
+  formtype,
+  buttonLabel,
+  handleUpdate = (inv) => {},
+  item,
+}) {
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -23,6 +28,17 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
     "Seattle",
     "Miami",
   ];
+
+  useEffect(() => {
+    if (item) {
+      setItemName(item.item_name || "");
+      setItemDescription(item.description || "");
+      setCategory(item.category || "");
+      setQty(item.quantity || "");
+      setWarehouse(warehouseMap.indexOf(item.warehouse_id - 1)|| "");
+      setRadio(item.status === "in stock" ? "instock" : "outofstock");
+    }
+  }, [item]);
 
   const handleChangeRadio = (e) => {
     setRadio(e.target.value);
@@ -57,7 +73,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
       !radio
     ) {
       return false;
-    } else if (radio == "instock" && !itemDescription.trim()) {
+    } else if (radio == "instock" && !qty.trim()) {
       return false;
     }
     return true;
@@ -95,7 +111,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
         handleUpdate(inv);
         if (formtype == "addInventoryForm") {
           alert("Invetory Successfully Added. Rerouting to Inventory Page");
-          
+
           setTimeout(() => {
             navigate("/inventory");
           }, 400);
@@ -110,7 +126,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
 
   const handleCancel = () => {
     navigate("/inventory");
-  }
+  };
 
   return (
     <form id={formtype} className="inventory-form" onSubmit={handleSubmit}>
@@ -127,6 +143,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               }`}
               placeholder="Item Name"
               onChange={handleChangeItemName}
+              value={itemName}
             />
             <p
               className={`inventory-form__error-text ${
@@ -155,6 +172,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               }`}
               placeholder="Please enter a brief description..."
               onChange={handleChangeDescription}
+              value={itemDescription}
             />
             <p
               className={`inventory-form__error-text ${
@@ -182,6 +200,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               name="category"
               id="category"
               onChange={handleChangeCategory}
+              value={category}
             >
               <option value="" disabled selected hidden>
                 Please Select
@@ -217,6 +236,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
                 type="radio"
                 name="status"
                 value="instock"
+                checked={radio === "instock"}
                 className={`inventory-form__stock inventory-form__stock--instock ${
                   error && !radio ? "inventory-form__stock--error" : ""
                 }`}
@@ -235,6 +255,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
                 type="radio"
                 name="status"
                 value="outofstock"
+                checked={radio === "outofstock"}
                 className={`inventory-form__stock inventory-form__stock--outofstock ${
                   error && !radio ? "inventory-form__stock--error" : ""
                 }`}
@@ -279,6 +300,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               }`}
               placeholder="0"
               onChange={handleChangeQty}
+              value={qty}
             />
             <p
               className={`inventory-form__error-text ${
@@ -306,6 +328,7 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
               name="warehouse"
               id="warehouse"
               onChange={handleChangeWarehouse}
+              value={warehouse}
             >
               <option value="" disabled selected hidden>
                 Please Select
@@ -336,7 +359,10 @@ function InventoryForm({ formtype, buttonLabel, handleUpdate = (inv) => {} }) {
         </div>
       </div>
       <div className="inventory-form__buttons">
-        <button onClick={handleCancel} className="inventory-form__button inventory-form__button--cancel">
+        <button
+          onClick={handleCancel}
+          className="inventory-form__button inventory-form__button--cancel"
+        >
           Cancel
         </button>
         <button className="inventory-form__button inventory-form__button--action">

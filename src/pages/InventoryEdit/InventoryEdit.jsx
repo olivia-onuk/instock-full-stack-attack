@@ -1,9 +1,30 @@
 import "./InventoryEdit.scss";
 import FormHero from "../../components/FormHero/FormHero";
 import InventoryForm from "../../components/InventoryForm/InventoryForm";
-import { updateInventory } from "../../api/ApiService";
+import { updateInventory, getInventoryById } from "../../api/ApiService";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function InventoryEdit() {
+  const { id } = useParams();
+  const [item, setItem] = useState([]);
+
+  useEffect(() => {
+    const getInventoryItem = async () => {
+      const data = await getInventoryById(id);
+      setItem(data);
+    }
+    getInventoryItem();
+  }, []);
+
+  useEffect(() => {
+    const getInventoryItem = async () => {
+      const data = await getInventoryById(id);
+      setItem(data);
+    };
+    getInventoryItem();
+  }, [id]);
+
   function putInventory(inv) {
     try {
       updateInventory(inv);
@@ -20,6 +41,7 @@ function InventoryEdit() {
           formtype={"editInventoryForm"}
           buttonLabel={"Save"}
           handleUpdate={putInventory}
+          item={item}
         />
       </div>
     </>
