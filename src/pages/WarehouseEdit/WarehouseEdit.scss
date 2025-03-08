@@ -33,8 +33,9 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 2rem 1.625rem 1.5rem 1.5rem;
+    padding: 2rem 1.625rem 1.3rem 1.5rem;
     border-bottom: 0.0625rem solid $secondary-color-two;
+    align-items: center;
 
     &-title {
       font-weight: 600;
@@ -45,6 +46,11 @@
         font-size: 1.75rem;
       }
     }
+    &-arrow, a {
+      width: 1.875rem;
+      height: 1.875rem
+    }
+  
   }
 
   &__form {
@@ -210,8 +216,7 @@
 
       &-cancel {
         height: 2.25rem;
-        width: 50%;
-        min-width: 7.5rem;
+        width: auto;
         text-align: center;
         display: flex;
         align-items: center;
@@ -224,6 +229,7 @@
         font-size: 0.8125rem;
         border: 0.0625rem solid $secondary-color-two;
         border-radius: 1.25rem;
+        padding: .5rem 3.1875rem;
 
         &:hover {
           border: 0.0625rem solid $primary-color-two;
@@ -232,7 +238,7 @@
 
         @include tablet {
           height: 2.375rem;
-          width: 2.25rem;
+          width: auto;
           padding: 0.5rem 1rem;
         }
       }

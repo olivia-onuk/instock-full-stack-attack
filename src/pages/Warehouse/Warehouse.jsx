@@ -12,14 +12,23 @@ function Warehouse() {
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [warehouses, setWarehouses] = useState([]);
+  const [sortBy, setSortBy] = useState("warehouse_name");
+  const [orderBy, setOrderBy] = useState("asc");
 
   useEffect(() => {
     const getWarehouses = async () => {
-      const resp = await fetchWarehouses();
+      const resp = await fetchWarehouses(sortBy, orderBy);
       setWarehouses(resp);
     };
     getWarehouses();
-  }, []);
+  }, [sortBy, orderBy]);
+
+  const handleSort = (column) => {
+    setOrderBy((prevOrder) =>
+      sortBy === column && prevOrder === "asc" ? "desc" : "asc"
+    );
+    setSortBy(column);
+  };
 
   const handleSearch = async () => {
     if (query.trim() !== "") {
@@ -82,7 +91,11 @@ function Warehouse() {
           </Link>
         </div>
       </div>
-      <WarehouseList warehouses={warehouses} onDeleteClick={handleOpenModal} />
+      <WarehouseList
+        warehouses={warehouses}
+        onDeleteClick={handleOpenModal}
+        onSort={handleSort}
+      />
       <WarehouseDeleteModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
