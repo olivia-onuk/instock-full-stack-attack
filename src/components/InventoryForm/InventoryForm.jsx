@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./InventoryForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
+import { fetchWarehouses } from "../../api/ApiService";
 
 function InventoryForm({
   formtype,
@@ -16,18 +17,17 @@ function InventoryForm({
   const [warehouse, setWarehouse] = useState("");
   const [radio, setRadio] = useState(null);
   const [error, setError] = useState(false);
+  const [warehouseList, setWarehouseList] = useState([]);
 
   const navigate = useNavigate();
 
-  const warehouseMap = [
-    "Manhattan",
-    "Washington",
-    "Jersey",
-    "San Fran",
-    "Santa Monica",
-    "Seattle",
-    "Miami",
-  ];
+  useEffect(() => {
+    const getWarehouses = async () => {
+      const resp = await fetchWarehouses();
+      setWarehouseList(resp);
+    };
+    getWarehouses();
+  }, []);
 
   useEffect(() => {
     if (item) {
@@ -71,11 +71,11 @@ function InventoryForm({
   };
 
   const isFormValid = () => {
-    if(qty < 0){
+    if (qty < 0) {
       alert("Can only have over 1 inventory");
       return false;
     }
-    
+
     if (
       !itemName.trim() ||
       !itemDescription.trim() ||
@@ -96,20 +96,25 @@ function InventoryForm({
     if (isFormValid()) {
       try {
         setError(false);
-        let index = warehouseMap.indexOf(warehouse) + 1;
         let radioValue = "";
         let qtyValue = 0;
 
+        const selectedWarehouse = warehouseList.find(
+          (wh) => wh.warehouse_name === warehouse
+        );
+
         if (radio == "instock") {
           radioValue = "in stock";
-          qtyValue = qty;
+          qtyValue = `${qty}`;
         } else {
           radioValue = "out of stock";
           qtyValue = 0;
         }
 
+        console.log(selectedWarehouse);
+
         const inv = {
-          warehouse_id: index,
+          warehouse_id: selectedWarehouse.id,
           item_name: itemName,
           description: `${itemDescription}`,
           category: category,
@@ -344,13 +349,12 @@ function InventoryForm({
               <option value="" disabled hidden>
                 Please Select
               </option>
-              <option value="Manhattan">Manhattan</option>
-              <option value="Washington">Washington</option>
-              <option value="Jersey">Jersey</option>
-              <option value="San Fran">San Fran</option>
-              <option value="Santa Monica">Santa Monica</option>
-              <option value="Seattle">Seattle</option>
-              <option value="Miami">Miami</option>
+              {Array.isArray(warehouseList) &&
+                warehouseList.map((wh) => (
+                  <option key={wh.warehouse_name} value={wh.warehouse_name}>
+                    {wh.warehouse_name}
+                  </option>
+                ))}
             </select>
             <p
               className={`inventory-form__error-text ${
