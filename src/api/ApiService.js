@@ -76,12 +76,17 @@ export const deleteWarehouse = async (id) => {
 
 
 export const fetchInventories = async (
+  searchQuery = "",
   sortBy = "item_name",
   orderBy = "asc"
 ) => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/inventories`, {
-      params: { sort_by: sortBy, order_by: orderBy },
+      params: { 
+        s: searchQuery,
+        sort_by: sortBy,
+        order_by: orderBy 
+      },
     });
     return resp.data;
   } catch (error) {
@@ -128,19 +133,6 @@ export const getInventoryById = async (id) => {
     return resp.data;
   } catch (error) {
     console.error(`Error getting inventory item with ID ${id}:`, error);
-    throw error;
-  }
-};
-
-
-export const searchInventories = async (query) => {
-  try {
-    const resp = await axios.get(`${BASE_URL}/api/inventories`, {
-      params: { s: query }
-    });
-    return resp.data;
-  } catch (error) {
-    console.error("Error searching inventory:", error);
     throw error;
   }
 };

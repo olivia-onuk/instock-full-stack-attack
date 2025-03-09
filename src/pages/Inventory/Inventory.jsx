@@ -9,35 +9,43 @@ import { useDebounce } from 'use-debounce';
 import {
   fetchInventories,
   deleteInventory,
-  searchInventories,
 } from "../../api/ApiService";
 
 function Inventory() {
   const [query, setQuery] = useState("");
+  const [sortBy, setSortBy] = useState("item_name");
+  const [orderBy, setOrderBy] = useState("asc");
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [inventory, setInventory] = useState([]);
+  const [forceSearch, setForceSearch] = useState(0);
   const [debouncedQuery] = useDebounce(query, 300);
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
-    const search = async () => {
+    const loadData = async () => {
       try {
         setIsSearching(true);
-        const data = debouncedQuery 
-          ? await searchInventories(debouncedQuery)
-          : await fetchInventories();
-        
+        const data = await fetchInventories(debouncedQuery, sortBy, orderBy);
         setInventory(data || []);
       } catch (error) {
-        console.error("Search failed:", error);
-        alert(`搜索失败: ${error.message}`);
+        console.error("Failed loading inventory:", error);
       } finally {
         setIsSearching(false);
       }
     };
-    search();
-  }, [debouncedQuery]); 
+    loadData();
+  }, [debouncedQuery, sortBy, orderBy, forceSearch]);
+
+  const handleSort = (column, newOrder) => {
+    setSortBy(column);
+    setOrderBy(newOrder);
+  };
+
+  const handleManualSearch = () => {
+    setForceSearch(prev => prev + 1);
+  };
+
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -94,7 +102,7 @@ function Inventory() {
               src={searchIcon}
               alt="Search"
               className="inventory-search__icon"
-              onClick={() => handleManualSearch()}
+              onClick={handleManualSearch}
             />
           </div>
           <Link to="/inventory/add">
@@ -106,7 +114,9 @@ function Inventory() {
       </div>
 
       <InventoryList
+        inventory={inventory}
         isFullInventory={true}
+        onSort={handleSort}
         onDeleteClick={handleDeleteClick}
       />
 
