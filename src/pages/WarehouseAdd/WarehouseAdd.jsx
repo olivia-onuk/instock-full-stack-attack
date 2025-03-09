@@ -17,8 +17,6 @@ function WarehouseAdd() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState({});
 
-  const navigate = useNavigate();
-
   const handleWarehouseNameInput = (event) => {
     setWarehouseName(event.target.value);
     setError((prevErrors) => ({ ...prevErrors, warehouseName: "" }));
@@ -110,21 +108,20 @@ function WarehouseAdd() {
       contact_email: email,
     };
 
+    try {
+      await addWarehouse(newWarehouse);
+      alert("Warehouse added successfully!");
 
-  try {
-  await addWarehouse(newWarehouse);
-  alert("Warehouse added successfully!");  
-
-  setTimeout(() => {
-    navigate("/warehouse");
-  }, 400);  
-} catch (error) {
-  console.error("Error adding warehouse:", error);
-}
+      setTimeout(() => {
+        navigate("/warehouse");
+      }, 400);
+    } catch (error) {
+      console.error("Error adding warehouse:", error);
+    }
+  };
 
   const handleCancel = () => {
     navigate("/warehouse");
-
   };
 
   return (
