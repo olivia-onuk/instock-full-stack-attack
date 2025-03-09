@@ -136,7 +136,7 @@ function WarehouseEdit() {
       alert("Warehouse updated successfully!");
 
       setTimeout(() => {
-        navigate("/warehouse");
+        navigate(-1);
       }, 400);
     } catch (error) {
       console.error("Error updating warehouse:", error);
@@ -145,7 +145,7 @@ function WarehouseEdit() {
   };
 
   const handleCancel = () => {
-    navigate("/warehouse");
+    navigate(-1);
   };
 
   return (

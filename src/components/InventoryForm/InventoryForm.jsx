@@ -72,7 +72,7 @@ function InventoryForm({
   };
 
   const isFormValid = () => {
-    if (qty < 0) {
+    if (qty < 1 && radio == "instock") {
       alert("Can only have over 1 inventory");
       return false;
     }
@@ -131,7 +131,7 @@ function InventoryForm({
         }
 
         setTimeout(() => {
-          navigate("/inventory");
+          navigate(-1);
         }, 400);
       } catch (error) {
         console.log(error);
@@ -142,7 +142,7 @@ function InventoryForm({
   };
 
   const handleCancel = () => {
-    navigate("/inventory");
+    navigate(-1);
   };
 
   return (
