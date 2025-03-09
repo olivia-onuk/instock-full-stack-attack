@@ -39,25 +39,6 @@
     }
   }
 
-  &__error-text {
-    display: none;
-    padding-top: 0.25rem;
-    font-size: 0.6875rem;
-    line-height: 1rem;
-    font-weight: 400;
-    color: $supporting-color-two;
-
-    &--img {
-      padding-right: 0.1875rem;
-      max-height: 0.8125rem;
-    }
-
-    &--visible {
-      display: flex;
-      align-items: center;
-    }
-  }
-
   &__input-section {
     display: flex;
     flex-direction: column;
