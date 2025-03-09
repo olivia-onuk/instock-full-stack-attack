@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
 import Error from "../../assets/icons/error-24px.svg";
+import { addWarehouse } from "../../api/ApiService";
 
 function WarehouseAdd() {
+  const navigate = useNavigate();
   const [warehouseName, setWarehouseName] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
   const [city, setCity] = useState("");
@@ -14,8 +16,6 @@ function WarehouseAdd() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState({});
-
-  const navigate = useNavigate();
 
   const handleWarehouseNameInput = (event) => {
     setWarehouseName(event.target.value);
@@ -77,16 +77,15 @@ function WarehouseAdd() {
     if (!position.trim()) {
       errorObject.position = "Position is required";
     }
-    if (phoneNumber.length !== 10 || isNaN(Number(phoneNumber))) {
-      errorObject.phoneNumber = "Phone number must be 10 digits.";
+
+    const phoneRegex = /^(\+1\s?)?(\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      errorObject.phoneNumber = "Invalid phone number format.";
     }
 
-    if (
-      !email.includes("@") ||
-      !email.includes(".") ||
-      email.indexOf("@") > email.lastIndexOf(".")
-    ) {
-      errorObject.email = "Invalid email format";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      errorObject.email = "Invalid email format.";
     }
     setError(errorObject);
 
@@ -98,22 +97,27 @@ function WarehouseAdd() {
 
     if (!validateForm()) return;
 
-    const formInput = {
-      warehouseName: warehouseName,
-      streetAddress: streetAddress,
+    const newWarehouse = {
+      warehouse_name: warehouseName,
+      address: streetAddress,
       city: city,
       country: country,
-      contactName: contactName,
-      position: position,
-      phoneNumber: phoneNumber,
-      email: email,
+      contact_name: contactName,
+      contact_position: position,
+      contact_phone: phoneNumber,
+      contact_email: email,
     };
 
-    alert("Warehouse updated successfully!");
+    try {
+      await addWarehouse(newWarehouse);
+      alert("Warehouse added successfully!");
 
-    setTimeout(() => {
-      navigate("/warehouse");
-    }, 400);
+      setTimeout(() => {
+        navigate("/warehouse");
+      }, 400);
+    } catch (error) {
+      console.error("Error adding warehouse:", error);
+    }
   };
 
   const handleCancel = () => {
