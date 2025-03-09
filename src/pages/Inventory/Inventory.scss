@@ -1,0 +1,96 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../components/Typography/Typography.scss" as typography;
+
+.inventory-hero {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  @include responsive-horizontal-padding;
+
+  @include tablet {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 1.375rem;
+  }
+
+  &__right {
+    @include tablet {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}
+
+.inventory-title {
+  margin: 0.5rem 0;
+
+  @include tablet {
+    margin: 0;
+  }
+}
+
+.inventory-search {
+  margin: 1rem 0;
+  position: relative;
+  width: 100%;
+
+  @include tablet {
+    margin: 0;
+  }
+
+  &__input {
+    width: 100%;
+    height: $input-height-mobile;
+    padding: 0 1rem;
+    border: 0.0625rem solid $secondary-color-two;
+    border-radius: 1.25rem;
+    &:active {
+      border: 0.0625rem solid $primary-color-two;
+    }
+    &::placeholder {
+      color: $secondary-color-one;
+      @extend .p2;
+    }
+    @include tablet {
+      height: $input-height-tablet;
+      width: 11.5625rem;
+      @include desktop {
+        width: 17.125rem;
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: .625rem;
+    top: calc(50% - .75rem);
+    height: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.add-inventory-button {
+  color: $primary-color-three;
+  background-color: $primary-color-two;
+  border: 0.125rem solid $primary-color-two;
+  width: 100%;
+  height: 2.25rem;
+  padding: 0 1rem;
+  border-radius: 1.25rem;
+  &:hover {
+    background-color: $background-color-one;
+    border: none;
+  }
+
+  @include tablet {
+    height: 2.375rem;
+    width: $button-width-tablet;
+    flex-shrink: 0;
+    
+    &__text {
+      white-space: nowrap;
+    }
+  }
+}

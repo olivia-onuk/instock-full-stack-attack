@@ -1,0 +1,49 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/font" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.form-hero {
+  padding-top: 1.5rem; 
+  padding-bottom: 1.25rem; 
+  border-bottom: 0.0625rem solid $secondary-color-two;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  @include responsive-horizontal-padding;
+
+  @include tablet {
+    padding-top: 2rem; 
+    padding-bottom: 1.53125rem; 
+    border-bottom: 0.09375rem solid $secondary-color-two; 
+    align-items: center;
+  }
+
+  @include desktop {
+    padding-bottom: 1.3125rem; 
+  }
+
+  &__title {
+    line-height: 2.25rem; 
+    padding-left: 0.3125rem; 
+
+    @include desktop {
+      font-size: 2rem; 
+      line-height: 2.5rem; 
+    }
+  }
+
+  &__arrow {
+    padding-top: 0.3125rem; 
+    min-height: 1.875rem; 
+
+    @include tablet {
+      padding-top: 0rem;
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,224 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/font" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.inventory-form {
+  &__main {
+    width: 100%;
+    @include tablet {
+      padding: 1.5rem 0rem;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__title {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+
+    @include tablet {
+      padding-top: 0rem;
+    }
+  }
+
+  &__column {
+    padding-bottom: 1rem;
+    @include responsive-horizontal-padding;
+
+    &--border {
+      border-top: 0.0625rem solid $secondary-color-two;
+      @include tablet {
+        border-top: none;
+        border-left: 0.0938rem solid $secondary-color-two;
+      }
+    }
+
+    @include tablet {
+      width: 50%;
+    }
+  }
+
+  &__input-section {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+
+    &--invisible {
+      display: none;
+    }
+  }
+
+  &__input-label {
+    padding-bottom: 0.25rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+
+    @include tablet {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
+
+  &__input {
+    outline: none;
+    border-radius: 1.25rem;
+    min-height: 2.25rem;
+    padding: 0rem 1rem;
+    border: 0.0625rem solid $secondary-color-two;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+
+    @include tablet {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+      border: 0.0938rem solid $secondary-color-two;
+    }
+
+    &--large {
+      padding-top: 0.5rem;
+      height: 6.25rem;
+      resize: none;
+    }
+
+    &:focus {
+      border-color: $primary-color-two;
+    }
+
+    &--error {
+      outline: none;
+      border: 0.0625rem solid $supporting-color-two;
+
+      @include tablet {
+        border: 0.0938rem solid $supporting-color-two;
+      }
+    }
+  }
+
+  &__dropdown {
+    outline: none;
+    border-radius: 1.25rem;
+    min-height: 2.25rem;
+    padding: 0rem 0.875rem;
+    border: 0.0625rem solid $secondary-color-two;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    font-family: "Titillium Web";
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+    background-repeat: no-repeat;
+    background-position: right 0.625rem center;
+    padding-right: 1.875rem;
+
+    @include tablet {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+      border: 0.0938rem solid $secondary-color-two;
+    }
+
+    &--error {
+      border: 0.0625rem solid $supporting-color-two;
+
+      @include tablet {
+        border: 0.0938rem solid $supporting-color-two;
+      }
+    }
+  }
+
+  &__dropdown option:disabled {
+    color: $secondary-color-two;
+  }
+
+  &__dropdown::-ms-expand {
+    display: none;
+  }
+
+  &__radio-button {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__stock {
+    padding-right: 0.5rem;
+  }
+
+  &__radio-label {
+    padding-right: 3rem;
+    padding-left: 0.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: $secondary-color-one;
+
+    @include tablet {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+
+    &--active {
+      color: black;
+    }
+  }
+
+  &__buttons {
+    padding: 1rem 0rem;
+    background-color: $background-color-two;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    @include responsive-horizontal-padding;
+
+    @include tablet {
+      justify-content: end;
+    }
+  }
+
+  &__button {
+    font-family: "Titillium Web";
+    height: 2.25rem;
+    border-radius: 1.25rem;
+    padding: 0rem 1rem;
+    min-width: calc(50% - 0.5rem);
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+
+    @include tablet {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+      min-width: calc(10% - 0.5rem);
+      margin-left: 1rem;
+    }
+
+    &--cancel {
+      border: none;
+      border: 0.0625rem solid $secondary-color-two;
+      color: $secondary-color-one;
+      background-color: $primary-color-three;
+
+      &:hover {
+        color: $primary-color-two;
+        border-color: $primary-color-two;
+      }
+    }
+
+    &--action {
+      border: none;
+      border: 0.125rem solid $primary-color-two;
+      color: $primary-color-three;
+      background-color: $primary-color-two;
+
+      &:hover {
+        background-color: $primary-color-one;
+        border-color: $primary-color-one;
+      }
+    }
+  }
+}
