@@ -198,7 +198,7 @@ function InventoryForm({
               </option>
               <option value="Accessories">Accessories</option>
               <option value="Apparel">Apparel</option>
-              <option value="Electronics">Television</option>
+              <option value="Electronics">Electronics</option>
               <option value="Gear">Gear</option>
               <option value="Health">Health</option>
             </select>
