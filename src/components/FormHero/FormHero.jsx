@@ -5,7 +5,14 @@ import "./FormHero.scss";
 function FormHero({ title }) {
   return (
     <div className="form-hero">
-      <Link to="/inventory" className="form-hero__link">
+      <Link
+        to="#"
+        onClick={(e) => {
+          e.preventDefault();
+          window.history.back();
+        }}
+        className="form-hero__link"
+      >
         <img src={arrowBackIcon} alt="backarrow" className="form-hero__arrow" />
       </Link>
       <h1 className="form-hero__title">{title}</h1>
