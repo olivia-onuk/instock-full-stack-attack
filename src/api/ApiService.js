@@ -3,12 +3,17 @@ import axios from "axios";
 const BASE_URL = "http://localhost:8080";
 
 export const fetchWarehouses = async (
+  searchQuery = "",
   sortBy = "warehouse_name",
   orderBy = "asc"
 ) => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/warehouses`, {
-      params: { sort_by: sortBy, order_by: orderBy },
+      params: { 
+        s: searchQuery,
+        sort_by: sortBy,
+        order_by: orderBy 
+      },
     });
     return resp.data;
   } catch (error) {
@@ -69,13 +74,19 @@ export const deleteWarehouse = async (id) => {
   }
 };
 
+
 export const fetchInventories = async (
+  searchQuery = "",
   sortBy = "item_name",
   orderBy = "asc"
 ) => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/inventories`, {
-      params: { sort_by: sortBy, order_by: orderBy },
+      params: { 
+        s: searchQuery,
+        sort_by: sortBy,
+        order_by: orderBy 
+      },
     });
     return resp.data;
   } catch (error) {
@@ -106,14 +117,6 @@ export const updateInventory = async (id, inventoryItem) => {
   }
 };
 
-export const searchInventories = async (query) => {
-  try {
-    const resp = await axios.get(`${BASE_URL}/api/inventories?search=${query}`);
-    return resp.data;
-  } catch (error) {
-    console.error("Error searching inventory:", error);
-  }
-};
 
 export const deleteInventory = async (id) => {
   try {

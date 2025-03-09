@@ -1,7 +1,7 @@
 import "./WarehouseDetails.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchWarehouse } from "../../api/ApiService";
+import { fetchWarehouse, fetchWarehouseInventory } from "../../api/ApiService";
 import WarehoudeDetailHero from "../../components/WarehouseDetailHero/WarehoudeDetailHero";
 import WarehouseDetailSection from "../../components/WarehouseDetailSection/WarehouseDetailSection";
 import InventoryList from "../../components/InventoryList/InventoryList";
@@ -9,6 +9,7 @@ import InventoryList from "../../components/InventoryList/InventoryList";
 function WarehouseDetails() {
   const { id } = useParams();
   const [warehouse, setWarehouse] = useState({});
+  const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
     const getWarehouse = async() => {
@@ -19,7 +20,16 @@ function WarehouseDetails() {
         console.log("Error fetching warehouse:", error);
       }
     }
+    const getWarehouseInventory = async() => {
+      try {
+        const resp = await fetchWarehouseInventory(id);
+        setInventory(resp);
+      } catch (error) {
+        console.log("Error fetching warehouse inventories:", error);
+      }
+    }
     getWarehouse();
+    getWarehouseInventory();
   },[]);
   
   if (!warehouse) {
@@ -30,7 +40,7 @@ function WarehouseDetails() {
     <div className="main warehouse-detail-page">
       <WarehoudeDetailHero id={id} warehouse={warehouse} />
       <WarehouseDetailSection warehouse={warehouse} />
-      <InventoryList id={id} isFullInventory={false}/>
+      <InventoryList id={id} inventory={inventory} isFullInventory={false}/>
     </div>
   );
 }
