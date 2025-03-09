@@ -4,25 +4,60 @@ import { Link } from "react-router-dom";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import InventoryDeleteModal from "../../components/InventoryDeleteModal/InventoryDeleteModal";
+import { useDebounce } from 'use-debounce';
+
 import {
   fetchInventories,
   deleteInventory,
-  searchInventories,
 } from "../../api/ApiService";
 
 function Inventory() {
   const [query, setQuery] = useState("");
+  const [sortBy, setSortBy] = useState("item_name");
+  const [orderBy, setOrderBy] = useState("asc");
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [inventory, setInventory] = useState([]);
+  const [forceSearch, setForceSearch] = useState(0);
+  const [debouncedQuery] = useDebounce(query, 300);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
-    const getInventory = async () => {
-      const data = await fetchInventories();
-      setInventory(data);
+    const loadData = async () => {
+      try {
+        setIsSearching(true);
+        const data = await fetchInventories(debouncedQuery, sortBy, orderBy);
+        setInventory(data || []);
+      } catch (error) {
+        console.error("Failed loading inventory:", error);
+      } finally {
+        setIsSearching(false);
+      }
     };
-    getInventory();
+    loadData();
+  }, [debouncedQuery, sortBy, orderBy, forceSearch]);
+
+  const handleSort = (column, newOrder) => {
+    setSortBy(column);
+    setOrderBy(newOrder);
+  };
+
+  const handleManualSearch = () => {
+    setForceSearch(prev => prev + 1);
+  };
+
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get('s') || '';
+    setQuery(initialQuery);
   }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (debouncedQuery) params.set('s', debouncedQuery);
+    window.history.replaceState({}, '', `?${params}`);
+  }, [debouncedQuery]);
 
   const handleDeleteClick = (item) => {
     setSelectedItem(item);
@@ -49,16 +84,6 @@ function Inventory() {
     handleCloseModal();
   };
 
-  const handleSearch = async () => {
-    if (query.trim() === "") return;
-
-    try {
-      const data = await searchInventories(query);
-      if (data) setInventory(data);
-    } catch (error) {
-      console.error("Error searching inventory:", error);
-    }
-  };
 
   return (
     <div className="main">
@@ -72,13 +97,12 @@ function Inventory() {
               placeholder="Search..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
             <img
               src={searchIcon}
               alt="Search"
               className="inventory-search__icon"
-              onClick={handleSearch}
+              onClick={handleManualSearch}
             />
           </div>
           <Link to="/inventory/add">
@@ -91,8 +115,8 @@ function Inventory() {
 
       <InventoryList
         inventory={inventory}
-        setInventory={setInventory}
         isFullInventory={true}
+        onSort={handleSort}
         onDeleteClick={handleDeleteClick}
       />
 

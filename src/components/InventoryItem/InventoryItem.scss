@@ -156,8 +156,10 @@
   }
 
   &__qty--not-full {
-    width: 4.5912rem;
-    margin: auto;
+    @include tablet {
+      width: 4.5912rem;
+      margin: auto;
+    }
   }
 
   &__warehouse {
