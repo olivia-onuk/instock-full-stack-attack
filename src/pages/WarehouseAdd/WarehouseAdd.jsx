@@ -113,7 +113,7 @@ function WarehouseAdd() {
       alert("Warehouse added successfully!");
 
       setTimeout(() => {
-        navigate("/warehouse");
+        navigate(-1);
       }, 400);
     } catch (error) {
       console.error("Error adding warehouse:", error);
@@ -121,7 +121,7 @@ function WarehouseAdd() {
   };
 
   const handleCancel = () => {
-    navigate("/warehouse");
+    navigate(-1);
   };
 
   return (

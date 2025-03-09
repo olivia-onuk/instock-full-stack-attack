@@ -36,7 +36,7 @@ function InventoryEdit() {
   return (
     <>
       <div className=" main inventroy-add">
-        <FormHero title={"Edit Inventory"} />
+        <FormHero title={"Edit Inventory Item"} />
         <InventoryForm
           formtype={"editInventoryForm"}
           buttonLabel={"Save"}
