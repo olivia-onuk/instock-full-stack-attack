@@ -101,7 +101,7 @@ function WarehouseEdit() {
     if (!position.trim()) {
       errorObject.position = "Position is required";
     }
-    const phoneRegex = /^(\+1\s?)?(\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    const phoneRegex = /^(\+1\s?)?(\(\s?\d{3}\s?\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$/;
     if (!phoneRegex.test(phoneNumber)) {
       errorObject.phoneNumber = "Invalid phone number format.";
     }
