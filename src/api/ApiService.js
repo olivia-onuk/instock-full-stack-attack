@@ -53,16 +53,22 @@ export const updateWarehouse = async (id, warehouseData) => {
   }
 };
 
-export const fetchWarehouseInventory = async (id) => {
+export const fetchWarehouseInventory = async (
+  id,
+  sortBy = "item_name",
+  orderBy = "asc"
+) => {
   try {
-    const resp = await axios.get(
-      `${BASE_URL}/api/warehouses/${id}/inventories`
-    );
-
+    const resp = await axios.get(`${BASE_URL}/api/warehouses/${id}/inventories`, {
+      params: {
+        sort_by: sortBy,
+        order_by: orderBy
+      }
+    });
     return resp.data;
   } catch (error) {
-    console.log(error);
-    alert("Failed to fetch warehouse inventory. Please try again.");
+    console.error(`Error fetching warehouse ${id} inventory:`, error);
+    throw error;
   }
 };
 

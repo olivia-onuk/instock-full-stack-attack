@@ -56,7 +56,12 @@ function InventoryListHeader({ isFullInventory, onSort }) {
       ) : (
         <span className="inventory-tablet-label">
           <h4>QUANTITY</h4>
-          <img src={sortIcon} alt="sort" className="sort-icon" />
+          <img 
+          src={sortIcon} 
+          alt="sort" 
+          className="sort-icon"
+          onClick={() => onSort("quantity")}
+          />
         </span>
       )}
       <span className="inventory-tablet-label inventory-tablet-label--action">
