@@ -128,7 +128,7 @@ function WarehouseAdd() {
     <>
       <section className="main add-warehouse">
         <div className="add-warehouse__link">
-          <Link to="/warehouse">
+          <Link to="#" onClick={(e) => { e.preventDefault(); window.history.back(); }}>
             <img className="add-warehouse__link-arrow" src={Arrow} />
           </Link>
           <h1 className="add-warehouse__link-title">Add New Warehouse</h1>

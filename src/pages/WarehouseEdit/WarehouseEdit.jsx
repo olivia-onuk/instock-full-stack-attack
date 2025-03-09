@@ -152,7 +152,7 @@ function WarehouseEdit() {
     <>
       <section className="main edit-warehouse">
         <div className="edit-warehouse__link">
-          <Link to="/warehouse">
+          <Link to="#" onClick={(e) => { e.preventDefault(); window.history.back(); }}>
             <img className="edit-warehouse__link-arrow" src={Arrow} />
           </Link>
           <h1 className="edit-warehouse__link-title">Edit Warehouse</h1>
