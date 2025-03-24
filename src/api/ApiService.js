@@ -9,10 +9,10 @@ export const fetchWarehouses = async (
 ) => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/warehouses`, {
-      params: { 
+      params: {
         s: searchQuery,
         sort_by: sortBy,
-        order_by: orderBy 
+        order_by: orderBy,
       },
     });
     return resp.data;
@@ -70,12 +70,15 @@ export const fetchWarehouseInventory = async (
   orderBy = "asc"
 ) => {
   try {
-    const resp = await axios.get(`${BASE_URL}/api/warehouses/${id}/inventories`, {
-      params: {
-        sort_by: sortBy,
-        order_by: orderBy
+    const resp = await axios.get(
+      `${BASE_URL}/api/warehouses/${id}/inventories`,
+      {
+        params: {
+          sort_by: sortBy,
+          order_by: orderBy,
+        },
       }
-    });
+    );
     return resp.data;
   } catch (error) {
     console.error(`Error fetching warehouse ${id} inventory:`, error);
@@ -91,7 +94,6 @@ export const deleteWarehouse = async (id) => {
   }
 };
 
-
 export const fetchInventories = async (
   searchQuery = "",
   sortBy = "item_name",
@@ -99,10 +101,10 @@ export const fetchInventories = async (
 ) => {
   try {
     const resp = await axios.get(`${BASE_URL}/api/inventories`, {
-      params: { 
+      params: {
         s: searchQuery,
         sort_by: sortBy,
-        order_by: orderBy 
+        order_by: orderBy,
       },
     });
     return resp.data;
@@ -133,7 +135,6 @@ export const updateInventory = async (id, inventoryItem) => {
     alert("Failed to update Inventory. Please try again.");
   }
 };
-
 
 export const deleteInventory = async (id) => {
   try {
